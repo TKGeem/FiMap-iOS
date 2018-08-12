@@ -30,8 +30,6 @@
 		759E43B321205B2400827AFD /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759E43B221205B2400827AFD /* UIView.swift */; };
 		759E43B621205B6C00827AFD /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759E43B521205B6C00827AFD /* Collection.swift */; };
 		759E43B821205C1600827AFD /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759E43B721205C1600827AFD /* UIAlertController.swift */; };
-		759E43BA2120701B00827AFD /* GoogleMapsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759E43B92120701B00827AFD /* GoogleMapsView.swift */; };
-		759E43BD212071B900827AFD /* FunctionToolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759E43BC212071B900827AFD /* FunctionToolView.swift */; };
 		75BE9CD020EDB88B003E7A00 /* fbConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75BE9CCF20EDB88B003E7A00 /* fbConfig.plist */; };
 		75C9096E211FDFA000BE6410 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C9096D211FDFA000BE6410 /* HomeViewController.swift */; };
 		75C90970211FF4C500BE6410 /* white_style.json in Sources */ = {isa = PBXBuildFile; fileRef = 75C9096F211FF4C500BE6410 /* white_style.json */; };
@@ -87,8 +85,6 @@
 		759E43B221205B2400827AFD /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		759E43B521205B6C00827AFD /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		759E43B721205C1600827AFD /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
-		759E43B92120701B00827AFD /* GoogleMapsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsView.swift; sourceTree = "<group>"; };
-		759E43BC212071B900827AFD /* FunctionToolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionToolView.swift; sourceTree = "<group>"; };
 		75BE9CCF20EDB88B003E7A00 /* fbConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = fbConfig.plist; sourceTree = "<group>"; };
 		75C9096D211FDFA000BE6410 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		75C9096F211FF4C500BE6410 /* white_style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = white_style.json; sourceTree = "<group>"; };
@@ -203,8 +199,6 @@
 		759E43BB2120717E00827AFD /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				759E43B92120701B00827AFD /* GoogleMapsView.swift */,
-				759E43BC212071B900827AFD /* FunctionToolView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -570,7 +564,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				759E43BD212071B900827AFD /* FunctionToolView.swift in Sources */,
 				754707C120FB5705000635E8 /* R.generated.swift in Sources */,
 				759E43AB2120501A00827AFD /* Constructs.swift in Sources */,
 				759D3B8A20D3F86800DC4367 /* FiMap.xcdatamodeld in Sources */,
@@ -579,7 +572,6 @@
 				759E43B621205B6C00827AFD /* Collection.swift in Sources */,
 				759D3B8220D3F86800DC4367 /* AppDelegate.swift in Sources */,
 				759E43AD2120574C00827AFD /* UIColor.swift in Sources */,
-				759E43BA2120701B00827AFD /* GoogleMapsView.swift in Sources */,
 				7526EE44212003C100EC1DC8 /* fimap_style.json in Sources */,
 				759E43AF2120589B00827AFD /* NSObject.swift in Sources */,
 				759E43B321205B2400827AFD /* UIView.swift in Sources */,

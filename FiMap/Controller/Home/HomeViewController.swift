@@ -10,26 +10,40 @@ import UIKit
 import SnapKit
 import SideMenu
 import GoogleMaps
+import GooglePlaces
+import GooglePlacePicker
 
 class HomeViewController: UIViewController {
     let mapView = GMSMapView()
+    let sideMenuBtton = UIButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        mapViewLayoutSetting()
+        mapViewSetting()
         // Do any additional setup after loading the view.
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    private func mapViewLayoutSetting(){
+    private func sideMenuViewSetting(){
+        let sideMenuVC = SideMenuViewController()
+        let leftSideMenuNavigationVC = UISideMenuNavigationController(rootViewController: sideMenuVC)
+        SideMenuManager.default.menuLeftNavigationController = leftSideMenuNavigationVC
+    }
+    
+    private func mapViewSetting(){
         do {
             if let styleURL = Bundle.main.url(forResource: "fimap_style", withExtension: "json") {
-                mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+                self.mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
             } else {
+                self.mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: R.file.fimap_styleJson()!)
                 NSLog("Unable to find style")
             }
         } catch {
@@ -44,8 +58,9 @@ class HomeViewController: UIViewController {
         mapView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
-        
     }
+    
+    
 
     /*
     // MARK: - Navigation
