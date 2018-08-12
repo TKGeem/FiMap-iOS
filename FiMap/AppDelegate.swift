@@ -63,8 +63,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.storage = Storage.storage()
         self.database = Database.database().reference()
         
-        GMSServices.provideAPIKey(Constains.API_KEY.GMS_APU_KEY)
-        GMSPlacesClient.provideAPIKey(Constains.API_KEY.GMS_APU_KEY)
+        GMSServices.provideAPIKey(Constains.API_KEY.GMS_API_KEY)
+        GMSPlacesClient.provideAPIKey(Constains.API_KEY.GMS_API_KEY)
     }
     
     
