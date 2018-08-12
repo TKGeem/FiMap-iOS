@@ -1,0 +1,891 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0090B87C48698BB9175CBA24 /* Pods_FiMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3404E01DD37FF9E612BFE5D9 /* Pods_FiMap.framework */; };
+		729FD105DE3E1AF83EBE1BAC /* Pods_FiMapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB0FFBB90D78707EE4E5B811 /* Pods_FiMapUITests.framework */; };
+		754707A420FB4058000635E8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754707A220FB4058000635E8 /* MapViewController.swift */; };
+		754707A720FB40D7000635E8 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754707A620FB40D7000635E8 /* MapView.swift */; };
+		754707A920FB40EC000635E8 /* MapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 754707A820FB40EC000635E8 /* MapView.xib */; };
+		754707BA20FB5512000635E8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 754707BC20FB5512000635E8 /* Localizable.strings */; };
+		754707C120FB5705000635E8 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754707C020FB5705000635E8 /* R.generated.swift */; };
+		754707C320FB577A000635E8 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754707C220FB577A000635E8 /* MapViewModel.swift */; };
+		759D3B8220D3F86800DC4367 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759D3B8120D3F86800DC4367 /* AppDelegate.swift */; };
+		759D3B8420D3F86800DC4367 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759D3B8320D3F86800DC4367 /* ViewController.swift */; };
+		759D3B8720D3F86800DC4367 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 759D3B8520D3F86800DC4367 /* Main.storyboard */; };
+		759D3B8A20D3F86800DC4367 /* FiMap.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 759D3B8820D3F86800DC4367 /* FiMap.xcdatamodeld */; };
+		759D3B8C20D3F86900DC4367 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 759D3B8B20D3F86900DC4367 /* Assets.xcassets */; };
+		759D3B8F20D3F86900DC4367 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 759D3B8D20D3F86900DC4367 /* LaunchScreen.storyboard */; };
+		759D3B9A20D3F86900DC4367 /* FiMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759D3B9920D3F86900DC4367 /* FiMapTests.swift */; };
+		759D3BA520D3F86900DC4367 /* FiMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759D3BA420D3F86900DC4367 /* FiMapUITests.swift */; };
+		75BE9CD020EDB88B003E7A00 /* fbConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75BE9CCF20EDB88B003E7A00 /* fbConfig.plist */; };
+		75BE9CD220EDC32E003E7A00 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BE9CD120EDC32E003E7A00 /* config.swift */; };
+		75DCBF512100320600B3DA18 /* MGLMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DCBF502100320600B3DA18 /* MGLMapView.swift */; };
+		75DCBF532100324200B3DA18 /* MBMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75DCBF522100324200B3DA18 /* MBMapView.xib */; };
+		75F3CDC220F6299500F34FE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75F3CDC120F6299400F34FE1 /* GoogleService-Info.plist */; };
+		D342378141268027434F0A48 /* Pods_FiMapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C20BC4D633BD9967F84772B /* Pods_FiMapTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		759D3B9620D3F86900DC4367 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 759D3B7620D3F86800DC4367 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 759D3B7D20D3F86800DC4367;
+			remoteInfo = FiMap;
+		};
+		759D3BA120D3F86900DC4367 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 759D3B7620D3F86800DC4367 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 759D3B7D20D3F86800DC4367;
+			remoteInfo = FiMap;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0C20BC4D633BD9967F84772B /* Pods_FiMapTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FiMapTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3404E01DD37FF9E612BFE5D9 /* Pods_FiMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FiMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		41661D2939F4D84BA6A01D36 /* Pods-FiMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-FiMap/Pods-FiMap.release.xcconfig"; sourceTree = "<group>"; };
+		7007A0DAB09AB24854821CDF /* Pods-FiMapUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiMapUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FiMapUITests/Pods-FiMapUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		754707A220FB4058000635E8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		754707A620FB40D7000635E8 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		754707A820FB40EC000635E8 /* MapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapView.xib; sourceTree = "<group>"; };
+		754707BB20FB5512000635E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		754707BD20FB5514000635E8 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		754707C020FB5705000635E8 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		754707C220FB577A000635E8 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		759D3B7E20D3F86800DC4367 /* FiMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FiMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		759D3B8120D3F86800DC4367 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		759D3B8320D3F86800DC4367 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		759D3B8620D3F86800DC4367 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		759D3B8920D3F86800DC4367 /* FiMap.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FiMap.xcdatamodel; sourceTree = "<group>"; };
+		759D3B8B20D3F86900DC4367 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		759D3B8E20D3F86900DC4367 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		759D3B9020D3F86900DC4367 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		759D3B9520D3F86900DC4367 /* FiMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FiMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		759D3B9920D3F86900DC4367 /* FiMapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiMapTests.swift; sourceTree = "<group>"; };
+		759D3B9B20D3F86900DC4367 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		759D3BA020D3F86900DC4367 /* FiMapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FiMapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		759D3BA420D3F86900DC4367 /* FiMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiMapUITests.swift; sourceTree = "<group>"; };
+		759D3BA620D3F86900DC4367 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75BE9CCF20EDB88B003E7A00 /* fbConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = fbConfig.plist; sourceTree = "<group>"; };
+		75BE9CD120EDC32E003E7A00 /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
+		75DCBF502100320600B3DA18 /* MGLMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGLMapView.swift; sourceTree = "<group>"; };
+		75DCBF522100324200B3DA18 /* MBMapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MBMapView.xib; sourceTree = "<group>"; };
+		75F3CDC120F6299400F34FE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7E65E3398D77035A4AC33CBB /* Pods-FiMapTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiMapTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FiMapTests/Pods-FiMapTests.debug.xcconfig"; sourceTree = "<group>"; };
+		98151CFBD14C938547B868A6 /* Pods-FiMapUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiMapUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FiMapUITests/Pods-FiMapUITests.release.xcconfig"; sourceTree = "<group>"; };
+		ABC09C35C6E694ABAC0BF55B /* Pods-FiMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FiMap/Pods-FiMap.debug.xcconfig"; sourceTree = "<group>"; };
+		BB0FFBB90D78707EE4E5B811 /* Pods_FiMapUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FiMapUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1BB19F219AFA94417430F81 /* Pods-FiMapTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiMapTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FiMapTests/Pods-FiMapTests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		759D3B7B20D3F86800DC4367 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0090B87C48698BB9175CBA24 /* Pods_FiMap.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		759D3B9220D3F86900DC4367 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D342378141268027434F0A48 /* Pods_FiMapTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		759D3B9D20D3F86900DC4367 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				729FD105DE3E1AF83EBE1BAC /* Pods_FiMapUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		487950CE084C0BC9A5B4FF23 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3404E01DD37FF9E612BFE5D9 /* Pods_FiMap.framework */,
+				0C20BC4D633BD9967F84772B /* Pods_FiMapTests.framework */,
+				BB0FFBB90D78707EE4E5B811 /* Pods_FiMapUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		754707A120FB3FFC000635E8 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				75DCBF4F210031E300B3DA18 /* MGLMap */,
+				754707A220FB4058000635E8 /* MapViewController.swift */,
+				754707C220FB577A000635E8 /* MapViewModel.swift */,
+				754707A620FB40D7000635E8 /* MapView.swift */,
+				754707A820FB40EC000635E8 /* MapView.xib */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		759D3B7520D3F86800DC4367 = {
+			isa = PBXGroup;
+			children = (
+				759D3B8020D3F86800DC4367 /* FiMap */,
+				759D3B9820D3F86900DC4367 /* FiMapTests */,
+				759D3BA320D3F86900DC4367 /* FiMapUITests */,
+				759D3B7F20D3F86800DC4367 /* Products */,
+				D3FFFA49239A3FC8FAE31C1D /* Pods */,
+				487950CE084C0BC9A5B4FF23 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		759D3B7F20D3F86800DC4367 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				759D3B7E20D3F86800DC4367 /* FiMap.app */,
+				759D3B9520D3F86900DC4367 /* FiMapTests.xctest */,
+				759D3BA020D3F86900DC4367 /* FiMapUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		759D3B8020D3F86800DC4367 /* FiMap */ = {
+			isa = PBXGroup;
+			children = (
+				75B7134E20F6EFCB00428FFA /* View */,
+				75B7134F20F6EFD400428FFA /* Model */,
+				75B7135120F6F00F00428FFA /* Extension */,
+				75B7135020F6F00300428FFA /* Resourece */,
+				75B7135220F6F04400428FFA /* Utilites */,
+				759D3B9020D3F86900DC4367 /* Info.plist */,
+				75BE9CCF20EDB88B003E7A00 /* fbConfig.plist */,
+				75F3CDC120F6299400F34FE1 /* GoogleService-Info.plist */,
+				759D3B8120D3F86800DC4367 /* AppDelegate.swift */,
+				759D3B8320D3F86800DC4367 /* ViewController.swift */,
+				759D3B8520D3F86800DC4367 /* Main.storyboard */,
+				759D3B8D20D3F86900DC4367 /* LaunchScreen.storyboard */,
+				759D3B8820D3F86800DC4367 /* FiMap.xcdatamodeld */,
+				759D3B8B20D3F86900DC4367 /* Assets.xcassets */,
+			);
+			path = FiMap;
+			sourceTree = "<group>";
+		};
+		759D3B9820D3F86900DC4367 /* FiMapTests */ = {
+			isa = PBXGroup;
+			children = (
+				759D3B9920D3F86900DC4367 /* FiMapTests.swift */,
+				759D3B9B20D3F86900DC4367 /* Info.plist */,
+			);
+			path = FiMapTests;
+			sourceTree = "<group>";
+		};
+		759D3BA320D3F86900DC4367 /* FiMapUITests */ = {
+			isa = PBXGroup;
+			children = (
+				759D3BA420D3F86900DC4367 /* FiMapUITests.swift */,
+				759D3BA620D3F86900DC4367 /* Info.plist */,
+			);
+			path = FiMapUITests;
+			sourceTree = "<group>";
+		};
+		75B7134E20F6EFCB00428FFA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				754707A120FB3FFC000635E8 /* Map */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		75B7134F20F6EFD400428FFA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		75B7135020F6F00300428FFA /* Resourece */ = {
+			isa = PBXGroup;
+			children = (
+				754707BC20FB5512000635E8 /* Localizable.strings */,
+			);
+			path = Resourece;
+			sourceTree = "<group>";
+		};
+		75B7135120F6F00F00428FFA /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		75B7135220F6F04400428FFA /* Utilites */ = {
+			isa = PBXGroup;
+			children = (
+				754707C020FB5705000635E8 /* R.generated.swift */,
+				75BE9CD120EDC32E003E7A00 /* config.swift */,
+			);
+			path = Utilites;
+			sourceTree = "<group>";
+		};
+		75DCBF4F210031E300B3DA18 /* MGLMap */ = {
+			isa = PBXGroup;
+			children = (
+				75DCBF502100320600B3DA18 /* MGLMapView.swift */,
+				75DCBF522100324200B3DA18 /* MBMapView.xib */,
+			);
+			path = MGLMap;
+			sourceTree = "<group>";
+		};
+		D3FFFA49239A3FC8FAE31C1D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ABC09C35C6E694ABAC0BF55B /* Pods-FiMap.debug.xcconfig */,
+				41661D2939F4D84BA6A01D36 /* Pods-FiMap.release.xcconfig */,
+				7E65E3398D77035A4AC33CBB /* Pods-FiMapTests.debug.xcconfig */,
+				E1BB19F219AFA94417430F81 /* Pods-FiMapTests.release.xcconfig */,
+				7007A0DAB09AB24854821CDF /* Pods-FiMapUITests.debug.xcconfig */,
+				98151CFBD14C938547B868A6 /* Pods-FiMapUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		759D3B7D20D3F86800DC4367 /* FiMap */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 759D3BA920D3F86900DC4367 /* Build configuration list for PBXNativeTarget "FiMap" */;
+			buildPhases = (
+				78CAD3454E39E985A19D440E /* [CP] Check Pods Manifest.lock */,
+				75F3CDC320F62CA400F34FE1 /* ShellScript */,
+				759D3B7A20D3F86800DC4367 /* Sources */,
+				759D3B7B20D3F86800DC4367 /* Frameworks */,
+				759D3B7C20D3F86800DC4367 /* Resources */,
+				913394C88F0D0EB2D08D322B /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FiMap;
+			productName = FiMap;
+			productReference = 759D3B7E20D3F86800DC4367 /* FiMap.app */;
+			productType = "com.apple.product-type.application";
+		};
+		759D3B9420D3F86900DC4367 /* FiMapTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 759D3BAC20D3F86900DC4367 /* Build configuration list for PBXNativeTarget "FiMapTests" */;
+			buildPhases = (
+				26E075A405F59942F5BEE555 /* [CP] Check Pods Manifest.lock */,
+				759D3B9120D3F86900DC4367 /* Sources */,
+				759D3B9220D3F86900DC4367 /* Frameworks */,
+				759D3B9320D3F86900DC4367 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				759D3B9720D3F86900DC4367 /* PBXTargetDependency */,
+			);
+			name = FiMapTests;
+			productName = FiMapTests;
+			productReference = 759D3B9520D3F86900DC4367 /* FiMapTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		759D3B9F20D3F86900DC4367 /* FiMapUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 759D3BAF20D3F86900DC4367 /* Build configuration list for PBXNativeTarget "FiMapUITests" */;
+			buildPhases = (
+				9EC317A4CEC354C29F6877BA /* [CP] Check Pods Manifest.lock */,
+				759D3B9C20D3F86900DC4367 /* Sources */,
+				759D3B9D20D3F86900DC4367 /* Frameworks */,
+				759D3B9E20D3F86900DC4367 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				759D3BA220D3F86900DC4367 /* PBXTargetDependency */,
+			);
+			name = FiMapUITests;
+			productName = FiMapUITests;
+			productReference = 759D3BA020D3F86900DC4367 /* FiMapUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		759D3B7620D3F86800DC4367 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = TKGeem;
+				TargetAttributes = {
+					759D3B7D20D3F86800DC4367 = {
+						CreatedOnToolsVersion = 9.4;
+					};
+					759D3B9420D3F86900DC4367 = {
+						CreatedOnToolsVersion = 9.4;
+						TestTargetID = 759D3B7D20D3F86800DC4367;
+					};
+					759D3B9F20D3F86900DC4367 = {
+						CreatedOnToolsVersion = 9.4;
+						TestTargetID = 759D3B7D20D3F86800DC4367;
+					};
+				};
+			};
+			buildConfigurationList = 759D3B7920D3F86800DC4367 /* Build configuration list for PBXProject "FiMap" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				ja,
+			);
+			mainGroup = 759D3B7520D3F86800DC4367;
+			productRefGroup = 759D3B7F20D3F86800DC4367 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				759D3B7D20D3F86800DC4367 /* FiMap */,
+				759D3B9420D3F86900DC4367 /* FiMapTests */,
+				759D3B9F20D3F86900DC4367 /* FiMapUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		759D3B7C20D3F86800DC4367 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75BE9CD020EDB88B003E7A00 /* fbConfig.plist in Resources */,
+				759D3B8F20D3F86900DC4367 /* LaunchScreen.storyboard in Resources */,
+				75F3CDC220F6299500F34FE1 /* GoogleService-Info.plist in Resources */,
+				754707BA20FB5512000635E8 /* Localizable.strings in Resources */,
+				759D3B8C20D3F86900DC4367 /* Assets.xcassets in Resources */,
+				759D3B8720D3F86800DC4367 /* Main.storyboard in Resources */,
+				75DCBF532100324200B3DA18 /* MBMapView.xib in Resources */,
+				754707A920FB40EC000635E8 /* MapView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		759D3B9320D3F86900DC4367 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		759D3B9E20D3F86900DC4367 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		26E075A405F59942F5BEE555 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FiMapTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		75F3CDC320F62CA400F34FE1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"";
+		};
+		78CAD3454E39E985A19D440E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FiMap-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		913394C88F0D0EB2D08D322B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FiMap/Pods-FiMap-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-SwiftyJSON/Alamofire_SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework",
+				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework.dSYM",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/XLPagerTabStrip/XLPagerTabStrip.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire_SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework",
+				"${DWARF_DSYM_FOLDER_PATH}/Mapbox.framework.dSYM",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLPagerTabStrip.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FiMap/Pods-FiMap-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9EC317A4CEC354C29F6877BA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FiMapUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		759D3B7A20D3F86800DC4367 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				754707A720FB40D7000635E8 /* MapView.swift in Sources */,
+				754707C120FB5705000635E8 /* R.generated.swift in Sources */,
+				759D3B8A20D3F86800DC4367 /* FiMap.xcdatamodeld in Sources */,
+				754707A420FB4058000635E8 /* MapViewController.swift in Sources */,
+				75BE9CD220EDC32E003E7A00 /* config.swift in Sources */,
+				759D3B8420D3F86800DC4367 /* ViewController.swift in Sources */,
+				75DCBF512100320600B3DA18 /* MGLMapView.swift in Sources */,
+				759D3B8220D3F86800DC4367 /* AppDelegate.swift in Sources */,
+				754707C320FB577A000635E8 /* MapViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		759D3B9120D3F86900DC4367 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				759D3B9A20D3F86900DC4367 /* FiMapTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		759D3B9C20D3F86900DC4367 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				759D3BA520D3F86900DC4367 /* FiMapUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		759D3B9720D3F86900DC4367 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 759D3B7D20D3F86800DC4367 /* FiMap */;
+			targetProxy = 759D3B9620D3F86900DC4367 /* PBXContainerItemProxy */;
+		};
+		759D3BA220D3F86900DC4367 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 759D3B7D20D3F86800DC4367 /* FiMap */;
+			targetProxy = 759D3BA120D3F86900DC4367 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		754707BC20FB5512000635E8 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				754707BB20FB5512000635E8 /* en */,
+				754707BD20FB5514000635E8 /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		759D3B8520D3F86800DC4367 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				759D3B8620D3F86800DC4367 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		759D3B8D20D3F86900DC4367 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				759D3B8E20D3F86900DC4367 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		759D3BA720D3F86900DC4367 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				"OTHER_SWIFT_FLAGS[arch=*]" = "-D DEBUG";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		759D3BA820D3F86900DC4367 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		759D3BAA20D3F86900DC4367 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ABC09C35C6E694ABAC0BF55B /* Pods-FiMap.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4XKKKM86RN;
+				INFOPLIST_FILE = FiMap/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tkgeem.fimap;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		759D3BAB20D3F86900DC4367 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41661D2939F4D84BA6A01D36 /* Pods-FiMap.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4XKKKM86RN;
+				INFOPLIST_FILE = FiMap/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tkgeem.fimap;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		759D3BAD20D3F86900DC4367 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E65E3398D77035A4AC33CBB /* Pods-FiMapTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FiMapTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = TKGeem.FiMapTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FiMap.app/FiMap";
+			};
+			name = Debug;
+		};
+		759D3BAE20D3F86900DC4367 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1BB19F219AFA94417430F81 /* Pods-FiMapTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FiMapTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = TKGeem.FiMapTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FiMap.app/FiMap";
+			};
+			name = Release;
+		};
+		759D3BB020D3F86900DC4367 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7007A0DAB09AB24854821CDF /* Pods-FiMapUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FiMapUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = TKGeem.FiMapUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FiMap;
+			};
+			name = Debug;
+		};
+		759D3BB120D3F86900DC4367 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 98151CFBD14C938547B868A6 /* Pods-FiMapUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FiMapUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = TKGeem.FiMapUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FiMap;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		759D3B7920D3F86800DC4367 /* Build configuration list for PBXProject "FiMap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				759D3BA720D3F86900DC4367 /* Debug */,
+				759D3BA820D3F86900DC4367 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		759D3BA920D3F86900DC4367 /* Build configuration list for PBXNativeTarget "FiMap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				759D3BAA20D3F86900DC4367 /* Debug */,
+				759D3BAB20D3F86900DC4367 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		759D3BAC20D3F86900DC4367 /* Build configuration list for PBXNativeTarget "FiMapTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				759D3BAD20D3F86900DC4367 /* Debug */,
+				759D3BAE20D3F86900DC4367 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		759D3BAF20D3F86900DC4367 /* Build configuration list for PBXNativeTarget "FiMapUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				759D3BB020D3F86900DC4367 /* Debug */,
+				759D3BB120D3F86900DC4367 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		759D3B8820D3F86800DC4367 /* FiMap.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				759D3B8920D3F86800DC4367 /* FiMap.xcdatamodel */,
+			);
+			currentVersion = 759D3B8920D3F86800DC4367 /* FiMap.xcdatamodel */;
+			path = FiMap.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 759D3B7620D3F86800DC4367 /* Project object */;
+}
