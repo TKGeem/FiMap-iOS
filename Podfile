@@ -10,13 +10,13 @@ target 'FiMap' do
   pod 'Firebase/RemoteConfig'  , '~>5.3.0'
   #pod 'Firebase/AdMob'        , '~>5.3.0'      
   #pod 'Firebase/Messaging'    , '~>5.3.0'
-  pod 'Firebase/Database'     , '~>5.3.0'
+  pod 'Firebase/Database'      , '~>5.3.0'
   #pod 'Firebase/Invites'      , '~>5.3.0'
   #pod 'Firebase/DynamicLinks' , '~>5.3.0'
   #pod 'Firebase/Crash'        , '~>5.3.0'
   
   #pod 'Firebase/Auth'         , '~>5.3.0'
-  pod 'Firebase/Storage'      , '~>5.3.0'
+  pod 'Firebase/Storage'       , '~>5.3.0'
   #pod 'Firebase/Performance'  , '~>5.3.0'
   #pod 'Firebase/Firestore'    , '~>5.3.0'
   #pod 'Firebase/Functions'    , '~>5.3.0'  
@@ -27,10 +27,10 @@ target 'FiMap' do
   pod 'Kingfisher'           , '~> 4.8.0'
   pod 'SideMenu'             , '~> 4.0.0'
   pod 'SnapKit'              , '~> 4.0.0'
-  pod 'RxSwift'		     , '~> 4.0'
-  pod 'RxCocoa'		     , '~> 4.0'
-  pod 'Hero', '~> 1.2'
-  pod 'Mapbox-iOS-SDK', '~> 4.1'
+  pod 'Hero'                 , '~> 1.2'
+  pod 'GoogleMaps'           , '~>2.7.0'
+  pod 'GooglePlaces'         , '~>2.7.0'
+
 
   # Pods for FiMap
 

@@ -11,18 +11,26 @@ import CoreData
 import Firebase
 import FirebaseStorage
 import FirebaseDatabase
+import GoogleMaps
+import GooglePlaces
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var fbConfig: RemoteConfig!
     var storage: Storage!
     var database: DatabaseReference!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         initSetting()
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let mainVC = HomeViewController()
+        window?.rootViewController = mainVC// UINavigationController(rootViewController: mainVC)
+        window?.makeKeyAndVisible()
+
         return true
     }
 
@@ -52,32 +60,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func initSetting(){
         FirebaseApp.configure()
-        self.fbConfig = RemoteConfig.remoteConfig()
         self.storage = Storage.storage()
         self.database = Database.database().reference()
-        fetchFbRemoteConfig()
+        
+        GMSServices.provideAPIKey(GMS_APU_KEY)
+        GMSPlacesClient.provideAPIKey(GMS_APU_KEY)
     }
     
-    private func fetchFbRemoteConfig(){
-        var expirationDuration = 0
-        #if DEBUG
-        fbConfig.configSettings = RemoteConfigSettings(developerModeEnabled: true)
-        expirationDuration = 0
-        #else
-        expirationDuration = 3600
-        #endif
-        fbConfig.setDefaults(fromPlist: "fbCinfug")
-        
-        fbConfig.fetch(withExpirationDuration: TimeInterval(expirationDuration)) { (status, error) -> Void in
-            if status == .success {
-                print("Config fetched!")
-                self.fbConfig.activateFetched()
-            } else {
-                print("Config not fetched")
-                print("Error: \(error?.localizedDescription ?? "No error available.")")
-            }
-        }
-    }
     
     // MARK: - Core Data stack
 
