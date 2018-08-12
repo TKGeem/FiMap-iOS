@@ -30,6 +30,7 @@ target 'FiMap' do
   pod 'Hero'                 , '~> 1.2'
   pod 'GoogleMaps'           , '~>2.7.0'
   pod 'GooglePlaces'         , '~>2.7.0'
+  pod 'AsyncSwift'           , '~>2.0.4'
 
 
   # Pods for FiMap
