@@ -10,6 +10,7 @@
 		2DE7FE6A629BC30939799CE8 /* Pods_FiMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02200F07CA26564482D0FF0F /* Pods_FiMap.framework */; };
 		75821A4E21514C6C00C2A841 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75821A4D21514C6C00C2A841 /* AppDelegate.swift */; };
 		75821A5021514C6C00C2A841 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75821A4F21514C6C00C2A841 /* ViewController.swift */; };
+		75821A5321514C6C00C2A841 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75821A5121514C6C00C2A841 /* Main.storyboard */; };
 		75821A5521514C6E00C2A841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75821A5421514C6E00C2A841 /* Assets.xcassets */; };
 		75821A5821514C6E00C2A841 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75821A5621514C6E00C2A841 /* LaunchScreen.storyboard */; };
 		75821A612151583600C2A841 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75821A602151583600C2A841 /* R.generated.swift */; };
@@ -20,6 +21,7 @@
 		75821A4A21514C6C00C2A841 /* FiMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FiMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75821A4D21514C6C00C2A841 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75821A4F21514C6C00C2A841 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		75821A5221514C6C00C2A841 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		75821A5421514C6E00C2A841 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75821A5721514C6E00C2A841 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		75821A5921514C6E00C2A841 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 				75821A602151583600C2A841 /* R.generated.swift */,
 				75821A4D21514C6C00C2A841 /* AppDelegate.swift */,
 				75821A4F21514C6C00C2A841 /* ViewController.swift */,
+				75821A5121514C6C00C2A841 /* Main.storyboard */,
 				75821A5421514C6E00C2A841 /* Assets.xcassets */,
 				75821A5621514C6E00C2A841 /* LaunchScreen.storyboard */,
 				75821A5921514C6E00C2A841 /* Info.plist */,
@@ -151,6 +154,7 @@
 			files = (
 				75821A5821514C6E00C2A841 /* LaunchScreen.storyboard in Resources */,
 				75821A5521514C6E00C2A841 /* Assets.xcassets in Resources */,
+				75821A5321514C6C00C2A841 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +242,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		75821A5121514C6C00C2A841 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				75821A5221514C6C00C2A841 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		75821A5621514C6E00C2A841 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -300,7 +312,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -355,7 +367,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -415,7 +427,7 @@
 				75821A5B21514C6E00C2A841 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		75821A5C21514C6E00C2A841 /* Build configuration list for PBXNativeTarget "FiMap" */ = {
 			isa = XCConfigurationList;
@@ -424,7 +436,7 @@
 				75821A5E21514C6E00C2A841 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
