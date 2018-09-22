@@ -1,14 +1,38 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '10.0'
+source 'https://github.com/CocoaPods/Specs.git'
+
+def install_pods
+    # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+    use_frameworks!
+    pod 'Alamofire-SwiftyJSON'               , '~> 3.0.0'
+    pod 'R.swift'                            , '~> 4.0.0'
+    pod 'Kingfisher'                         , '~> 4.8.1'
+    pod 'SlideMenuControllerSwift'           , '~> 4.0.0'
+    pod 'SnapKit'                            , '~> 4.0.1'
+    # Pods for FiMap
+end
 
 target 'FiMap' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
-  pod 'Alamofire-SwiftyJSON' , '~> 3.0.0'
-  pod 'R.swift'              , '~> 4.0.0'
-  pod 'Kingfisher'           , '~> 4.8.0'
-  pod 'SideMenu'             , '~> 4.0.0'
-  pod 'SnapKit'              , '~> 4.0.0'
-  # Pods for FiMap
+    install_pods
+end
 
+swift4_names = [
+'Alamofire-SwiftyJSON',
+'R.swift',
+'Kingfisher',
+'SlideMenuControllerSwift',
+'SnapKit'
+]
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            if swift4_names.include? target.name
+                config.build_settings['SWIFT_VERSION'] = "4.0"
+            else
+                config.build_settings['SWIFT_VERSION'] = "4.2"
+            end
+        end
+    end
 end
