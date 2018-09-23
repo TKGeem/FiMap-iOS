@@ -50,7 +50,7 @@ class HomeViewController: UIViewController {
             make.height.equalTo(50)
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
         }
-        self.menuBarView.backgroundColor = Constants.color.LIGHT_GARY
+        self.menuBarView.backgroundColor = Constants.Color.LIGHT_GARY
         self.menuBarView.layer.cornerRadius = 10
         self.menuBarView.layer.addShadow(direction: .bottom)
         
@@ -104,8 +104,8 @@ class HomeViewController: UIViewController {
             make.right.equalToSuperview().offset(-20)
             make.width.height.equalTo(40)
         }
-        mapTrackingButton.tintColor = Constants.color.LIGHT_GARY
-        mapTrackingButton.backgroundColor = Constants.color.FIMAP_THEME
+        mapTrackingButton.tintColor = Constants.Color.LIGHT_GARY
+        mapTrackingButton.backgroundColor = Constants.Color.FIMAP_THEME
         mapTrackingButton.layer.cornerRadius = 5
         mapTrackingButton.layer.addShadow(direction: .bottom)
         

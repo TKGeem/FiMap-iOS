@@ -24,6 +24,7 @@
 		75E6E0EC215769BF00F95B47 /* UIColorEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6E0EB215769BF00F95B47 /* UIColorEx.swift */; };
 		75E6E0EE215769E200F95B47 /* ArrayEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6E0ED215769E200F95B47 /* ArrayEx.swift */; };
 		75E6E0F12157799000F95B47 /* CALayerEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6E0F02157799000F95B47 /* CALayerEx.swift */; };
+		75E6E0F32157BC4F00F95B47 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6E0F22157BC4F00F95B47 /* UserDefaultsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		75E6E0EB215769BF00F95B47 /* UIColorEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorEx.swift; sourceTree = "<group>"; };
 		75E6E0ED215769E200F95B47 /* ArrayEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayEx.swift; sourceTree = "<group>"; };
 		75E6E0F02157799000F95B47 /* CALayerEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerEx.swift; sourceTree = "<group>"; };
+		75E6E0F22157BC4F00F95B47 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		775594A450200F877F2AC7A8 /* Pods-FiMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FiMap/Pods-FiMap.debug.xcconfig"; sourceTree = "<group>"; };
 		B62F905BB103D0050196B37C /* Pods-FiMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-FiMap/Pods-FiMap.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,6 +104,7 @@
 		75730907215682EE00295FB5 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				75E6E0F22157BC4F00F95B47 /* UserDefaultsManager.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -296,7 +299,9 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-SwiftyJSON/Alamofire_SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/NCMB/NCMB.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
@@ -306,7 +311,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire_SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NCMB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
@@ -333,6 +340,7 @@
 				75821A4E21514C6C00C2A841 /* AppDelegate.swift in Sources */,
 				75821A612151583600C2A841 /* R.generated.swift in Sources */,
 				75E6E0E6215768A600F95B47 /* UICollectionViewEx.swift in Sources */,
+				75E6E0F32157BC4F00F95B47 /* UserDefaultsManager.swift in Sources */,
 				75730902215681EB00295FB5 /* SideViewController.swift in Sources */,
 				75E6E0E2215767E400F95B47 /* Constants.swift in Sources */,
 				75E6E0EC215769BF00F95B47 /* UIColorEx.swift in Sources */,

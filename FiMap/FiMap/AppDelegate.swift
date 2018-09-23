@@ -9,6 +9,7 @@
 import UIKit
 import SlideMenuControllerSwift
 import SnapKit
+import NCMB
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,20 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let mainVC = HomeViewController()
-        let leftVC = SideViewController()
-        let navigationVC = UINavigationController(rootViewController: mainVC)
-        let slideVC = SlideMenuController(mainViewController: navigationVC, leftMenuViewController: leftVC)
-        
-        SlideMenuOptions.panFromBezel = false
-        SlideMenuOptions.contentViewScale = 1.0
-        SlideMenuOptions.contentViewOpacity = 0.1
-        
-        navigationVC.isNavigationBarHidden = true
-        
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = slideVC
-        self.window?.makeKeyAndVisible()
+        viewInitializeSetting()
+        ncmbInitializeSetting()
         return true
     }
     
@@ -55,6 +44,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    // Initalize function
     
+    private func viewInitializeSetting() {
+        let mainVC = HomeViewController()
+        let leftVC = SideViewController()
+        let navigationVC = UINavigationController(rootViewController: mainVC)
+        let slideVC = SlideMenuController(mainViewController: navigationVC, leftMenuViewController: leftVC)
+        
+        SlideMenuOptions.panFromBezel = false
+        SlideMenuOptions.contentViewScale = 1.0
+        SlideMenuOptions.contentViewOpacity = 0.1
+        
+        navigationVC.isNavigationBarHidden = true
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = slideVC
+        self.window?.makeKeyAndVisible()
+    }
+    
+    private func ncmbInitializeSetting() {
+        NCMB.setApplicationKey(Constants.Key.NCMB_APPLICATION_KEY, clientKey: Constants.Key.NCMB_CLIENT_KEY)
+    }
+    
+    private func globalInitialize() {
+        if let firstLunch = UserDefaultsManager.getValue(key: Constants.UserDefault.IS_FIRST_LUNCH) {
+            if firstLunch as! Bool {
+                UserDefaultsManager.setValue(key: Constants.UserDefault.IS_FIRST_LUNCH, value: false)
+            }
+        } else {
+            UserDefaultsManager.setValue(key: Constants.UserDefault.IS_FIRST_LUNCH, value: true)
+        }
+    }
 }
 

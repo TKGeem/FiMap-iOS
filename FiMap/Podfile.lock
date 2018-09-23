@@ -4,19 +4,23 @@ PODS:
     - Alamofire (~> 4.5)
     - SwiftyJSON (~> 4.0.0)
   - Kingfisher (4.8.1)
+  - NCMB (3.0.0)
   - R.swift (4.0.0):
     - R.swift.Library (~> 4.0.0)
   - R.swift.Library (4.0.0)
   - SlideMenuControllerSwift (4.0.0)
   - SnapKit (4.0.1)
+  - SVProgressHUD (2.2.5)
   - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
   - Alamofire-SwiftyJSON (~> 3.0.0)
   - Kingfisher (~> 4.8.1)
+  - NCMB (from `https://github.com/NIFCloud-mbaas/ncmb_ios.git`)
   - R.swift (~> 4.0.0)
   - SlideMenuControllerSwift (~> 4.0.0)
   - SnapKit (~> 4.0.1)
+  - SVProgressHUD (~> 2.2.5)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -27,18 +31,30 @@ SPEC REPOS:
     - R.swift.Library
     - SlideMenuControllerSwift
     - SnapKit
+    - SVProgressHUD
     - SwiftyJSON
+
+EXTERNAL SOURCES:
+  NCMB:
+    :git: https://github.com/NIFCloud-mbaas/ncmb_ios.git
+
+CHECKOUT OPTIONS:
+  NCMB:
+    :commit: 4531a5cd25d0790d5a2d67b29216d9cd7ba6bc1e
+    :git: https://github.com/NIFCloud-mbaas/ncmb_ios.git
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   Alamofire-SwiftyJSON: 2b3649d57dc7bb2880fb8b86f8bb969397666916
   Kingfisher: 868c1149679a7ab6869be118faa9b5aed154aaf0
+  NCMB: 53f7cd60388556330e18cc9196cbe4f897d5c091
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
   SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 35d964f9520435ca93ffd4fb85f949d2d9c1b892
+PODFILE CHECKSUM: d335650ad989d0e6ec67e26a1c17aa3486efd42a
 
 COCOAPODS: 1.5.3
