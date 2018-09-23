@@ -15,6 +15,15 @@
 		75821A5521514C6E00C2A841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75821A5421514C6E00C2A841 /* Assets.xcassets */; };
 		75821A5821514C6E00C2A841 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75821A5621514C6E00C2A841 /* LaunchScreen.storyboard */; };
 		75821A612151583600C2A841 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75821A602151583600C2A841 /* R.generated.swift */; };
+		75E6E0DE215757A400F95B47 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = 75E6E0E0215757A400F95B47 /* Localized.strings */; };
+		75E6E0E2215767E400F95B47 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6E0E1215767E400F95B47 /* Constants.swift */; };
+		75E6E0E42157686A00F95B47 /* ClassEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6E0E32157686A00F95B47 /* ClassEx.swift */; };
+		75E6E0E6215768A600F95B47 /* UICollectionViewEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6E0E5215768A600F95B47 /* UICollectionViewEx.swift */; };
+		75E6E0E82157697C00F95B47 /* UIApplicationEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6E0E72157697C00F95B47 /* UIApplicationEx.swift */; };
+		75E6E0EA215769A300F95B47 /* UIViewEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6E0E9215769A300F95B47 /* UIViewEx.swift */; };
+		75E6E0EC215769BF00F95B47 /* UIColorEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6E0EB215769BF00F95B47 /* UIColorEx.swift */; };
+		75E6E0EE215769E200F95B47 /* ArrayEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6E0ED215769E200F95B47 /* ArrayEx.swift */; };
+		75E6E0F12157799000F95B47 /* CALayerEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6E0F02157799000F95B47 /* CALayerEx.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +37,15 @@
 		75821A5721514C6E00C2A841 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		75821A5921514C6E00C2A841 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75821A602151583600C2A841 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		75E6E0DF215757A400F95B47 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localized.strings; sourceTree = "<group>"; };
+		75E6E0E1215767E400F95B47 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		75E6E0E32157686A00F95B47 /* ClassEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassEx.swift; sourceTree = "<group>"; };
+		75E6E0E5215768A600F95B47 /* UICollectionViewEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewEx.swift; sourceTree = "<group>"; };
+		75E6E0E72157697C00F95B47 /* UIApplicationEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationEx.swift; sourceTree = "<group>"; };
+		75E6E0E9215769A300F95B47 /* UIViewEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewEx.swift; sourceTree = "<group>"; };
+		75E6E0EB215769BF00F95B47 /* UIColorEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorEx.swift; sourceTree = "<group>"; };
+		75E6E0ED215769E200F95B47 /* ArrayEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayEx.swift; sourceTree = "<group>"; };
+		75E6E0F02157799000F95B47 /* CALayerEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerEx.swift; sourceTree = "<group>"; };
 		775594A450200F877F2AC7A8 /* Pods-FiMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FiMap/Pods-FiMap.debug.xcconfig"; sourceTree = "<group>"; };
 		B62F905BB103D0050196B37C /* Pods-FiMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-FiMap/Pods-FiMap.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,6 +88,13 @@
 		75730906215682E300295FB5 /* Extantion */ = {
 			isa = PBXGroup;
 			children = (
+				75E6E0E32157686A00F95B47 /* ClassEx.swift */,
+				75E6E0E5215768A600F95B47 /* UICollectionViewEx.swift */,
+				75E6E0E72157697C00F95B47 /* UIApplicationEx.swift */,
+				75E6E0E9215769A300F95B47 /* UIViewEx.swift */,
+				75E6E0EB215769BF00F95B47 /* UIColorEx.swift */,
+				75E6E0ED215769E200F95B47 /* ArrayEx.swift */,
+				75E6E0F02157799000F95B47 /* CALayerEx.swift */,
 			);
 			path = Extantion;
 			sourceTree = "<group>";
@@ -97,6 +122,14 @@
 			path = Side;
 			sourceTree = "<group>";
 		};
+		7573090D21568B0100295FB5 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				75E6E0E1215767E400F95B47 /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		75821A4121514C6C00C2A841 = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				75821A602151583600C2A841 /* R.generated.swift */,
+				7573090D21568B0100295FB5 /* Constants */,
 				75730905215682D900295FB5 /* View */,
 				75730904215682D300295FB5 /* Model */,
 				75730903215682C700295FB5 /* Controller */,
@@ -129,6 +163,7 @@
 				75821A5421514C6E00C2A841 /* Assets.xcassets */,
 				75821A5621514C6E00C2A841 /* LaunchScreen.storyboard */,
 				75821A5921514C6E00C2A841 /* Info.plist */,
+				75E6E0E0215757A400F95B47 /* Localized.strings */,
 			);
 			path = FiMap;
 			sourceTree = "<group>";
@@ -211,6 +246,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75E6E0DE215757A400F95B47 /* Localized.strings in Resources */,
 				75821A5821514C6E00C2A841 /* LaunchScreen.storyboard in Resources */,
 				75821A5521514C6E00C2A841 /* Assets.xcassets in Resources */,
 			);
@@ -287,11 +323,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75E6E0EE215769E200F95B47 /* ArrayEx.swift in Sources */,
 				7573090C2156835300295FB5 /* HomeViewController.swift in Sources */,
+				75E6E0EA215769A300F95B47 /* UIViewEx.swift in Sources */,
+				75E6E0E82157697C00F95B47 /* UIApplicationEx.swift in Sources */,
+				75E6E0E42157686A00F95B47 /* ClassEx.swift in Sources */,
+				75E6E0F12157799000F95B47 /* CALayerEx.swift in Sources */,
 				75821A5021514C6C00C2A841 /* ViewController.swift in Sources */,
 				75821A4E21514C6C00C2A841 /* AppDelegate.swift in Sources */,
 				75821A612151583600C2A841 /* R.generated.swift in Sources */,
+				75E6E0E6215768A600F95B47 /* UICollectionViewEx.swift in Sources */,
 				75730902215681EB00295FB5 /* SideViewController.swift in Sources */,
+				75E6E0E2215767E400F95B47 /* Constants.swift in Sources */,
+				75E6E0EC215769BF00F95B47 /* UIColorEx.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +348,14 @@
 				75821A5721514C6E00C2A841 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		75E6E0E0215757A400F95B47 /* Localized.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				75E6E0DF215757A400F95B47 /* en */,
+			);
+			name = Localized.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -360,7 +412,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -415,7 +467,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -433,7 +485,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z6ZF6BB944;
 				INFOPLIST_FILE = FiMap/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -453,7 +505,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z6ZF6BB944;
 				INFOPLIST_FILE = FiMap/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
