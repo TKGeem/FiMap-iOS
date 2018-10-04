@@ -22,7 +22,7 @@ public extension CALayer {
         case .bottom:
             self.shadowOffset = CGSize(width: 0.0, height: 1)
         }
-        self.shadowRadius = 2
+        self.shadowRadius = 1.5
         self.shadowColor = Constants.Color.SHADOW.cgColor
         self.shadowOpacity = 0.5
     }

@@ -1,5 +1,5 @@
 //
-//  SideViewController.swift
+//  SideMenuViewController.swift
 //  FiMap
 //
 //  Created by AmamiYou on 2018/09/22.
@@ -8,16 +8,33 @@
 
 import UIKit
 
-class SideViewController: UIViewController {
+class SideMenuViewController: UITableViewController{
+    
+    // MARK: - Property
+    private let menuTableView = UITableView()
+    private var menuDatasource = [MenuDataItem]()
+    
+    // MARK: - Override
+    override func loadView() {
+        super.loadView()
+        self.view.backgroundColor = Constants.Color.LIGHT_GARY
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.white
 
         // Do any additional setup after loading the view.
     }
     
-
+    // MARK: - Layout Setting
+    
+    // MARK: - Function
+    
+    // MARK: - Action
+    
+    // TableView
+    
+    
     /*
     // MARK: - Navigation
 
@@ -27,5 +44,4 @@ class SideViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }

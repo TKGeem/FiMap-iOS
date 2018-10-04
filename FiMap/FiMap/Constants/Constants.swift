@@ -21,8 +21,4 @@ struct Constants {
         static let LIGHT_GARY = UIColor(red255: 248, green255: 248, blue255: 245)
         static let SHADOW = UIColor(red255: 10, green255: 10, blue255: 10)
     }
-    
-    struct UserDefault {
-        static let IS_FIRST_LUNCH = "IS_FIRST_LUNCH"
-    }
 }

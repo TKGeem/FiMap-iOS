@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func viewInitializeSetting() {
         let mainVC = HomeViewController()
-        let leftVC = SideViewController()
+        let leftVC = SideMenuViewController()
         let navigationVC = UINavigationController(rootViewController: mainVC)
         let slideVC = SlideMenuController(mainViewController: navigationVC, leftMenuViewController: leftVC)
         
@@ -68,13 +68,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func globalInitialize() {
-        if let firstLunch = UserDefaultsManager.getValue(key: Constants.UserDefault.IS_FIRST_LUNCH) {
-            if firstLunch as! Bool {
-                UserDefaultsManager.setValue(key: Constants.UserDefault.IS_FIRST_LUNCH, value: false)
-            }
-        } else {
-            UserDefaultsManager.setValue(key: Constants.UserDefault.IS_FIRST_LUNCH, value: true)
-        }
     }
 }
 

@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2DE7FE6A629BC30939799CE8 /* Pods_FiMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02200F07CA26564482D0FF0F /* Pods_FiMap.framework */; };
-		75730902215681EB00295FB5 /* SideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75730901215681EB00295FB5 /* SideViewController.swift */; };
+		7555A6322161009900C626CC /* LogoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555A6312161009900C626CC /* LogoTableViewCell.swift */; };
+		7555A63421610C4E00C626CC /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555A63321610C4E00C626CC /* MenuTableViewCell.swift */; };
+		7555A6372161181E00C626CC /* MenuDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555A6362161181E00C626CC /* MenuDataItem.swift */; };
+		75730902215681EB00295FB5 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75730901215681EB00295FB5 /* SideMenuViewController.swift */; };
 		7573090C2156835300295FB5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7573090B2156835300295FB5 /* HomeViewController.swift */; };
 		75821A4E21514C6C00C2A841 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75821A4D21514C6C00C2A841 /* AppDelegate.swift */; };
 		75821A5021514C6C00C2A841 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75821A4F21514C6C00C2A841 /* ViewController.swift */; };
@@ -24,12 +27,15 @@
 		75E6E0EC215769BF00F95B47 /* UIColorEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6E0EB215769BF00F95B47 /* UIColorEx.swift */; };
 		75E6E0EE215769E200F95B47 /* ArrayEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6E0ED215769E200F95B47 /* ArrayEx.swift */; };
 		75E6E0F12157799000F95B47 /* CALayerEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6E0F02157799000F95B47 /* CALayerEx.swift */; };
-		75E6E0F32157BC4F00F95B47 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6E0F22157BC4F00F95B47 /* UserDefaultsManager.swift */; };
+		75E6E0F52157CC7D00F95B47 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6E0F42157CC7D00F95B47 /* UserDefaultsKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		02200F07CA26564482D0FF0F /* Pods_FiMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FiMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		75730901215681EB00295FB5 /* SideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideViewController.swift; sourceTree = "<group>"; };
+		7555A6312161009900C626CC /* LogoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoTableViewCell.swift; sourceTree = "<group>"; };
+		7555A63321610C4E00C626CC /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		7555A6362161181E00C626CC /* MenuDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDataItem.swift; sourceTree = "<group>"; };
+		75730901215681EB00295FB5 /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		7573090B2156835300295FB5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		75821A4A21514C6C00C2A841 /* FiMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FiMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75821A4D21514C6C00C2A841 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,7 +53,7 @@
 		75E6E0EB215769BF00F95B47 /* UIColorEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorEx.swift; sourceTree = "<group>"; };
 		75E6E0ED215769E200F95B47 /* ArrayEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayEx.swift; sourceTree = "<group>"; };
 		75E6E0F02157799000F95B47 /* CALayerEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerEx.swift; sourceTree = "<group>"; };
-		75E6E0F22157BC4F00F95B47 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		75E6E0F42157CC7D00F95B47 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		775594A450200F877F2AC7A8 /* Pods-FiMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FiMap/Pods-FiMap.debug.xcconfig"; sourceTree = "<group>"; };
 		B62F905BB103D0050196B37C /* Pods-FiMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-FiMap/Pods-FiMap.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -64,10 +70,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7555A62E2161004900C626CC /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				7555A6312161009900C626CC /* LogoTableViewCell.swift */,
+				7555A63321610C4E00C626CC /* MenuTableViewCell.swift */,
+			);
+			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		7555A635216117EE00C626CC /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				7555A6362161181E00C626CC /* MenuDataItem.swift */,
+			);
+			path = SideMenu;
+			sourceTree = "<group>";
+		};
 		75730903215682C700295FB5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7573090A2156832C00295FB5 /* Side */,
+				7573090A2156832C00295FB5 /* SideMenu */,
 				757309092156832100295FB5 /* Home */,
 			);
 			path = Controller;
@@ -76,6 +99,7 @@
 		75730904215682D300295FB5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7555A635216117EE00C626CC /* SideMenu */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -83,6 +107,7 @@
 		75730905215682D900295FB5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7555A62E2161004900C626CC /* SideMenu */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -104,7 +129,6 @@
 		75730907215682EE00295FB5 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				75E6E0F22157BC4F00F95B47 /* UserDefaultsManager.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -117,18 +141,19 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		7573090A2156832C00295FB5 /* Side */ = {
+		7573090A2156832C00295FB5 /* SideMenu */ = {
 			isa = PBXGroup;
 			children = (
-				75730901215681EB00295FB5 /* SideViewController.swift */,
+				75730901215681EB00295FB5 /* SideMenuViewController.swift */,
 			);
-			path = Side;
+			path = SideMenu;
 			sourceTree = "<group>";
 		};
 		7573090D21568B0100295FB5 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
 				75E6E0E1215767E400F95B47 /* Constants.swift */,
+				75E6E0F42157CC7D00F95B47 /* UserDefaultsKey.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -298,6 +323,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-FiMap/Pods-FiMap-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-SwiftyJSON/Alamofire_SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/NCMB/NCMB.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
@@ -305,11 +331,13 @@
 				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire_SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NCMB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
@@ -317,6 +345,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyUserDefaults.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -332,16 +361,19 @@
 			files = (
 				75E6E0EE215769E200F95B47 /* ArrayEx.swift in Sources */,
 				7573090C2156835300295FB5 /* HomeViewController.swift in Sources */,
+				7555A6322161009900C626CC /* LogoTableViewCell.swift in Sources */,
 				75E6E0EA215769A300F95B47 /* UIViewEx.swift in Sources */,
 				75E6E0E82157697C00F95B47 /* UIApplicationEx.swift in Sources */,
+				7555A6372161181E00C626CC /* MenuDataItem.swift in Sources */,
 				75E6E0E42157686A00F95B47 /* ClassEx.swift in Sources */,
 				75E6E0F12157799000F95B47 /* CALayerEx.swift in Sources */,
 				75821A5021514C6C00C2A841 /* ViewController.swift in Sources */,
 				75821A4E21514C6C00C2A841 /* AppDelegate.swift in Sources */,
+				75E6E0F52157CC7D00F95B47 /* UserDefaultsKey.swift in Sources */,
+				7555A63421610C4E00C626CC /* MenuTableViewCell.swift in Sources */,
 				75821A612151583600C2A841 /* R.generated.swift in Sources */,
 				75E6E0E6215768A600F95B47 /* UICollectionViewEx.swift in Sources */,
-				75E6E0F32157BC4F00F95B47 /* UserDefaultsManager.swift in Sources */,
-				75730902215681EB00295FB5 /* SideViewController.swift in Sources */,
+				75730902215681EB00295FB5 /* SideMenuViewController.swift in Sources */,
 				75E6E0E2215767E400F95B47 /* Constants.swift in Sources */,
 				75E6E0EC215769BF00F95B47 /* UIColorEx.swift in Sources */,
 			);
