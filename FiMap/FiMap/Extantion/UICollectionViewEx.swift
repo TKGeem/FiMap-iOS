@@ -27,11 +27,11 @@ public extension UICollectionView {
         let nib = UINib(nibName: className, bundle: bundle)
         register(nib, forCellWithReuseIdentifier: className)
     }
-    
+
     public func register(cellTypes: [UICollectionViewCell.Type], bundle: Bundle? = nil) {
         cellTypes.forEach { register(cellType: $0, bundle: bundle) }
     }
-    
+
     public func register(reusableViewType: UICollectionReusableView.Type,
                          ofKind kind: String = UICollectionView.elementKindSectionHeader,
                          bundle: Bundle? = nil) {
@@ -39,18 +39,18 @@ public extension UICollectionView {
         let nib = UINib(nibName: className, bundle: bundle)
         register(nib, forSupplementaryViewOfKind: kind, withReuseIdentifier: className)
     }
-    
+
     public func register(reusableViewTypes: [UICollectionReusableView.Type],
                          ofKind kind: String = UICollectionView.elementKindSectionHeader,
                          bundle: Bundle? = nil) {
         reusableViewTypes.forEach { register(reusableViewType: $0, ofKind: kind, bundle: bundle) }
     }
-    
+
     public func dequeueReusableCell<T: UICollectionViewCell>(with type: T.Type,
                                                              for indexPath: IndexPath) -> T {
         return dequeueReusableCell(withReuseIdentifier: type.className, for: indexPath) as! T
     }
-    
+
     public func dequeueReusableView<T: UICollectionReusableView>(with type: T.Type,
                                                                  for indexPath: IndexPath,
                                                                  ofKind kind: String = UICollectionView.elementKindSectionHeader) -> T {

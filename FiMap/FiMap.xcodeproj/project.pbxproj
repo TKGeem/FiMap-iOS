@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2DE7FE6A629BC30939799CE8 /* Pods_FiMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02200F07CA26564482D0FF0F /* Pods_FiMap.framework */; };
+		7504E806216A35E200A43587 /* UIFontEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7504E805216A35E200A43587 /* UIFontEx.swift */; };
 		7555A6322161009900C626CC /* LogoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555A6312161009900C626CC /* LogoTableViewCell.swift */; };
 		7555A63421610C4E00C626CC /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555A63321610C4E00C626CC /* MenuTableViewCell.swift */; };
 		7555A6372161181E00C626CC /* MenuDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555A6362161181E00C626CC /* MenuDataItem.swift */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		02200F07CA26564482D0FF0F /* Pods_FiMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FiMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7504E805216A35E200A43587 /* UIFontEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontEx.swift; sourceTree = "<group>"; };
 		7555A6312161009900C626CC /* LogoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoTableViewCell.swift; sourceTree = "<group>"; };
 		7555A63321610C4E00C626CC /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		7555A6362161181E00C626CC /* MenuDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDataItem.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				75E6E0EB215769BF00F95B47 /* UIColorEx.swift */,
 				75E6E0ED215769E200F95B47 /* ArrayEx.swift */,
 				75E6E0F02157799000F95B47 /* CALayerEx.swift */,
+				7504E805216A35E200A43587 /* UIFontEx.swift */,
 			);
 			path = Extantion;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				75E6E0E82157697C00F95B47 /* UIApplicationEx.swift in Sources */,
 				7555A6372161181E00C626CC /* MenuDataItem.swift in Sources */,
 				75E6E0E42157686A00F95B47 /* ClassEx.swift in Sources */,
+				7504E806216A35E200A43587 /* UIFontEx.swift in Sources */,
 				75E6E0F12157799000F95B47 /* CALayerEx.swift in Sources */,
 				75821A5021514C6C00C2A841 /* ViewController.swift in Sources */,
 				75821A4E21514C6C00C2A841 /* AppDelegate.swift in Sources */,

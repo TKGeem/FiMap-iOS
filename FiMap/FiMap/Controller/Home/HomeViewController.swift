@@ -20,9 +20,9 @@ class HomeViewController: UIViewController {
     private let searchButton = UIButton()
     private let sideMenuButton = UIButton()
     private let menuBarText = UITextField()
-    
+
     let locationManager = CLLocationManager()
-    
+
     // MARK: - Override
     override func loadView() {
         super.loadView()
@@ -30,14 +30,14 @@ class HomeViewController: UIViewController {
         menuBarLayoutSetting()
         maptoolLayoutSetting()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         checkMapAccess()
         // Do any additional setup after loading the view.
     }
-    
+
     // MARK: - Layout Setting
     private func mapViewLayoutSetting() {
         self.view.addSubview(self.mapView)
@@ -46,7 +46,7 @@ class HomeViewController: UIViewController {
         }
         self.mapView.mapType = .standard
     }
-    
+
     private func menuBarLayoutSetting() {
         // MenuBar
         self.menuBarView.backgroundColor = Constants.Color.LIGHT_GARY
@@ -59,8 +59,8 @@ class HomeViewController: UIViewController {
             make.height.equalTo(50)
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
         }
-        
-        
+
+
         // SideMenu
         self.sideMenuButton.setImage(R.image.menu_icon(), for: .normal)
         self.sideMenuButton.addTarget(self, action: #selector(tappedSideMenuButton), for: .touchUpInside)
@@ -69,7 +69,7 @@ class HomeViewController: UIViewController {
             make.height.width.equalTo(30)
             make.top.left.equalTo(10)
         }
-        
+
         // Search
         self.searchButton.setImage(R.image.search_icon(), for: .normal)
         self.menuBarView.addSubview(self.searchButton)
@@ -78,8 +78,8 @@ class HomeViewController: UIViewController {
             make.top.equalTo(8)
             make.right.equalTo(-8)
         }
-        
-        
+
+
         // Text
         self.menuBarText.text = nil
         self.menuBarText.placeholder = R.string.localized.home_Search()
@@ -90,7 +90,7 @@ class HomeViewController: UIViewController {
             make.height.top.equalTo(self.menuBarView)
         }
     }
-    
+
     private func maptoolLayoutSetting() {
         // Compass
         let mapCompassButton = MKCompassButton(mapView: self.mapView)
@@ -103,8 +103,8 @@ class HomeViewController: UIViewController {
             make.right.equalTo(self.menuBarView.snp.right).offset(-17)
             make.top.equalTo(self.menuBarView.snp.bottom).offset(30)
         }
-       
-        
+
+
         // Tracking
         let mapTrackingButton = MKUserTrackingButton(mapView: self.mapView)
         mapTrackingButton.tintColor = Constants.Color.LIGHT_GARY
@@ -117,7 +117,7 @@ class HomeViewController: UIViewController {
             make.right.equalToSuperview().offset(-20)
             make.width.height.equalTo(40)
         }
-        
+
         // Scale
         let mapScaleView = MKScaleView(mapView: self.mapView)
         mapScaleView.legendAlignment = .trailing
@@ -127,7 +127,7 @@ class HomeViewController: UIViewController {
             make.right.equalTo(mapTrackingButton.snp.left).offset(-10)
         }
     }
-    
+
     // MARK: - Function
     private func checkMapAccess() {
         switch CLLocationManager.authorizationStatus() {
@@ -144,7 +144,7 @@ class HomeViewController: UIViewController {
         }
     }
     // MARK: - Action
-    
+
     @objc private func tappedSideMenuButton() {
         openLeft()
     }
@@ -157,5 +157,5 @@ class HomeViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
-    
+
 }

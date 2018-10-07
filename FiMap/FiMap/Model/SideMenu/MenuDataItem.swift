@@ -11,7 +11,7 @@ import UIKit
 class MenuDataItem: NSObject {
     let image: UIImage?
     let text: String?
-    
+
     init(image: UIImage?, text: String?) {
         self.image = image
         self.text = text

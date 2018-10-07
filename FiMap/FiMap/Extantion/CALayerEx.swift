@@ -14,8 +14,8 @@ public extension CALayer {
         case top
         case bottom
     }
-    
-    public func addShadow(direction: Direction){
+
+    public func addShadow(direction: Direction) {
         switch direction {
         case .top:
             self.shadowOffset = CGSize(width: 0.0, height: -1)
