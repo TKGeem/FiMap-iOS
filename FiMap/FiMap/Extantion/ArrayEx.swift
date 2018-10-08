@@ -15,7 +15,7 @@ public extension Array where Element: Equatable {
         remove(at: index)
         return index
     }
-    
+
     @discardableResult
     public mutating func remove(elements: [Element]) -> [Index] {
         return elements.flatMap { remove(element: $0) }
