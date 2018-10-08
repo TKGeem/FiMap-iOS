@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        sleep(1)
         // Override point for customization after application launch.
         viewInitializeSetting()
         ncmbInitializeSetting()
@@ -55,6 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SlideMenuOptions.panFromBezel = false
         SlideMenuOptions.contentViewScale = 1.0
         SlideMenuOptions.contentViewOpacity = 0.1
+        SlideMenuOptions.simultaneousGestureRecognizers = false
 
         navigationVC.isNavigationBarHidden = true
 

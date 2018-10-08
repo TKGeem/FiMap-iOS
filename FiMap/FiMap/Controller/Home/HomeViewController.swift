@@ -35,6 +35,11 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         checkMapAccess()
+
+        let hideTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKyeoboardTap))
+        hideTap.numberOfTapsRequired = 1
+        self.view.isUserInteractionEnabled = true
+        self.view.addGestureRecognizer(hideTap)
         // Do any additional setup after loading the view.
     }
 
@@ -144,6 +149,9 @@ class HomeViewController: UIViewController {
         }
     }
     // MARK: - Action
+    @objc private func hideKyeoboardTap(recognizer: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
 
     @objc private func tappedSideMenuButton() {
         openLeft()

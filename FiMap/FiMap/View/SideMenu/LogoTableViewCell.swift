@@ -24,9 +24,10 @@ class LogoTableViewCell: UITableViewCell {
         self.settingButton.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().offset(-15)
-            make.width.height.equalTo(35)
+            make.width.height.equalTo(25)
         }
 
+//        self.logoImageView.backgroundColor = UIColor.red
         self.logoImageView.contentMode = .scaleAspectFit
         self.logoImageView.image = R.image.fimap_icon()
         self.contentView.addSubview(self.logoImageView)
@@ -36,9 +37,6 @@ class LogoTableViewCell: UITableViewCell {
             make.height.equalTo(25)
             make.right.equalTo(self.settingButton.snp.left).offset(-25)
         }
-
-
-
     }
 
     required init?(coder aDecoder: NSCoder) {

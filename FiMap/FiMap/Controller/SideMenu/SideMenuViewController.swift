@@ -97,12 +97,10 @@ class SideMenuViewController: UITableViewController {
         case 0:
             break
         case 1:
-
             break
         default:
             break
         }
-
         self.tableView.deselectRow(at: indexPath, animated: true)
     }
 
