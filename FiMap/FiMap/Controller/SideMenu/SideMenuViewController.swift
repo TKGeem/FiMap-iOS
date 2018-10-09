@@ -17,11 +17,15 @@ class SideMenuViewController: UITableViewController {
     override func loadView() {
         super.loadView()
         tableViewLayoutSetting()
-
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        initSetting()
+        // Do any additional setup after loading the view.
+    }
+
+    private func initSetting() {
 
         /// DataSource =  [0: Logo, 1: Normal]
         let logoRows = [
@@ -36,7 +40,6 @@ class SideMenuViewController: UITableViewController {
 
         self.tableView.register(LogoTableViewCell.self, forCellReuseIdentifier: LogoTableViewCell.className)
         self.tableView.register(MenuTableViewCell.self, forCellReuseIdentifier: MenuTableViewCell.className)
-        // Do any additional setup after loading the view.
     }
 
     // MARK: - Layout Setting
@@ -68,7 +71,6 @@ class SideMenuViewController: UITableViewController {
         case 0:
             return 50.0
         case 1:
-
             return 60.0
         default:
             return 0
@@ -97,6 +99,7 @@ class SideMenuViewController: UITableViewController {
         case 0:
             break
         case 1:
+            closeLeft()
             break
         default:
             break

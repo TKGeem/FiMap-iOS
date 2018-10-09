@@ -60,6 +60,8 @@ class LogoTableViewCell: UITableViewCell {
 
     // MARK: - Action
     @objc private func tapedSettingButton() {
-        print("test")
+        self.viewController?.closeLeft()
+        NotificationCenter.default.post(name: Constants.Notification.SETTING_OPEN,
+                                        object: nil)
     }
 }

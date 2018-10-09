@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		2DE7FE6A629BC30939799CE8 /* Pods_FiMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02200F07CA26564482D0FF0F /* Pods_FiMap.framework */; };
 		7504E806216A35E200A43587 /* UIFontEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7504E805216A35E200A43587 /* UIFontEx.swift */; };
+		7504E80C216B383000A43587 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7504E80B216B382F00A43587 /* UserDefaultsKey.swift */; };
+		7504E811216CDD6800A43587 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7504E810216CDD6800A43587 /* SettingViewController.swift */; };
+		7504E813216CF12900A43587 /* UIViewControllerEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7504E812216CF12900A43587 /* UIViewControllerEx.swift */; };
+		7504E815216CF1B300A43587 /* UIBarButtonEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7504E814216CF1B300A43587 /* UIBarButtonEx.swift */; };
 		7555A6322161009900C626CC /* LogoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555A6312161009900C626CC /* LogoTableViewCell.swift */; };
 		7555A63421610C4E00C626CC /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555A63321610C4E00C626CC /* MenuTableViewCell.swift */; };
 		7555A6372161181E00C626CC /* MenuDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555A6362161181E00C626CC /* MenuDataItem.swift */; };
@@ -28,12 +32,15 @@
 		75E6E0EC215769BF00F95B47 /* UIColorEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6E0EB215769BF00F95B47 /* UIColorEx.swift */; };
 		75E6E0EE215769E200F95B47 /* ArrayEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6E0ED215769E200F95B47 /* ArrayEx.swift */; };
 		75E6E0F12157799000F95B47 /* CALayerEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6E0F02157799000F95B47 /* CALayerEx.swift */; };
-		75E6E0F52157CC7D00F95B47 /* UserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6E0F42157CC7D00F95B47 /* UserDefaultsKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		02200F07CA26564482D0FF0F /* Pods_FiMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FiMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7504E805216A35E200A43587 /* UIFontEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontEx.swift; sourceTree = "<group>"; };
+		7504E80B216B382F00A43587 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
+		7504E810216CDD6800A43587 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		7504E812216CF12900A43587 /* UIViewControllerEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerEx.swift; sourceTree = "<group>"; };
+		7504E814216CF1B300A43587 /* UIBarButtonEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonEx.swift; sourceTree = "<group>"; };
 		7555A6312161009900C626CC /* LogoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoTableViewCell.swift; sourceTree = "<group>"; };
 		7555A63321610C4E00C626CC /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		7555A6362161181E00C626CC /* MenuDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDataItem.swift; sourceTree = "<group>"; };
@@ -55,7 +62,6 @@
 		75E6E0EB215769BF00F95B47 /* UIColorEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorEx.swift; sourceTree = "<group>"; };
 		75E6E0ED215769E200F95B47 /* ArrayEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayEx.swift; sourceTree = "<group>"; };
 		75E6E0F02157799000F95B47 /* CALayerEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerEx.swift; sourceTree = "<group>"; };
-		75E6E0F42157CC7D00F95B47 /* UserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKey.swift; sourceTree = "<group>"; };
 		775594A450200F877F2AC7A8 /* Pods-FiMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FiMap/Pods-FiMap.debug.xcconfig"; sourceTree = "<group>"; };
 		B62F905BB103D0050196B37C /* Pods-FiMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-FiMap/Pods-FiMap.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,6 +78,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7504E80A216B382F00A43587 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				7504E80B216B382F00A43587 /* UserDefaultsKey.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		7555A62E2161004900C626CC /* SideMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,15 +139,10 @@
 				75E6E0ED215769E200F95B47 /* ArrayEx.swift */,
 				75E6E0F02157799000F95B47 /* CALayerEx.swift */,
 				7504E805216A35E200A43587 /* UIFontEx.swift */,
+				7504E812216CF12900A43587 /* UIViewControllerEx.swift */,
+				7504E814216CF1B300A43587 /* UIBarButtonEx.swift */,
 			);
 			path = Extantion;
-			sourceTree = "<group>";
-		};
-		75730907215682EE00295FB5 /* Utility */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utility;
 			sourceTree = "<group>";
 		};
 		757309092156832100295FB5 /* Home */ = {
@@ -148,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				75730901215681EB00295FB5 /* SideMenuViewController.swift */,
+				7504E810216CDD6800A43587 /* SettingViewController.swift */,
 			);
 			path = SideMenu;
 			sourceTree = "<group>";
@@ -156,7 +166,6 @@
 			isa = PBXGroup;
 			children = (
 				75E6E0E1215767E400F95B47 /* Constants.swift */,
-				75E6E0F42157CC7D00F95B47 /* UserDefaultsKey.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -188,7 +197,7 @@
 				75730904215682D300295FB5 /* Model */,
 				75730903215682C700295FB5 /* Controller */,
 				75730906215682E300295FB5 /* Extantion */,
-				75730907215682EE00295FB5 /* Utility */,
+				7504E80A216B382F00A43587 /* Utility */,
 				75821A4D21514C6C00C2A841 /* AppDelegate.swift */,
 				75821A4F21514C6C00C2A841 /* ViewController.swift */,
 				75821A5421514C6E00C2A841 /* Assets.xcassets */,
@@ -362,6 +371,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7504E80C216B383000A43587 /* UserDefaultsKey.swift in Sources */,
+				7504E813216CF12900A43587 /* UIViewControllerEx.swift in Sources */,
 				75E6E0EE215769E200F95B47 /* ArrayEx.swift in Sources */,
 				7573090C2156835300295FB5 /* HomeViewController.swift in Sources */,
 				7555A6322161009900C626CC /* LogoTableViewCell.swift in Sources */,
@@ -370,14 +381,15 @@
 				7555A6372161181E00C626CC /* MenuDataItem.swift in Sources */,
 				75E6E0E42157686A00F95B47 /* ClassEx.swift in Sources */,
 				7504E806216A35E200A43587 /* UIFontEx.swift in Sources */,
+				7504E815216CF1B300A43587 /* UIBarButtonEx.swift in Sources */,
 				75E6E0F12157799000F95B47 /* CALayerEx.swift in Sources */,
 				75821A5021514C6C00C2A841 /* ViewController.swift in Sources */,
 				75821A4E21514C6C00C2A841 /* AppDelegate.swift in Sources */,
-				75E6E0F52157CC7D00F95B47 /* UserDefaultsKey.swift in Sources */,
 				7555A63421610C4E00C626CC /* MenuTableViewCell.swift in Sources */,
 				75821A612151583600C2A841 /* R.generated.swift in Sources */,
 				75E6E0E6215768A600F95B47 /* UICollectionViewEx.swift in Sources */,
 				75730902215681EB00295FB5 /* SideMenuViewController.swift in Sources */,
+				7504E811216CDD6800A43587 /* SettingViewController.swift in Sources */,
 				75E6E0E2215767E400F95B47 /* Constants.swift in Sources */,
 				75E6E0EC215769BF00F95B47 /* UIColorEx.swift in Sources */,
 			);

@@ -9,10 +9,6 @@
 import UIKit
 import MapKit
 
-protocol HomeViewControllerDelegate {
-    func openSetting()
-}
-
 class HomeViewController: UIViewController {
     // MARK: - Property
     private let mapView = MKMapView()
@@ -33,6 +29,18 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        initSetting()
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: Constants.Notification.SETTING_OPEN,
+                                                  object: nil)
+    }
+
+    private func initSetting() {
+
         self.view.backgroundColor = UIColor.white
         checkMapAccess()
 
@@ -40,10 +48,16 @@ class HomeViewController: UIViewController {
         hideTap.numberOfTapsRequired = 1
         self.view.isUserInteractionEnabled = true
         self.view.addGestureRecognizer(hideTap)
-        // Do any additional setup after loading the view.
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(openSettingView),
+                                               name: Constants.Notification.SETTING_OPEN,
+                                               object: nil)
     }
 
     // MARK: - Layout Setting
+
+
     private func mapViewLayoutSetting() {
         self.view.addSubview(self.mapView)
         self.mapView.snp.makeConstraints { (make) in
@@ -156,6 +170,13 @@ class HomeViewController: UIViewController {
     @objc private func tappedSideMenuButton() {
         openLeft()
     }
+
+    @objc private func openSettingView() {
+        self.pushNewNavigationController(rootViewController: SettingViewController(),
+                                         animation: .cover(direction: .up))
+//        self.navigationController?.pushViewController(SettingViewController(), animated: true)
+    }
+
     /*
      // MARK: - Navigation
      
@@ -165,5 +186,6 @@ class HomeViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
-
 }
+
+
