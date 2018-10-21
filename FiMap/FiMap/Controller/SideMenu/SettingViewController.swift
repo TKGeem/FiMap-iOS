@@ -13,7 +13,6 @@ class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initSetting()
-
         // Do any additional setup after loading the view.
     }
 

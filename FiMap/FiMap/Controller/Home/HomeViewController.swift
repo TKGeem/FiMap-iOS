@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import SnapKit
 
 class HomeViewController: UIViewController {
     // MARK: - Property
@@ -40,14 +41,33 @@ class HomeViewController: UIViewController {
     }
 
     private func initSetting() {
-
         self.view.backgroundColor = UIColor.white
-        checkMapAccess()
 
-        let hideTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKyeoboardTap))
-        hideTap.numberOfTapsRequired = 1
-        self.view.isUserInteractionEnabled = true
-        self.view.addGestureRecognizer(hideTap)
+//        let hideTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKyeoboardTap))
+//        hideTap.numberOfTapsRequired = 1
+//        self.view.isUserInteractionEnabled = true
+//        self.view.addGestureRecognizer(hideTap)
+
+        checkMapAccess()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.activityType = CLActivityType.otherNavigation
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            self.locationManager.delegate = self
+            self.locationManager.startUpdatingLocation()
+            self.locationManager.startUpdatingHeading()
+        }
+
+        self.mapView.delegate = self
+        self.mapView.mapType = .standard
+        self.mapView.showsScale = true
+        self.mapView.showsCompass = false
+        self.mapView.showsTraffic = true
+        self.mapView.showsBuildings = true
+        self.mapView.showsUserLocation = true
+        self.mapView.showsPointsOfInterest = true
+//        self.mapView.userTrackingMode = .followWithHeading
+        self.mapView.setUserTrackingMode(MKUserTrackingMode.followWithHeading, animated: true)
+//        self.locationManager.startUpdatingHeading()
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(openSettingView),
@@ -63,14 +83,13 @@ class HomeViewController: UIViewController {
         self.mapView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
-        self.mapView.mapType = .standard
     }
 
     private func menuBarLayoutSetting() {
         // MenuBar
         self.menuBarView.backgroundColor = Constants.Color.LIGHT_GARY
         self.menuBarView.layer.cornerRadius = 10
-        self.menuBarView.layer.addShadow(direction: .bottom)
+        self.menuBarView.addShadow(direction: .bottom)
         self.view.addSubview(self.menuBarView)
         self.menuBarView.snp.makeConstraints { (make) in
             make.left.equalTo(7)
@@ -78,7 +97,6 @@ class HomeViewController: UIViewController {
             make.height.equalTo(50)
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
         }
-
 
         // SideMenu
         self.sideMenuButton.setImage(R.image.menu_icon(), for: .normal)
@@ -114,8 +132,7 @@ class HomeViewController: UIViewController {
         // Compass
         let mapCompassButton = MKCompassButton(mapView: self.mapView)
         mapCompassButton.compassVisibility = .visible
-        mapCompassButton.layer.addShadow(direction: .bottom)
-        self.mapView.showsCompass = false
+        mapCompassButton.addShadow(direction: .bottom)
         self.mapView.addSubview(mapCompassButton)
         mapCompassButton.snp.makeConstraints { (make) in
             make.width.height.equalTo(15)
@@ -123,13 +140,12 @@ class HomeViewController: UIViewController {
             make.top.equalTo(self.menuBarView.snp.bottom).offset(30)
         }
 
-
         // Tracking
         let mapTrackingButton = MKUserTrackingButton(mapView: self.mapView)
         mapTrackingButton.tintColor = Constants.Color.LIGHT_GARY
         mapTrackingButton.backgroundColor = Constants.Color.FIMAP_THEME
         mapTrackingButton.layer.cornerRadius = 5
-        mapTrackingButton.layer.addShadow(direction: .bottom)
+        mapTrackingButton.addShadow(direction: .bottom)
         self.mapView.addSubview(mapTrackingButton)
         mapTrackingButton.snp.makeConstraints { (make) in
             make.bottom.equalToSuperview().offset(-50)
@@ -162,6 +178,7 @@ class HomeViewController: UIViewController {
             self.locationManager.requestAlwaysAuthorization()
         }
     }
+
     // MARK: - Action
     @objc private func hideKyeoboardTap(recognizer: UITapGestureRecognizer) {
         self.view.endEditing(true)
@@ -169,6 +186,15 @@ class HomeViewController: UIViewController {
 
     @objc private func tappedSideMenuButton() {
         openLeft()
+//
+//        let controller = SettingViewController()
+//        let sheetController = SheetViewController(controller: controller)
+//        sheetController.blurBottomSafeArea = false
+//        sheetController.overlayColor = UIColor.clear
+//        sheetController.adjustForBottomSafeArea = true
+//        sheetController.showaPullBar = false
+//        self.present(sheetController, animated: false, completion: nil)
+//        sheetController.containerView.addShadow(direction: .bottom)
     }
 
     @objc private func openSettingView() {
@@ -188,4 +214,11 @@ class HomeViewController: UIViewController {
      */
 }
 
-
+extension HomeViewController: CLLocationManagerDelegate {
+}
+extension HomeViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, didChange mode: MKUserTrackingMode, animated: Bool) {
+        print(mode.rawValue)
+        print(animated)
+    }
+}

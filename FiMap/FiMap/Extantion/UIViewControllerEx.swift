@@ -18,11 +18,10 @@ extension UIViewController {
 
         let navigationVC = UINavigationController(rootViewController: rootViewController)
         navigationVC.navigationBar.barTintColor = Constants.Color.NAVIGATION_BAR
-        navigationVC.navigationBar.layer.addShadow(direction: .bottom)
+        navigationVC.navigationBar.addShadow(direction: .bottom)
 
         self.present(navigationVC, animated: true, completion: nil)
     }
-
 
     /// Sets the navigation bar menu on the left bar button.
     /// Also add the left gesture.

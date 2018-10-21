@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class MenuTableViewCell: UITableViewCell {
     private let iconImageVIew = UIImageView()
