@@ -32,6 +32,11 @@
 		75E6E0EC215769BF00F95B47 /* UIColorEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6E0EB215769BF00F95B47 /* UIColorEx.swift */; };
 		75E6E0EE215769E200F95B47 /* ArrayEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6E0ED215769E200F95B47 /* ArrayEx.swift */; };
 		75E6E0F12157799000F95B47 /* CALayerEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6E0F02157799000F95B47 /* CALayerEx.swift */; };
+		75ECCAC2217C33440028BCDA /* SheetSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ECCABD217C33440028BCDA /* SheetSize.swift */; };
+		75ECCAC3217C33440028BCDA /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ECCABE217C33440028BCDA /* UIViewControllerExtension.swift */; };
+		75ECCAC4217C33440028BCDA /* InitialTouchPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ECCABF217C33440028BCDA /* InitialTouchPanGestureRecognizer.swift */; };
+		75ECCAC5217C33440028BCDA /* Yalta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ECCAC0217C33440028BCDA /* Yalta.swift */; };
+		75ECCAC6217C33440028BCDA /* SheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ECCAC1217C33440028BCDA /* SheetViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +67,11 @@
 		75E6E0EB215769BF00F95B47 /* UIColorEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorEx.swift; sourceTree = "<group>"; };
 		75E6E0ED215769E200F95B47 /* ArrayEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayEx.swift; sourceTree = "<group>"; };
 		75E6E0F02157799000F95B47 /* CALayerEx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerEx.swift; sourceTree = "<group>"; };
+		75ECCABD217C33440028BCDA /* SheetSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheetSize.swift; sourceTree = "<group>"; };
+		75ECCABE217C33440028BCDA /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		75ECCABF217C33440028BCDA /* InitialTouchPanGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialTouchPanGestureRecognizer.swift; sourceTree = "<group>"; };
+		75ECCAC0217C33440028BCDA /* Yalta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Yalta.swift; sourceTree = "<group>"; };
+		75ECCAC1217C33440028BCDA /* SheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheetViewController.swift; sourceTree = "<group>"; };
 		775594A450200F877F2AC7A8 /* Pods-FiMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FiMap/Pods-FiMap.debug.xcconfig"; sourceTree = "<group>"; };
 		B62F905BB103D0050196B37C /* Pods-FiMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-FiMap/Pods-FiMap.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,6 +91,7 @@
 		7504E80A216B382F00A43587 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				75ECCABC217C33440028BCDA /* Pod */,
 				7504E80B216B382F00A43587 /* UserDefaultsKey.swift */,
 			);
 			path = Utility;
@@ -206,6 +217,18 @@
 				75E6E0E0215757A400F95B47 /* Localized.strings */,
 			);
 			path = FiMap;
+			sourceTree = "<group>";
+		};
+		75ECCABC217C33440028BCDA /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				75ECCABD217C33440028BCDA /* SheetSize.swift */,
+				75ECCABE217C33440028BCDA /* UIViewControllerExtension.swift */,
+				75ECCABF217C33440028BCDA /* InitialTouchPanGestureRecognizer.swift */,
+				75ECCAC0217C33440028BCDA /* Yalta.swift */,
+				75ECCAC1217C33440028BCDA /* SheetViewController.swift */,
+			);
+			path = Pod;
 			sourceTree = "<group>";
 		};
 		98BFDE1109EF1C092FF2484B /* Pods */ = {
@@ -374,7 +397,9 @@
 				7504E80C216B383000A43587 /* UserDefaultsKey.swift in Sources */,
 				7504E813216CF12900A43587 /* UIViewControllerEx.swift in Sources */,
 				75E6E0EE215769E200F95B47 /* ArrayEx.swift in Sources */,
+				75ECCAC6217C33440028BCDA /* SheetViewController.swift in Sources */,
 				7573090C2156835300295FB5 /* HomeViewController.swift in Sources */,
+				75ECCAC4217C33440028BCDA /* InitialTouchPanGestureRecognizer.swift in Sources */,
 				7555A6322161009900C626CC /* LogoTableViewCell.swift in Sources */,
 				75E6E0EA215769A300F95B47 /* UIViewEx.swift in Sources */,
 				75E6E0E82157697C00F95B47 /* UIApplicationEx.swift in Sources */,
@@ -390,8 +415,11 @@
 				75E6E0E6215768A600F95B47 /* UICollectionViewEx.swift in Sources */,
 				75730902215681EB00295FB5 /* SideMenuViewController.swift in Sources */,
 				7504E811216CDD6800A43587 /* SettingViewController.swift in Sources */,
+				75ECCAC3217C33440028BCDA /* UIViewControllerExtension.swift in Sources */,
 				75E6E0E2215767E400F95B47 /* Constants.swift in Sources */,
+				75ECCAC2217C33440028BCDA /* SheetSize.swift in Sources */,
 				75E6E0EC215769BF00F95B47 /* UIColorEx.swift in Sources */,
+				75ECCAC5217C33440028BCDA /* Yalta.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,7 +574,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ammYou.FiMap;
+				PRODUCT_BUNDLE_IDENTIFIER = ammYou.FiMap.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -566,7 +594,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ammYou.FiMap;
+				PRODUCT_BUNDLE_IDENTIFIER = ammYou.FiMap.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
