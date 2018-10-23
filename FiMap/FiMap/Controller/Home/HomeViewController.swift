@@ -9,29 +9,39 @@
 import UIKit
 import MapKit
 import SnapKit
+import FloatingPanel
 
 class HomeViewController: UIViewController {
     // MARK: - Property
     private let mapView = MKMapView()
     private let menuBarView = UIView()
     private let searchButton = UIButton()
-    private let sideMenuButton = UIButton()
-    private let menuBarText = UITextField()
+    private var mapCompassButton: MKCompassButton!
 
-    let locationManager = CLLocationManager()
+    private let floatingBar = FloatingPanelController()
+
+    public let locationManager = CLLocationManager()
 
     // MARK: - Override
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .slide
+    }
+
     override func loadView() {
         super.loadView()
         mapViewLayoutSetting()
         menuBarLayoutSetting()
-        maptoolLayoutSetting()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         initSetting()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateMapSetting()
     }
 
     deinit {
@@ -42,11 +52,14 @@ class HomeViewController: UIViewController {
 
     private func initSetting() {
         self.view.backgroundColor = UIColor.white
+        self.floatingBar.move(to: .tip, animated: true)
 
-//        let hideTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKyeoboardTap))
-//        hideTap.numberOfTapsRequired = 1
-//        self.view.isUserInteractionEnabled = true
-//        self.view.addGestureRecognizer(hideTap)
+        let hideTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedScreen(recognizer:)))
+        hideTap.numberOfTapsRequired = 1
+        hideTap.cancelsTouchesInView = false
+        hideTap.delegate = self
+        self.view.isUserInteractionEnabled = true
+        self.view.addGestureRecognizer(hideTap)
 
         checkMapAccess()
         if CLLocationManager.locationServicesEnabled() {
@@ -56,18 +69,8 @@ class HomeViewController: UIViewController {
             self.locationManager.startUpdatingLocation()
             self.locationManager.startUpdatingHeading()
         }
-
         self.mapView.delegate = self
-        self.mapView.mapType = .standard
-        self.mapView.showsScale = true
-        self.mapView.showsCompass = false
-        self.mapView.showsTraffic = true
-        self.mapView.showsBuildings = true
-        self.mapView.showsUserLocation = true
-        self.mapView.showsPointsOfInterest = true
-//        self.mapView.userTrackingMode = .followWithHeading
-        self.mapView.setUserTrackingMode(MKUserTrackingMode.followWithHeading, animated: true)
-//        self.locationManager.startUpdatingHeading()
+        self.floatingBar.delegate = self
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(openSettingView),
@@ -76,8 +79,6 @@ class HomeViewController: UIViewController {
     }
 
     // MARK: - Layout Setting
-
-
     private func mapViewLayoutSetting() {
         self.view.addSubview(self.mapView)
         self.mapView.snp.makeConstraints { (make) in
@@ -88,56 +89,36 @@ class HomeViewController: UIViewController {
     private func menuBarLayoutSetting() {
         // MenuBar
         self.menuBarView.backgroundColor = Constants.Color.LIGHT_GARY
-        self.menuBarView.layer.cornerRadius = 10
         self.menuBarView.addShadow(direction: .bottom)
         self.view.addSubview(self.menuBarView)
         self.menuBarView.snp.makeConstraints { (make) in
-            make.left.equalTo(7)
-            make.right.equalTo(-7)
-            make.height.equalTo(50)
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
+            make.bottom.centerX.width.equalToSuperview()
+            make.height.equalTo(104)
+        }
+
+        // SearchButton
+        self.searchButton.backgroundColor = Constants.Color.LIGHT_GARY
+        self.searchButton.layer.cornerRadius = 30
+        self.searchButton.setImage(R.image.search_icon(), for: .normal)
+        self.searchButton.imageEdgeInsets = .init(top: 9, left: 9, bottom: 9, right: 9)
+        self.searchButton.addTarget(self, action: #selector(tappedSearchButton), for: .touchUpInside)
+        self.searchButton.addShadow(direction: .bottom)
+        self.menuBarView.addSubview(self.searchButton)
+        self.searchButton.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.height.width.equalTo(60)
+            make.top.equalToSuperview().offset(-20)
         }
 
         // SideMenu
-        self.sideMenuButton.setImage(R.image.menu_icon(), for: .normal)
-        self.sideMenuButton.addTarget(self, action: #selector(tappedSideMenuButton), for: .touchUpInside)
-        self.menuBarView.addSubview(self.sideMenuButton)
-        self.sideMenuButton.snp.makeConstraints { (make) in
-            make.height.width.equalTo(30)
-            make.top.left.equalTo(10)
-        }
-
-        // Search
-        self.searchButton.setImage(R.image.search_icon(), for: .normal)
-        self.menuBarView.addSubview(self.searchButton)
-        self.searchButton.snp.makeConstraints { (make) in
-            make.width.height.equalTo(34)
-            make.top.equalTo(8)
-            make.right.equalTo(-8)
-        }
-
-
-        // Text
-        self.menuBarText.text = nil
-        self.menuBarText.placeholder = R.string.localized.home_Search()
-        self.menuBarView.addSubview(self.menuBarText)
-        self.menuBarText.snp.makeConstraints { (make) in
-            make.left.equalTo(self.sideMenuButton.snp.right).offset(10)
-            make.right.equalTo(self.searchButton.snp.left).offset(-10)
-            make.height.top.equalTo(self.menuBarView)
-        }
-    }
-
-    private func maptoolLayoutSetting() {
-        // Compass
-        let mapCompassButton = MKCompassButton(mapView: self.mapView)
-        mapCompassButton.compassVisibility = .visible
-        mapCompassButton.addShadow(direction: .bottom)
-        self.mapView.addSubview(mapCompassButton)
-        mapCompassButton.snp.makeConstraints { (make) in
-            make.width.height.equalTo(15)
-            make.right.equalTo(self.menuBarView.snp.right).offset(-17)
-            make.top.equalTo(self.menuBarView.snp.bottom).offset(30)
+        let sideMenuButton = UIButton()
+        sideMenuButton.setImage(R.image.menu_icon(), for: .normal)
+        sideMenuButton.addTarget(self, action: #selector(tappedSideMenuButton), for: .touchUpInside)
+        menuBarView.addSubview(sideMenuButton)
+        sideMenuButton.snp.makeConstraints { (make) in
+            make.height.width.equalTo(35)
+            make.top.equalTo(10)
+            make.left.equalTo(20)
         }
 
         // Tracking
@@ -146,24 +127,54 @@ class HomeViewController: UIViewController {
         mapTrackingButton.backgroundColor = Constants.Color.FIMAP_THEME
         mapTrackingButton.layer.cornerRadius = 5
         mapTrackingButton.addShadow(direction: .bottom)
-        self.mapView.addSubview(mapTrackingButton)
+        self.menuBarView.addSubview(mapTrackingButton)
         mapTrackingButton.snp.makeConstraints { (make) in
-            make.bottom.equalToSuperview().offset(-50)
-            make.right.equalToSuperview().offset(-20)
             make.width.height.equalTo(40)
+            make.top.equalTo(10)
+            make.right.equalTo(-20)
         }
+
+        // FloatingBar
+        let vc = SearchViewController()
+        self.floatingBar.surfaceView.addShadow(direction: .bottom)
+        self.floatingBar.surfaceView.cornerRadius = 20.0
+        self.floatingBar.show(vc, sender: nil)
+        self.floatingBar.track(scrollView: vc.scrollView)
+        self.floatingBar.add(toParent: self, belowView: self.menuBarView, animated: true)
 
         // Scale
         let mapScaleView = MKScaleView(mapView: self.mapView)
-        mapScaleView.legendAlignment = .trailing
-        self.mapView.addSubview(mapScaleView)
+        mapScaleView.legendAlignment = .leading
+        self.floatingBar.surfaceView.addSubview(mapScaleView)
         mapScaleView.snp.makeConstraints { (make) in
-            make.bottom.equalTo(mapTrackingButton)
-            make.right.equalTo(mapTrackingButton.snp.left).offset(-10)
+            make.bottom.equalTo(floatingBar.surfaceView.snp.top).offset(-20)
+            make.left.equalToSuperview().offset(20)
+        }
+
+        // Compass
+        // compass define
+        self.mapCompassButton = MKCompassButton(mapView: self.mapView)
+        mapCompassButton.compassVisibility = .adaptive
+        self.view.insertSubview(mapCompassButton, belowSubview: self.floatingBar.surfaceView)
+        mapCompassButton.snp.makeConstraints { (make) in
+            make.height.width.equalTo(20)
+            make.centerX.equalTo(mapTrackingButton)
+            make.bottom.equalTo(self.floatingBar.surfaceView.grabberHandle.snp.top).offset(-20)
         }
     }
 
     // MARK: - Function
+    private func updateMapSetting() {
+        self.mapView.setUserTrackingMode(.followWithHeading, animated: true)
+        self.mapView.mapType = .standard
+        self.mapView.showsScale = false
+        self.mapView.showsCompass = false
+        self.mapView.showsTraffic = true
+        self.mapView.showsBuildings = true
+        self.mapView.showsUserLocation = true
+        self.mapView.showsPointsOfInterest = true
+    }
+
     private func checkMapAccess() {
         switch CLLocationManager.authorizationStatus() {
         case .notDetermined:
@@ -179,22 +190,49 @@ class HomeViewController: UIViewController {
         }
     }
 
+    private func updatedFloatingBar(_ vc: FloatingPanelController) {
+        let keyFrame = (vc.surfaceView.frame.origin.y - vc.originYOfSurface(for: .full)) / (vc.originYOfSurface(for: .half) - vc.originYOfSurface(for: .full))
+        print(keyFrame)
+        if vc.originYOfSurface(for: .half) > vc.surfaceView.frame.origin.y {
+            UIView.animate(withDuration: 0.5) {
+                self.floatingBar.surfaceView.grabberHandle.alpha = keyFrame
+                self.floatingBar.surfaceView.cornerRadius = (keyFrame) * 20
+                self.mapCompassButton.alpha = keyFrame
+            }
+        } else {
+            UIView.animate(withDuration: 0.5) {
+                self.floatingBar.surfaceView.grabberHandle.alpha = 1.0
+                self.floatingBar.surfaceView.cornerRadius = 20
+                self.mapCompassButton.alpha = 1.0
+            }
+        }
+
+        if vc.position == .tip {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.searchButton.alpha = 1.0
+            })
+        }
+    }
+
     // MARK: - Action
-    @objc private func hideKyeoboardTap(recognizer: UITapGestureRecognizer) {
-        self.view.endEditing(true)
+    @objc private func tappedScreen(recognizer: UITapGestureRecognizer) {
+        self.floatingBar.move(to: .tip, animated: true) {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.searchButton.alpha = 1.0
+            })
+        }
     }
 
     @objc private func tappedSideMenuButton() {
         openLeft()
-//
-//        let controller = SettingViewController()
-//        let sheetController = SheetViewController(controller: controller)
-//        sheetController.blurBottomSafeArea = false
-//        sheetController.overlayColor = UIColor.clear
-//        sheetController.adjustForBottomSafeArea = true
-//        sheetController.showaPullBar = false
-//        self.present(sheetController, animated: false, completion: nil)
-//        sheetController.containerView.addShadow(direction: .bottom)
+    }
+
+    @objc private func tappedSearchButton() {
+        self.floatingBar.move(to: .half, animated: true) {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.searchButton.alpha = 0.0
+            })
+        }
     }
 
     @objc private func openSettingView() {
@@ -214,10 +252,74 @@ class HomeViewController: UIViewController {
      */
 }
 
-extension HomeViewController: CLLocationManagerDelegate {
+// MARK: - Extantion
+extension HomeViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if touch.view?.isDescendant(of: self.mapView) ?? false {
+            return true
+        } else {
+            return false
+        }
+    }
 }
+
+extension HomeViewController: FloatingPanelControllerDelegate {
+    func floatingPanelWillBeginDragging(_ vc: FloatingPanelController) {
+        updatedFloatingBar(vc)
+    }
+
+    func floatingPanelDidEndDragging(_ vc: FloatingPanelController, withVelocity velocity: CGPoint, targetPosition: FloatingPanelPosition) {
+        updatedFloatingBar(vc)
+    }
+
+    func floatingPanelWillBeginDecelerating(_ vc: FloatingPanelController) {
+        updatedFloatingBar(vc)
+    }
+
+    func floatingPanelDidEndDecelerating(_ vc: FloatingPanelController) {
+        updatedFloatingBar(vc)
+    }
+
+    func floatingPanelDidMove(_ vc: FloatingPanelController) {
+        updatedFloatingBar(vc)
+    }
+}
+
+extension HomeViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print(locations)
+    }
+
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        print(status)
+    }
+}
+
 extension HomeViewController: MKMapViewDelegate {
+    func mapViewWillStartLoadingMap(_ mapView: MKMapView) {
+        print("load map")
+        print(mapView)
+    }
+
+    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
+        print("load map complited")
+        print(mapView)
+
+    }
+
+    func mapViewWillStartRenderingMap(_ mapView: MKMapView) {
+        print("render map")
+        print(mapView)
+    }
+
+    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+        print("move map")
+        print(mapView)
+    }
+
+
     func mapView(_ mapView: MKMapView, didChange mode: MKUserTrackingMode, animated: Bool) {
+        print("move user")
         print(mode.rawValue)
         print(animated)
     }
