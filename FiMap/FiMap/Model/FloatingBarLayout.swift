@@ -8,22 +8,22 @@
 
 import Foundation
 import UIKit
-import FloatingPanel
 
-class FloatingPanelStocksLayout: FloatingPanelLayout {
+class FloatingBarLayout: FloatingPanelLayout {
+
     public var supportedPositions: [FloatingPanelPosition] {
         return [.full, .half, .tip]
     }
 
     public var initialPosition: FloatingPanelPosition {
-        return .tip
+        return .half
     }
 
     public func insetFor(position: FloatingPanelPosition) -> CGFloat? {
         switch position {
-        case .full: return 200
-        case .half: return 262.0
-        case .tip: return 100 // Visible + ToolView
+        case .full: return 10
+        case .half: return 200
+        case .tip: return 0 //130 // Visible + ToolView
         }
     }
 
@@ -37,7 +37,7 @@ class FloatingPanelStocksLayout: FloatingPanelLayout {
     var backdropAlpha: CGFloat = 0.0
 }
 
-class FloatingPanelStocksBehavior: FloatingPanelBehavior {
+class FloatingBarBehavior: FloatingPanelBehavior {
     var velocityThreshold: CGFloat {
         return 15
     }

@@ -14,6 +14,7 @@ class SideMenuViewController: UITableViewController {
     private var menuDatasource = [[MenuDataItem]]() // Rows in Sections
 
     // MARK: - Override
+
     override func loadView() {
         super.loadView()
         tableViewLayoutSetting()
@@ -21,6 +22,7 @@ class SideMenuViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         initSetting()
         // Do any additional setup after loading the view.
     }

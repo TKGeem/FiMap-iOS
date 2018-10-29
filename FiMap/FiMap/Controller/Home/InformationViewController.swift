@@ -9,14 +9,20 @@
 import UIKit
 
 class InformationViewController: UIViewController {
+    public let scrollView = UIScrollView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.green
+        self.view.addSubview(scrollView)
+        scrollView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+        scrollView.backgroundColor = UIColor.blue
+        self.view.backgroundColor = UIColor.gray
 
         // Do any additional setup after loading the view.
     }
-    
+
 
     /*
     // MARK: - Navigation

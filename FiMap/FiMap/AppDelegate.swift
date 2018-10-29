@@ -53,6 +53,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let leftVC = SideMenuViewController()
         let navigationVC = UINavigationController(rootViewController: mainVC)
         let slideVC = SlideMenuController(mainViewController: navigationVC, leftMenuViewController: leftVC)
+//        let mainVC = BottomSheetContainerViewController(mainViewController: HomeViewController(), sheetViewController: CountriesTableViewController())
+//        let leftVC = SideMenuViewController()
+//        let navigationVC = UINavigationController(rootViewController: mainVC)
+//        let slideVC = SlideMenuController(mainViewController: navigationVC, leftMenuViewController: leftVC)
 
 
         SlideMenuOptions.panFromBezel = false
