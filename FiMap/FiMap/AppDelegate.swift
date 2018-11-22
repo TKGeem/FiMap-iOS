@@ -10,6 +10,7 @@ import UIKit
 import SlideMenuControllerSwift
 import SnapKit
 import NCMB
+import Hero
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -52,6 +53,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let leftVC = SideMenuViewController()
         let navigationVC = UINavigationController(rootViewController: mainVC)
         let slideVC = SlideMenuController(mainViewController: navigationVC, leftMenuViewController: leftVC)
+//        let mainVC = BottomSheetContainerViewController(mainViewController: HomeViewController(), sheetViewController: CountriesTableViewController())
+//        let leftVC = SideMenuViewController()
+//        let navigationVC = UINavigationController(rootViewController: mainVC)
+//        let slideVC = SlideMenuController(mainViewController: navigationVC, leftMenuViewController: leftVC)
+
 
         SlideMenuOptions.panFromBezel = false
         SlideMenuOptions.contentViewScale = 1.0

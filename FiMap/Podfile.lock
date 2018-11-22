@@ -3,6 +3,7 @@ PODS:
   - Alamofire-SwiftyJSON (3.0.0):
     - Alamofire (~> 4.5)
     - SwiftyJSON (~> 4.0.0)
+  - DisplaySwitcher (1.0.1)
   - Hero (1.3.1)
   - Kingfisher (4.8.1)
   - NCMB (3.0.0)
@@ -17,6 +18,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire-SwiftyJSON (~> 3.0.0)
+  - DisplaySwitcher
   - Hero (~> 1.3.1)
   - Kingfisher (~> 4.8.1)
   - NCMB (from `https://github.com/NIFCloud-mbaas/ncmb_ios.git`)
@@ -30,6 +32,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - Alamofire-SwiftyJSON
+    - DisplaySwitcher
     - Hero
     - Kingfisher
     - R.swift
@@ -46,12 +49,13 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   NCMB:
-    :commit: 4531a5cd25d0790d5a2d67b29216d9cd7ba6bc1e
+    :commit: ce9d29969b01382943e4d8fd30f07d17dc52f3de
     :git: https://github.com/NIFCloud-mbaas/ncmb_ios.git
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   Alamofire-SwiftyJSON: 2b3649d57dc7bb2880fb8b86f8bb969397666916
+  DisplaySwitcher: 5f725284c28cdf22ea7ba2eee8e8f7e7cb9cdf87
   Hero: 1c3c625ba05856f305d29f5c270f8766c5ff2df7
   Kingfisher: 868c1149679a7ab6869be118faa9b5aed154aaf0
   NCMB: 53f7cd60388556330e18cc9196cbe4f897d5c091
@@ -63,6 +67,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   SwiftyUserDefaults: cebe0ff9472f52699772a514b6f7155861d8069b
 
-PODFILE CHECKSUM: 0c8bae398a464a13613ca30a2c24f24101772ea0
+PODFILE CHECKSUM: 48a0cc3933d9756be7611008116a5c37e045b0bc
 
 COCOAPODS: 1.5.3

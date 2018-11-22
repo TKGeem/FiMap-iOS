@@ -11,6 +11,10 @@
 
 // Home
 "Home_Search" = "検索";
+"Home_reccomend" = "おすすめ";
+
+// Setting
+"Setting" = "設定";
 
 // Side
 "Side_Layer" = "レイヤー";

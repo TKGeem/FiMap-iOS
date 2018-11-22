@@ -20,4 +20,20 @@ public extension UIView {
         }
         return nil
     }
+
+    enum Direction {
+        case top
+        case bottom
+    }
+    public func addShadow(direction: Direction) {
+        switch direction {
+        case .top:
+            self.layer.shadowOffset = CGSize(width: 0.0, height: -1)
+        case .bottom:
+            self.layer.shadowOffset = CGSize(width: 0.0, height: 1)
+        }
+        self.layer.shadowRadius = 1.5
+        self.layer.shadowColor = Constants.Color.SHADOW.cgColor
+        self.layer.shadowOpacity = 0.5
+    }
 }

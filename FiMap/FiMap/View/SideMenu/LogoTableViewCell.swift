@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class LogoTableViewCell: UITableViewCell {
     private let logoImageView = UIImageView()
@@ -60,6 +61,8 @@ class LogoTableViewCell: UITableViewCell {
 
     // MARK: - Action
     @objc private func tapedSettingButton() {
-        print("test")
+        self.viewController?.closeLeft()
+        NotificationCenter.default.post(name: Constants.Notification.SETTING_OPEN,
+                                        object: nil)
     }
 }
