@@ -10,7 +10,7 @@ import UIKit
 import SlideMenuControllerSwift
 import SnapKit
 import NCMB
-import Hero
+//import Hero
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

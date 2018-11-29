@@ -181,7 +181,7 @@ class HomeViewController: UIViewController {
         self.searchBarView.alpha = 0.0
         self.searchBarView.snp.makeConstraints { (make) in
             make.top.width.centerX.equalToSuperview()
-            make.height.equalTo(self.parent!.view.safeAreaInsets.top + 50)
+            make.height.equalTo(self.parent!.view.safeAreaInsets.top + 40)
             print(self.parent!.view.safeAreaInsets.top)
         }
     }
@@ -276,8 +276,7 @@ class HomeViewController: UIViewController {
     }
 
     @objc private func openSettingView() {
-        self.pushNewNavigationController(rootViewController: SettingViewController(),
-                                         animation: .cover(direction: .up))
+        self.pushNewNavigationController(rootViewController: SettingViewController())
     }
 
     /*

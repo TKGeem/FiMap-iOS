@@ -8,13 +8,12 @@
 
 import Foundation
 import UIKit
-import Hero
 
 extension UIViewController {
     /// Push ViewController on new NavigationController
-    func pushNewNavigationController(rootViewController: UIViewController, animation: HeroDefaultAnimationType) {
-        rootViewController.hero.isEnabled = true
-        rootViewController.hero.modalAnimationType = animation
+    func pushNewNavigationController(rootViewController: UIViewController) {
+//        rootViewController.hero.isEnabled = true
+//        rootViewController.hero.modalAnimationType = animation
 
         let navigationVC = UINavigationController(rootViewController: rootViewController)
         navigationVC.navigationBar.barTintColor = Constants.Color.NAVIGATION_BAR
