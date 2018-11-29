@@ -24,8 +24,8 @@ class SearchViewController: UIViewController {
 
     fileprivate var readyForPresentation = false
 
-    fileprivate var cellSizeWidth = 100
-    fileprivate var cellSileHeight = 100
+    fileprivate var cellSizeWidth = UIScreen.main.bounds.width * 1.0
+    fileprivate var cellSileHeight = CGFloat(150)
 
     // MARK: - Object Lifecycle
 
@@ -109,7 +109,7 @@ extension SearchViewController: UICollectionViewDataSource {
             cell.colorView.backgroundColor = Constants.Color.FIMAP_THEME//self.colors[name]
             cell.label.text = self.dataSource[indexPath.item].name
 
-            cell.colorView.layer.cornerRadius = 10.0
+            cell.colorView.layer.cornerRadius = 3
 //            cell.addShadow(direction: .bottom)
             return cell
 
@@ -182,8 +182,10 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
             let inset = self.collectionView(collectionView, layout: collectionViewLayout, insetForSectionAt: indexPath.section)
             let minimumInteritemSpacing = self.collectionView(collectionView, layout: collectionViewLayout, minimumInteritemSpacingForSectionAt: indexPath.section)
 
-            let itemWidth = (collectionView.frame.width - inset.left - inset.right - minimumInteritemSpacing * (numberOfItemsInLine - 1)) / numberOfItemsInLine
-            let itemHeight = itemWidth * 0.7
+//            let itemWidth = (collectionView.frame.width - inset.left - inset.right - minimumInteritemSpacing * (numberOfItemsInLine - 1)) / numberOfItemsInLine
+//            let itemHeight = itemWidth * 0.7
+            let itemWidth = self.cellSizeWidth
+            let itemHeight = self.cellSileHeight
 
             return CGSize(width: itemWidth, height: itemHeight)
 

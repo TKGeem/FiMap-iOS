@@ -181,7 +181,7 @@ class HomeViewController: UIViewController {
         self.searchBarView.alpha = 0.0
         self.searchBarView.snp.makeConstraints { (make) in
             make.top.width.centerX.equalToSuperview()
-            make.height.equalTo(self.parent!.view.safeAreaInsets.top + 40)
+            make.height.equalTo(self.parent!.view.safeAreaInsets.top + 60)
             print(self.parent!.view.safeAreaInsets.top)
         }
     }

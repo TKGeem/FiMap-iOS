@@ -26,14 +26,19 @@ public extension UIView {
         case bottom
     }
     public func addShadow(direction: Direction) {
+        let shadowLayer = CALayer()
+        shadowLayer.frame = self.frame
         switch direction {
         case .top:
-            self.layer.shadowOffset = CGSize(width: 0.0, height: -1)
+            shadowLayer.shadowOffset = CGSize(width: 0.0, height: -1)
         case .bottom:
-            self.layer.shadowOffset = CGSize(width: 0.0, height: 1)
+            shadowLayer.shadowOffset = CGSize(width: 0.0, height: 1)
         }
-        self.layer.shadowRadius = 1.5
-        self.layer.shadowColor = Constants.Color.SHADOW.cgColor
-        self.layer.shadowOpacity = 0.5
+        shadowLayer.shadowRadius = 1.5
+        shadowLayer.shadowColor = UIColor.gray.cgColor
+        shadowLayer.shadowOpacity = 0.5
+        shadowLayer.masksToBounds = true
+
+        self.layer.addSublayer(shadowLayer)
     }
 }
