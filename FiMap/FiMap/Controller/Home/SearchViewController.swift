@@ -44,7 +44,7 @@ class SearchViewController: UIViewController {
 
     private func titleViewLayoutSetting() {
         self.view.addSubview(titleLabel)
-        self.titleLabel.text = "カテゴリから検索"
+        self.titleLabel.text = R.string.localized.home_Search_Category()
         self.titleLabel.textColor = Constants.Color.WHITE_GRAY
         self.titleLabel.textAlignment = .center
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: 17)

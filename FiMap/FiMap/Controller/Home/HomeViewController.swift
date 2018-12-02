@@ -21,6 +21,7 @@ class HomeViewController: UIViewController {
     private let bottomMenuBarView = UIView()
     private let searchBarView = UIView()
 
+    private let searchTxf = SearchTextField()
     private let searchButton = ZFRippleButton()
     private let sideMenuButton = ZFRippleButton()
     private var mapCompassButton: MKCompassButton!
@@ -202,6 +203,20 @@ class HomeViewController: UIViewController {
             make.height.equalTo(self.parent!.view.safeAreaInsets.top + 60)
             print(self.parent!.view.safeAreaInsets.top)
         }
+        
+        self.hideKeyboardWhenTappedAround()
+        
+        self.searchBarView.addSubview(self.searchTxf)
+        self.searchTxf.layer.cornerRadius = 5
+        self.searchTxf.backgroundColor = Constants.Color.WHITE_GRAY
+        self.searchTxf.placeholder = R.string.localized.home_Search_Placeholder()
+        self.searchTxf.snp.makeConstraints { (make) in
+            make.left.equalTo(10)
+            make.right.equalTo(-10)
+            make.bottom.equalTo(-10)
+            make.height.equalTo(40)
+            make.centerX.equalToSuperview()
+        }
 //
 //        let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
 //        self.searchBarView.addSubview(effectView)
@@ -239,9 +254,9 @@ class HomeViewController: UIViewController {
     }
 
     private func updatedFloatingBar(_ vc: FloatingPanelController) {
+        self.dismissKeyboard()
         let keyFrame = (vc.surfaceView.frame.origin.y - vc.originYOfSurface(for: .full)) / (100 - vc.originYOfSurface(for: .full))
         let animationDuration = 0.3
-        print(keyFrame)
         if vc.originYOfSurface(for: .half) > vc.surfaceView.frame.origin.y && keyFrame > 0.0 && keyFrame < 1.0 {
             UIView.animate(withDuration: animationDuration) {
                 self.floatingBar.surfaceView.grabberHandle.alpha = keyFrame

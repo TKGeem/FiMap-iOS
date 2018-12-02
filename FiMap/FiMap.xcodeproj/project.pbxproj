@@ -61,6 +61,10 @@
 		898B60CC21B3DDFF005AD52C /* ResultDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B60CB21B3DDFF005AD52C /* ResultDataItem.swift */; };
 		898B60CF21B3EFC1005AD52C /* WiFiPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B60CE21B3EFC1005AD52C /* WiFiPoint.swift */; };
 		898B60D121B40FC2005AD52C /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B60D021B40FC2005AD52C /* TitleTableViewCell.swift */; };
+		898B60D421B437F9005AD52C /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B60D321B437F9005AD52C /* SearchTextField.swift */; };
+		898B60DB21B43C51005AD52C /* UIButtonEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B60D821B43C51005AD52C /* UIButtonEx.swift */; };
+		898B60DC21B43C51005AD52C /* SkyFloatingEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B60D921B43C51005AD52C /* SkyFloatingEx.swift */; };
+		898B60DD21B43C51005AD52C /* UITextFieldEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B60DA21B43C51005AD52C /* UITextFieldEx.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +128,10 @@
 		898B60CB21B3DDFF005AD52C /* ResultDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDataItem.swift; sourceTree = "<group>"; };
 		898B60CE21B3EFC1005AD52C /* WiFiPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiPoint.swift; sourceTree = "<group>"; };
 		898B60D021B40FC2005AD52C /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
+		898B60D321B437F9005AD52C /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
+		898B60D821B43C51005AD52C /* UIButtonEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIButtonEx.swift; path = FiMap/Extension/UIButtonEx.swift; sourceTree = SOURCE_ROOT; };
+		898B60D921B43C51005AD52C /* SkyFloatingEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SkyFloatingEx.swift; path = FiMap/Extension/SkyFloatingEx.swift; sourceTree = SOURCE_ROOT; };
+		898B60DA21B43C51005AD52C /* UITextFieldEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITextFieldEx.swift; path = FiMap/Extension/UITextFieldEx.swift; sourceTree = SOURCE_ROOT; };
 		B62F905BB103D0050196B37C /* Pods-FiMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-FiMap/Pods-FiMap.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,6 +150,7 @@
 		7504E80A216B382F00A43587 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				898B60D221B437D7005AD52C /* SearchTextField */,
 				753497562180535F00D358FC /* FloatingPanel */,
 				753497352180251100D358FC /* FoldingCell */,
 				7534972F218023E400D358FC /* RSKCollectionViewRetractableFirstItemLayout */,
@@ -154,6 +163,9 @@
 		750F2C16217F7029007597F4 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				898B60D921B43C51005AD52C /* SkyFloatingEx.swift */,
+				898B60D821B43C51005AD52C /* UIButtonEx.swift */,
+				898B60DA21B43C51005AD52C /* UITextFieldEx.swift */,
 				750F2C17217F7029007597F4 /* UIApplicationEx.swift */,
 				750F2C18217F7029007597F4 /* ArrayEx.swift */,
 				750F2C19217F7029007597F4 /* UIViewEx.swift */,
@@ -373,6 +385,14 @@
 			path = DataModel;
 			sourceTree = "<group>";
 		};
+		898B60D221B437D7005AD52C /* SearchTextField */ = {
+			isa = PBXGroup;
+			children = (
+				898B60D321B437F9005AD52C /* SearchTextField.swift */,
+			);
+			path = SearchTextField;
+			sourceTree = "<group>";
+		};
 		98BFDE1109EF1C092FF2484B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -543,12 +563,14 @@
 				898B60CC21B3DDFF005AD52C /* ResultDataItem.swift in Sources */,
 				750F2C22217F7029007597F4 /* ArrayEx.swift in Sources */,
 				7555A6372161181E00C626CC /* MenuDataItem.swift in Sources */,
+				898B60D421B437F9005AD52C /* SearchTextField.swift in Sources */,
 				75821A5021514C6C00C2A841 /* ViewController.swift in Sources */,
 				7534976F21806F6A00D358FC /* TextHeadCollectionViewCell.swift in Sources */,
 				75821A4E21514C6C00C2A841 /* AppDelegate.swift in Sources */,
 				750F2C23217F7029007597F4 /* UIViewEx.swift in Sources */,
 				753497672180535F00D358FC /* GrabberHandleView.swift in Sources */,
 				750F2C2A217F7029007597F4 /* UIBarButtonEx.swift in Sources */,
+				898B60DD21B43C51005AD52C /* UITextFieldEx.swift in Sources */,
 				75ECCAF2217CF1460028BCDA /* FloatingBarLayout.swift in Sources */,
 				7534976B2180535F00D358FC /* UIExtensions.swift in Sources */,
 				750F2C32217F711A007597F4 /* UIApplicationExtension.swift in Sources */,
@@ -574,9 +596,11 @@
 				7504E811216CDD6800A43587 /* SettingViewController.swift in Sources */,
 				75ECCACA217C4E570028BCDA /* InformationViewController.swift in Sources */,
 				7534976D2180659000D358FC /* ImageHeadCollectionViewCell.swift in Sources */,
+				898B60DC21B43C51005AD52C /* SkyFloatingEx.swift in Sources */,
 				750F2C33217F711A007597F4 /* UIViewControllerExtension.swift in Sources */,
 				75349733218023E400D358FC /* RSKCollectionViewRetractableFirstItemLayout.swift in Sources */,
 				753497642180535F00D358FC /* Logger.swift in Sources */,
+				898B60DB21B43C51005AD52C /* UIButtonEx.swift in Sources */,
 				750F2C27217F7029007597F4 /* UIFontEx.swift in Sources */,
 				75E6E0E2215767E400F95B47 /* Constants.swift in Sources */,
 				898B60CA21B3DDEB005AD52C /* SearchDataItem.swift in Sources */,

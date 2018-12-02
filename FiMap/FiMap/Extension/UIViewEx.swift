@@ -21,7 +21,7 @@ public extension UIView {
         return nil
     }
 
-    enum Direction {
+    enum ShadowDirection {
         case top
         case bottom
     }
@@ -29,7 +29,7 @@ public extension UIView {
     //https://stackoverflow.com/questions/39624675/add-shadow-on-uiview-using-swift-3
 
     /// Soft Shadow
-    func addShadow(direction: Direction,
+    func addShadow(direction: ShadowDirection,
                    radius: CGFloat = 2.5,
                    color: UIColor = UIColor.gray,
                    opacity: Float = 0.5) {
