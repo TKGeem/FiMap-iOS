@@ -13,7 +13,7 @@ class TextHeadCollectionViewCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = Constants.Color.LIGHT_GARY
+        self.backgroundColor = Constants.Color.SOFT_WHITE
         self.textLabel.backgroundColor = UIColor.clear
         self.textLabel.font = UIFont.boldSystemFont(ofSize: 15)
         self.textLabel.textAlignment = .center

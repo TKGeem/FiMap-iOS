@@ -10,6 +10,10 @@ import UIKit
 import MapKit
 import SnapKit
 
+protocol HomeViewControllerDelegate {
+
+}
+
 class HomeViewController: UIViewController {
     // MARK: - Property
     private let mapView = MKMapView()
@@ -96,7 +100,7 @@ class HomeViewController: UIViewController {
     private func menuBarLayoutSetting() {
         // MenuBar
         self.view.addSubview(self.bottomMenuBarView)
-        self.bottomMenuBarView.backgroundColor = Constants.Color.LIGHT_GARY
+        self.bottomMenuBarView.backgroundColor = Constants.Color.SOFT_WHITE
         self.bottomMenuBarView.addShadow(direction: .bottom)
         self.bottomMenuBarView.snp.makeConstraints { (make) in
             make.bottom.centerX.width.equalToSuperview()
@@ -105,7 +109,7 @@ class HomeViewController: UIViewController {
 
         // SearchButton
         self.bottomMenuBarView.addSubview(self.searchButton)
-        self.searchButton.backgroundColor = Constants.Color.LIGHT_GARY
+        self.searchButton.backgroundColor = Constants.Color.SOFT_WHITE
         self.searchButton.layer.cornerRadius = 30
         self.searchButton.setImage(R.image.search_icon(), for: .normal)
         self.searchButton.imageEdgeInsets = .init(top: 9, left: 9, bottom: 9, right: 9)
@@ -131,8 +135,8 @@ class HomeViewController: UIViewController {
         // Tracking
         self.mapTrackingButton = MKUserTrackingButton(mapView: self.mapView)
         self.bottomMenuBarView.addSubview(self.mapTrackingButton)
-        self.mapTrackingButton.tintColor = Constants.Color.LIGHT_GARY
-        self.mapTrackingButton.backgroundColor = Constants.Color.FIMAP_THEME
+        self.mapTrackingButton.tintColor = Constants.Color.SOFT_WHITE
+        self.mapTrackingButton.backgroundColor = Constants.Color.PASSION_GREEN
         self.mapTrackingButton.layer.cornerRadius = 5
         self.mapTrackingButton.addShadow(direction: .bottom)
         self.mapTrackingButton.snp.makeConstraints { (make) in
@@ -170,13 +174,13 @@ class HomeViewController: UIViewController {
         self.floatingBar.surfaceView.grabberHandle.backgroundColor = UIColor.clear
         self.floatingBar.surfaceView.cornerRadius = 20.0
         self.floatingBar.show(vc, sender: nil)
-        self.floatingBar.track(scrollView: vc.collectionView)
+        self.floatingBar.track(scrollView: vc.tableView)
         //self.floatingBar.add(toParent: self, belowView: self.bottomMenuBarView, animated: true)
     }
 
     private func searchBarViewLayoutSetting() {
         self.view.addSubview(self.searchBarView)
-        self.searchBarView.backgroundColor = Constants.Color.LIGHT_GARY
+        self.searchBarView.backgroundColor = Constants.Color.SOFT_WHITE
         self.searchBarView.addShadow(direction: .bottom)
         self.searchBarView.alpha = 0.0
         self.searchBarView.snp.makeConstraints { (make) in

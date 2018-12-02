@@ -14,7 +14,7 @@ extension UIViewController {
 
     /// Sets the navigation bar menu on the left bar button.
     /// Also add the left gesture.
-    func setLeftBackBarButtonItem(action: Selector = #selector(tappedBackButton), image: UIImage? = R.image.back()) {
+    func setLeftBackBarButtonItem(action: Selector = #selector(tappedBackButton), image: UIImage? = R.image.back_icon()) {
         let barButtonItem = UIBarButtonItem()
         let button = UIButton(frame: CGRect(x: 0.0, y: 0.0, width: 40.0, height: 30.0))
         button.setImage(image, for: .normal)
@@ -22,14 +22,15 @@ extension UIViewController {
 //        button.setBackgroundImage(image, for: .normal)
         button.addTarget(self, action: action, for: .touchUpInside)
         barButtonItem.customView = button
-        barButtonItem.customView?.widthAnchor.constraint(equalToConstant: 25.0).isActive = true
-        barButtonItem.customView?.heightAnchor.constraint(equalToConstant: 25.0).isActive = true
+        barButtonItem.customView?.widthAnchor.constraint(equalToConstant: 30.0).isActive = true
+        barButtonItem.customView?.heightAnchor.constraint(equalToConstant: 30.0).isActive = true
         barButtonItem.tintColor = UIColor.clear
         self.navigationItem.leftBarButtonItem = barButtonItem
     }
+    
     /// Sets the navigation bar menu on the left bar button.
     /// Also add the left gesture.
-    func setRightCloseBarButtonItem(action: Selector = #selector(tappedCloseButton), image: UIImage? = R.image.close()) {
+    func setRightCloseBarButtonItem(action: Selector = #selector(tappedCloseButton), image: UIImage? = R.image.close_icon()) {
         let barButtonItem = UIBarButtonItem()
         let button = UIButton(frame: CGRect(x: 0.0, y: 0.0, width: 40.0, height: 30.0))
         button.setImage(image, for: .normal)
@@ -37,8 +38,8 @@ extension UIViewController {
 //        button.setBackgroundImage(image, for: .normal)
         button.addTarget(self, action: action, for: .touchUpInside)
         barButtonItem.customView = button
-        barButtonItem.customView?.widthAnchor.constraint(equalToConstant: 25.0).isActive = true
-        barButtonItem.customView?.heightAnchor.constraint(equalToConstant: 25.0).isActive = true
+        barButtonItem.customView?.widthAnchor.constraint(equalToConstant: 30.0).isActive = true
+        barButtonItem.customView?.heightAnchor.constraint(equalToConstant: 30.0).isActive = true
         barButtonItem.tintColor = UIColor.clear
         self.navigationItem.rightBarButtonItem = barButtonItem
     }
@@ -53,10 +54,10 @@ extension UIViewController {
 
     func setNavigationBarTitleString(title: String) {
         let titleLbl = UILabel()
-        titleLbl.font = UIFont.boldSystemFont(ofSize: 22)
+        titleLbl.font = UIFont.boldSystemFont(ofSize: 18)
         titleLbl.text = title
         titleLbl.sizeToFit()
-        titleLbl.textColor = UIColor.white//Constants.Color.AppleGray
+        titleLbl.textColor = UIColor.black//Constants.Color.AppleGray
         titleLbl.textAlignment = .center
         titleLbl.contentMode = .scaleAspectFit
         self.navigationItem.titleView = titleLbl
@@ -70,6 +71,10 @@ extension UIViewController {
 
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+
+    func pushNewNavigationController(rootViewController: UIViewController) {
+        self.present(UINavigationController(rootViewController: rootViewController), animated: true, completion: nil)
     }
 
 //    func setNavigationBarTitleLogo() {

@@ -56,6 +56,7 @@
 		75ECCAC8217C4E290028BCDA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ECCAC7217C4E290028BCDA /* SearchViewController.swift */; };
 		75ECCACA217C4E570028BCDA /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ECCAC9217C4E570028BCDA /* InformationViewController.swift */; };
 		75ECCAF2217CF1460028BCDA /* FloatingBarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ECCAF1217CF1460028BCDA /* FloatingBarLayout.swift */; };
+		8948015721AF9AF5009985CE /* ResultDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8948015621AF9AF5009985CE /* ResultDataItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,6 +115,7 @@
 		75ECCAC9217C4E570028BCDA /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		75ECCAF1217CF1460028BCDA /* FloatingBarLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingBarLayout.swift; sourceTree = "<group>"; };
 		775594A450200F877F2AC7A8 /* Pods-FiMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FiMap/Pods-FiMap.debug.xcconfig"; sourceTree = "<group>"; };
+		8948015621AF9AF5009985CE /* ResultDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDataItem.swift; sourceTree = "<group>"; };
 		B62F905BB103D0050196B37C /* Pods-FiMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-FiMap/Pods-FiMap.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -338,6 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				75BF5488218702A40002567A /* CategoryDataItem.swift */,
+				8948015621AF9AF5009985CE /* ResultDataItem.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 				7534976F21806F6A00D358FC /* TextHeadCollectionViewCell.swift in Sources */,
 				75821A4E21514C6C00C2A841 /* AppDelegate.swift in Sources */,
 				750F2C23217F7029007597F4 /* UIViewEx.swift in Sources */,
+				8948015721AF9AF5009985CE /* ResultDataItem.swift in Sources */,
 				753497672180535F00D358FC /* GrabberHandleView.swift in Sources */,
 				750F2C2A217F7029007597F4 /* UIBarButtonEx.swift in Sources */,
 				75ECCAF2217CF1460028BCDA /* FloatingBarLayout.swift in Sources */,

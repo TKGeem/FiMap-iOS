@@ -16,7 +16,7 @@ class MenuTableViewCell: UITableViewCell {
     override init(style: CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .gray
-        self.backgroundColor = Constants.Color.LIGHT_GARY
+        self.backgroundColor = Constants.Color.SOFT_WHITE
         self.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
 
         self.contentView.addSubview(self.iconImageVIew)

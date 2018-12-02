@@ -16,7 +16,7 @@ class LogoTableViewCell: UITableViewCell {
     override init(style: CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
-        self.backgroundColor = Constants.Color.LIGHT_GARY
+        self.backgroundColor = Constants.Color.SOFT_WHITE
 
         self.settingButton.contentMode = .scaleAspectFit
         self.settingButton.setImage(R.image.setting_icon(), for: .normal)
