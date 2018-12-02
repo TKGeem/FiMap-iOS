@@ -17,12 +17,14 @@ struct Constants {
 
     struct Color {
         static let NORMAL_WHITE = UIColor(red255: 255, green255: 255, blue255: 255)
+        static let WHITE_GRAY = UIColor(red255: 240, green255: 240, blue255: 240)
 //        static let FIMAP_THEME = UIColor(red255: 135, green255: 192, blue255: 176)
 //        static let FIMAP_SECOND_THEME = UIColor(red255: 160, green255: 201, blue255: 159)
         static let IMAGE_COLOR = UIColor(hex: 0x4DD139)
 //        static let NAVIGATION_BAR = UIColor(hex: 0x51B17E)
         static let SOFT_WHITE = UIColor(red255: 253, green255: 253, blue255: 253)
         static let SHADOW = UIColor(red255: 10, green255: 10, blue255: 10)
+
     }
 
     struct Font {

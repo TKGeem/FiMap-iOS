@@ -8,19 +8,27 @@
 
 import UIKit
 import SnapKit
+import ZFRippleButton
 
 class LogoTableViewCell: UITableViewCell {
     private let logoImageView = UIImageView()
-    private let settingButton = UIButton()
+    private let settingButton = ZFRippleButton()
 
     override init(style: CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
         self.backgroundColor = Constants.Color.SOFT_WHITE
 
+
+        self.settingButton.trackTouchLocation = true
+        self.settingButton.rippleOverBounds = true
+        self.settingButton.rippleColor = Constants.Color.SHADOW.withAlphaComponent(0.2)
+        self.settingButton.rippleBackgroundColor = UIColor.clear
+        self.settingButton.backgroundColor = UIColor.clear
+        self.settingButton.tintColor = Constants.Color.IMAGE_COLOR
+        self.settingButton.adjustsImageWhenHighlighted = false
         self.settingButton.contentMode = .scaleAspectFit
         self.settingButton.setImage(R.image.round_settings_black_48pt(), for: .normal)
-        self.settingButton.tintColor = Constants.Color.IMAGE_COLOR
         self.settingButton.addTarget(self, action: #selector(tapedSettingButton), for: .touchUpInside)
         self.contentView.addSubview(self.settingButton)
         self.settingButton.snp.makeConstraints { (make) in

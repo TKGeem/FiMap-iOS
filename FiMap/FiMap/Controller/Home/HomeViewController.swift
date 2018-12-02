@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import SnapKit
+import ZFRippleButton
 
 protocol HomeViewControllerDelegate {
 
@@ -20,8 +21,8 @@ class HomeViewController: UIViewController {
     private let bottomMenuBarView = UIView()
     private let searchBarView = UIView()
 
-    private let searchButton = UIButton()
-    private let sideMenuButton = UIButton()
+    private let searchButton = ZFRippleButton()
+    private let sideMenuButton = ZFRippleButton()
     private var mapCompassButton: MKCompassButton!
     private var mapTrackingButton: MKUserTrackingButton!
     private var mapScaleView: MKScaleView!
@@ -109,10 +110,14 @@ class HomeViewController: UIViewController {
 
         // SearchButton
         self.bottomMenuBarView.addSubview(self.searchButton)
+        self.searchButton.trackTouchLocation = true
+        self.searchButton.rippleColor = Constants.Color.SHADOW.withAlphaComponent(0.1)
+        self.searchButton.rippleBackgroundColor = UIColor.clear
+        self.searchButton.tintColor = Constants.Color.IMAGE_COLOR
         self.searchButton.backgroundColor = Constants.Color.SOFT_WHITE
+        self.searchButton.adjustsImageWhenHighlighted = false
         self.searchButton.layer.cornerRadius = 30
         self.searchButton.setImage(R.image.round_search_black_48pt(), for: .normal)
-        self.searchButton.tintColor = Constants.Color.IMAGE_COLOR
         self.searchButton.imageEdgeInsets = .init(top: 9, left: 9, bottom: 9, right: 9)
         self.searchButton.alpha = 1.0
         self.searchButton.addTarget(self, action: #selector(tappedSearchButton), for: .touchUpInside)
@@ -123,10 +128,17 @@ class HomeViewController: UIViewController {
             make.top.equalToSuperview().offset(-20)
         }
 
+        
         // SideMenu
         self.bottomMenuBarView.addSubview(self.sideMenuButton)
-        self.sideMenuButton.setImage(R.image.round_menu_black_48pt(), for: .normal)
+        self.sideMenuButton.trackTouchLocation = true
+        self.sideMenuButton.rippleOverBounds = true
+        self.sideMenuButton.rippleColor = Constants.Color.SHADOW.withAlphaComponent(0.1)
+        self.sideMenuButton.rippleBackgroundColor = UIColor.clear
         self.sideMenuButton.tintColor = Constants.Color.IMAGE_COLOR
+        self.sideMenuButton.backgroundColor = UIColor.clear
+        self.sideMenuButton.adjustsImageWhenHighlighted = false
+        self.sideMenuButton.setImage(R.image.round_menu_black_48pt(), for: .normal)
         self.sideMenuButton.addTarget(self, action: #selector(tappedSideMenuButton), for: .touchUpInside)
         self.sideMenuButton.snp.makeConstraints { (make) in
             make.height.width.equalTo(35)

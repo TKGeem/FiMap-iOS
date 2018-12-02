@@ -57,6 +57,8 @@
 		75ECCACA217C4E570028BCDA /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ECCAC9217C4E570028BCDA /* InformationViewController.swift */; };
 		75ECCAF2217CF1460028BCDA /* FloatingBarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ECCAF1217CF1460028BCDA /* FloatingBarLayout.swift */; };
 		8948015721AF9AF5009985CE /* ResultDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8948015621AF9AF5009985CE /* ResultDataItem.swift */; };
+		898B60A121B3B11E005AD52C /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B60A021B3B11E005AD52C /* SearchTableViewCell.swift */; };
+		898B60A321B3B12A005AD52C /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B60A221B3B12A005AD52C /* ResultTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +118,8 @@
 		75ECCAF1217CF1460028BCDA /* FloatingBarLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingBarLayout.swift; sourceTree = "<group>"; };
 		775594A450200F877F2AC7A8 /* Pods-FiMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FiMap/Pods-FiMap.debug.xcconfig"; sourceTree = "<group>"; };
 		8948015621AF9AF5009985CE /* ResultDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDataItem.swift; sourceTree = "<group>"; };
+		898B60A021B3B11E005AD52C /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		898B60A221B3B12A005AD52C /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
 		B62F905BB103D0050196B37C /* Pods-FiMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-FiMap/Pods-FiMap.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -205,6 +209,8 @@
 				7534973E2180268800D358FC /* ResultCollectionViewCell.swift */,
 				7534976C2180659000D358FC /* ImageHeadCollectionViewCell.swift */,
 				7534976E21806F6A00D358FC /* TextHeadCollectionViewCell.swift */,
+				898B60A021B3B11E005AD52C /* SearchTableViewCell.swift */,
+				898B60A221B3B12A005AD52C /* ResultTableViewCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -480,29 +486,25 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-FiMap/Pods-FiMap-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Alamofire-SwiftyJSON/Alamofire_SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/NCMB/NCMB.framework",
+				"${BUILT_PRODUCTS_DIR}/MaterialKit/MaterialKit.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
+				"${BUILT_PRODUCTS_DIR}/ZFRippleButton/ZFRippleButton.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire_SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NCMB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyUserDefaults.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZFRippleButton.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -538,12 +540,14 @@
 				750F2C34217F711A007597F4 /* UICollectionViewExtension.swift in Sources */,
 				7555A63421610C4E00C626CC /* MenuTableViewCell.swift in Sources */,
 				750F2C25217F7029007597F4 /* CALayerEx.swift in Sources */,
+				898B60A321B3B12A005AD52C /* ResultTableViewCell.swift in Sources */,
 				753497392180251100D358FC /* FoldingCell.swift in Sources */,
 				75821A612151583600C2A841 /* R.generated.swift in Sources */,
 				753497622180535F00D358FC /* FloatingPanelController.swift in Sources */,
 				753497682180535F00D358FC /* FloatingPanelLayout.swift in Sources */,
 				750F2C24217F7029007597F4 /* UIColorEx.swift in Sources */,
 				7534973F2180268800D358FC /* ResultCollectionViewCell.swift in Sources */,
+				898B60A121B3B11E005AD52C /* SearchTableViewCell.swift in Sources */,
 				7534976A2180535F00D358FC /* FloatingPanelBackdropView.swift in Sources */,
 				750F2C35217F711A007597F4 /* UICollectionViewControllerExtension.swift in Sources */,
 				750F2C21217F7029007597F4 /* UIApplicationEx.swift in Sources */,

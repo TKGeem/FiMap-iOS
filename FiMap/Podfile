@@ -11,9 +11,10 @@ def install_pods
     pod 'SlideMenuControllerSwift'           , '~> 4.0.0'
     pod 'SnapKit'                            , '~> 4.0.1'
     pod 'SVProgressHUD'                      , '~> 2.2.5'
-    pod 'SkyFloatingLabelTextField', '~> 3.0'
+    pod 'SkyFloatingLabelTextField'          , '~> 3.0'
     pod 'ZFRippleButton'
-    pod 'SwiftyUserDefaults', '4.0.0-alpha.1'
+    pod 'SwiftyUserDefaults'                 , '4.0.0-alpha.1'
+    pod 'MaterialKit'                        , :path =>'MaterialKit-master-fix'
     #pod 'DisplaySwitcher'
     # Pods for FiMap
 end
@@ -21,6 +22,7 @@ end
 target 'FiMap' do
     install_pods
 end
+
 
 swift3_names = [
 'TLFloatLabelTextField',
@@ -33,7 +35,8 @@ swift4_names = [
 'Kingfisher',
 'SlideMenuControllerSwift',
 'SnapKit',
-'Hero'
+'Hero',
+'MaterialKit'
 ]
 
 post_install do |installer|
