@@ -34,8 +34,8 @@ class SideMenuViewController: UITableViewController {
             MenuDataItem(image: nil, text: nil)
         ]
         let menuRows = [
-            MenuDataItem(image: R.image.layer_icon(), text: R.string.localized.side_Layer()),
-            MenuDataItem(image: R.image.categorize_icon(), text: R.string.localized.side_Category())
+            MenuDataItem(image: R.image.round_layers_black_48pt(), text: R.string.localized.side_Layer())
+//            MenuDataItem(image: R.image.categorize_icon(), text: R.string.localized.side_Category())
         ]
         self.menuDatasource.append(logoRows)
         self.menuDatasource.append(menuRows)

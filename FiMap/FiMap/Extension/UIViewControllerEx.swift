@@ -14,10 +14,11 @@ extension UIViewController {
 
     /// Sets the navigation bar menu on the left bar button.
     /// Also add the left gesture.
-    func setLeftBackBarButtonItem(action: Selector = #selector(tappedBackButton), image: UIImage? = R.image.back_icon()) {
+    func setLeftBackBarButtonItem(action: Selector = #selector(tappedBackButton), image: UIImage? = R.image.round_arrow_back_ios_black_48pt()) {
         let barButtonItem = UIBarButtonItem()
         let button = UIButton(frame: CGRect(x: 0.0, y: 0.0, width: 40.0, height: 30.0))
         button.setImage(image, for: .normal)
+        button.imageView?.tintColor = Constants.Color.IMAGE_COLOR
         button.contentMode = .scaleAspectFit
 //        button.setBackgroundImage(image, for: .normal)
         button.addTarget(self, action: action, for: .touchUpInside)
@@ -27,13 +28,14 @@ extension UIViewController {
         barButtonItem.tintColor = UIColor.clear
         self.navigationItem.leftBarButtonItem = barButtonItem
     }
-    
+
     /// Sets the navigation bar menu on the left bar button.
     /// Also add the left gesture.
-    func setRightCloseBarButtonItem(action: Selector = #selector(tappedCloseButton), image: UIImage? = R.image.close_icon()) {
+    func setRightCloseBarButtonItem(action: Selector = #selector(tappedCloseButton), image: UIImage? = R.image.round_close_black_48pt()) {
         let barButtonItem = UIBarButtonItem()
         let button = UIButton(frame: CGRect(x: 0.0, y: 0.0, width: 40.0, height: 30.0))
         button.setImage(image, for: .normal)
+        button.imageView?.tintColor = Constants.Color.IMAGE_COLOR
         button.contentMode = .scaleAspectFit
 //        button.setBackgroundImage(image, for: .normal)
         button.addTarget(self, action: action, for: .touchUpInside)

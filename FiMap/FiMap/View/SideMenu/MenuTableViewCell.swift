@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 class MenuTableViewCell: UITableViewCell {
-    private let iconImageVIew = UIImageView()
+    private let iconImageView = UIImageView()
     private let titleLbl = UILabel()
 
     override init(style: CellStyle, reuseIdentifier: String?) {
@@ -19,8 +19,9 @@ class MenuTableViewCell: UITableViewCell {
         self.backgroundColor = Constants.Color.SOFT_WHITE
         self.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
 
-        self.contentView.addSubview(self.iconImageVIew)
-        self.iconImageVIew.snp.makeConstraints { (make) in
+        self.iconImageView.tintColor = Constants.Color.IMAGE_COLOR
+        self.contentView.addSubview(self.iconImageView)
+        self.iconImageView.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
             make.left.equalTo(15)
             make.width.height.equalTo(30)
@@ -31,7 +32,7 @@ class MenuTableViewCell: UITableViewCell {
         self.contentView.addSubview(self.titleLbl)
         self.titleLbl.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
-            make.left.equalTo(self.iconImageVIew.snp.right).offset(30)
+            make.left.equalTo(self.iconImageView.snp.right).offset(30)
             make.right.equalToSuperview().offset(-15)
         }
     }
@@ -52,12 +53,12 @@ class MenuTableViewCell: UITableViewCell {
     }
 
     override func prepareForReuse() {
-        self.iconImageVIew.image = nil
+        self.iconImageView.image = nil
         self.titleLbl.text = nil
     }
 
     func setCell(item: MenuDataItem) {
-        self.iconImageVIew.image = item.image
+        self.iconImageView.image = item.image
         self.titleLbl.text = item.text
     }
 }

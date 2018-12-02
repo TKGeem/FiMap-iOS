@@ -19,7 +19,8 @@ class LogoTableViewCell: UITableViewCell {
         self.backgroundColor = Constants.Color.SOFT_WHITE
 
         self.settingButton.contentMode = .scaleAspectFit
-        self.settingButton.setImage(R.image.setting_icon(), for: .normal)
+        self.settingButton.setImage(R.image.round_settings_black_48pt(), for: .normal)
+        self.settingButton.tintColor = Constants.Color.IMAGE_COLOR
         self.settingButton.addTarget(self, action: #selector(tapedSettingButton), for: .touchUpInside)
         self.contentView.addSubview(self.settingButton)
         self.settingButton.snp.makeConstraints { (make) in

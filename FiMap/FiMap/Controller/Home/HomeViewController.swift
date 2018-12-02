@@ -111,7 +111,8 @@ class HomeViewController: UIViewController {
         self.bottomMenuBarView.addSubview(self.searchButton)
         self.searchButton.backgroundColor = Constants.Color.SOFT_WHITE
         self.searchButton.layer.cornerRadius = 30
-        self.searchButton.setImage(R.image.search_icon(), for: .normal)
+        self.searchButton.setImage(R.image.round_search_black_48pt(), for: .normal)
+        self.searchButton.tintColor = Constants.Color.IMAGE_COLOR
         self.searchButton.imageEdgeInsets = .init(top: 9, left: 9, bottom: 9, right: 9)
         self.searchButton.alpha = 1.0
         self.searchButton.addTarget(self, action: #selector(tappedSearchButton), for: .touchUpInside)
@@ -124,7 +125,8 @@ class HomeViewController: UIViewController {
 
         // SideMenu
         self.bottomMenuBarView.addSubview(self.sideMenuButton)
-        self.sideMenuButton.setImage(R.image.menu_icon(), for: .normal)
+        self.sideMenuButton.setImage(R.image.round_menu_black_48pt(), for: .normal)
+        self.sideMenuButton.tintColor = Constants.Color.IMAGE_COLOR
         self.sideMenuButton.addTarget(self, action: #selector(tappedSideMenuButton), for: .touchUpInside)
         self.sideMenuButton.snp.makeConstraints { (make) in
             make.height.width.equalTo(35)
@@ -136,7 +138,7 @@ class HomeViewController: UIViewController {
         self.mapTrackingButton = MKUserTrackingButton(mapView: self.mapView)
         self.bottomMenuBarView.addSubview(self.mapTrackingButton)
         self.mapTrackingButton.tintColor = Constants.Color.SOFT_WHITE
-        self.mapTrackingButton.backgroundColor = Constants.Color.PASSION_GREEN
+        self.mapTrackingButton.backgroundColor = Constants.Color.IMAGE_COLOR
         self.mapTrackingButton.layer.cornerRadius = 5
         self.mapTrackingButton.addShadow(direction: .bottom)
         self.mapTrackingButton.snp.makeConstraints { (make) in
