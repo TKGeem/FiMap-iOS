@@ -17,14 +17,13 @@ class LogoTableViewCell: UITableViewCell {
     override init(style: CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
-        self.backgroundColor = Constants.Color.SOFT_WHITE
-
+        self.backgroundColor = Constants.Color.NORMAL_WHITE
 
         self.settingButton.trackTouchLocation = true
         self.settingButton.rippleOverBounds = true
         self.settingButton.rippleColor = Constants.Color.SHADOW.withAlphaComponent(0.2)
-        self.settingButton.rippleBackgroundColor = UIColor.clear
-        self.settingButton.backgroundColor = UIColor.clear
+        self.settingButton.rippleBackgroundColor = Constants.Color.CLEAR
+        self.settingButton.backgroundColor = Constants.Color.CLEAR
         self.settingButton.tintColor = Constants.Color.IMAGE_COLOR
         self.settingButton.adjustsImageWhenHighlighted = false
         self.settingButton.contentMode = .scaleAspectFit
@@ -37,7 +36,6 @@ class LogoTableViewCell: UITableViewCell {
             make.width.height.equalTo(25)
         }
 
-//        self.logoImageView.backgroundColor = UIColor.red
         self.logoImageView.contentMode = .scaleAspectFit
         self.logoImageView.image = R.image.fimap_icon()
         self.contentView.addSubview(self.logoImageView)

@@ -46,7 +46,7 @@ class SideMenuViewController: UITableViewController {
 
     // MARK: - Layout Setting
     private func tableViewLayoutSetting() {
-        self.view.backgroundColor = Constants.Color.SOFT_WHITE
+        self.view.backgroundColor = Constants.Color.NORMAL_WHITE
         self.tableView.separatorStyle = .singleLine
         self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0);
         self.tableView.tableFooterView = UIView(frame: .zero)

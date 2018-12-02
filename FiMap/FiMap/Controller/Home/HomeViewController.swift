@@ -65,7 +65,7 @@ class HomeViewController: UIViewController {
 
     private func initSetting() {
         self.view.clipsToBounds = true
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = Constants.Color.NORMAL_WHITE
 
         let hideTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedScreen(recognizer:)))
         hideTap.numberOfTapsRequired = 1
@@ -101,7 +101,7 @@ class HomeViewController: UIViewController {
     private func menuBarLayoutSetting() {
         // MenuBar
         self.view.addSubview(self.bottomMenuBarView)
-        self.bottomMenuBarView.backgroundColor = Constants.Color.SOFT_WHITE
+        self.bottomMenuBarView.backgroundColor = Constants.Color.NORMAL_WHITE
         self.bottomMenuBarView.addShadow(direction: .bottom)
         self.bottomMenuBarView.snp.makeConstraints { (make) in
             make.bottom.centerX.width.equalToSuperview()
@@ -112,9 +112,9 @@ class HomeViewController: UIViewController {
         self.bottomMenuBarView.addSubview(self.searchButton)
         self.searchButton.trackTouchLocation = true
         self.searchButton.rippleColor = Constants.Color.SHADOW.withAlphaComponent(0.1)
-        self.searchButton.rippleBackgroundColor = UIColor.clear
+        self.searchButton.rippleBackgroundColor = Constants.Color.CLEAR
         self.searchButton.tintColor = Constants.Color.IMAGE_COLOR
-        self.searchButton.backgroundColor = Constants.Color.SOFT_WHITE
+        self.searchButton.backgroundColor = Constants.Color.NORMAL_WHITE
         self.searchButton.adjustsImageWhenHighlighted = false
         self.searchButton.layer.cornerRadius = 30
         self.searchButton.setImage(R.image.round_search_black_48pt(), for: .normal)
@@ -134,9 +134,9 @@ class HomeViewController: UIViewController {
         self.sideMenuButton.trackTouchLocation = true
         self.sideMenuButton.rippleOverBounds = true
         self.sideMenuButton.rippleColor = Constants.Color.SHADOW.withAlphaComponent(0.1)
-        self.sideMenuButton.rippleBackgroundColor = UIColor.clear
+        self.sideMenuButton.rippleBackgroundColor = Constants.Color.CLEAR
         self.sideMenuButton.tintColor = Constants.Color.IMAGE_COLOR
-        self.sideMenuButton.backgroundColor = UIColor.clear
+        self.sideMenuButton.backgroundColor = Constants.Color.CLEAR
         self.sideMenuButton.adjustsImageWhenHighlighted = false
         self.sideMenuButton.setImage(R.image.round_menu_black_48pt(), for: .normal)
         self.sideMenuButton.addTarget(self, action: #selector(tappedSideMenuButton), for: .touchUpInside)
@@ -149,7 +149,7 @@ class HomeViewController: UIViewController {
         // Tracking
         self.mapTrackingButton = MKUserTrackingButton(mapView: self.mapView)
         self.bottomMenuBarView.addSubview(self.mapTrackingButton)
-        self.mapTrackingButton.tintColor = Constants.Color.SOFT_WHITE
+        self.mapTrackingButton.tintColor = Constants.Color.NORMAL_WHITE
         self.mapTrackingButton.backgroundColor = Constants.Color.IMAGE_COLOR
         self.mapTrackingButton.layer.cornerRadius = 5
         self.mapTrackingButton.addShadow(direction: .bottom)
@@ -185,7 +185,7 @@ class HomeViewController: UIViewController {
         self.floatingBar.delegate = self
 //        self.floatingBar.setOverrideTraitCollection(UITraitCollection(verticalSizeClass: .compact), forChild: self)
         self.floatingBar.surfaceView.addShadow(direction: .bottom)
-        self.floatingBar.surfaceView.grabberHandle.backgroundColor = UIColor.clear
+        self.floatingBar.surfaceView.grabberHandle.backgroundColor = Constants.Color.CLEAR
         self.floatingBar.surfaceView.cornerRadius = 20.0
         self.floatingBar.show(vc, sender: nil)
         self.floatingBar.track(scrollView: vc.tableView)
@@ -194,7 +194,7 @@ class HomeViewController: UIViewController {
 
     private func searchBarViewLayoutSetting() {
         self.view.addSubview(self.searchBarView)
-        self.searchBarView.backgroundColor = Constants.Color.SOFT_WHITE
+        self.searchBarView.backgroundColor = Constants.Color.LIGHT_GREEN
         self.searchBarView.addShadow(direction: .bottom)
         self.searchBarView.alpha = 0.0
         self.searchBarView.snp.makeConstraints { (make) in
@@ -202,6 +202,13 @@ class HomeViewController: UIViewController {
             make.height.equalTo(self.parent!.view.safeAreaInsets.top + 60)
             print(self.parent!.view.safeAreaInsets.top)
         }
+//
+//        let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+//        self.searchBarView.addSubview(effectView)
+//        effectView.snp.makeConstraints { (make) in
+//            make.edges.equalToSuperview()
+//        }
+    
     }
 
     // MARK: - Function

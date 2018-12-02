@@ -21,7 +21,7 @@ class FloatingBarLayout: FloatingPanelLayout {
 
     public func insetFor(position: FloatingPanelPosition) -> CGFloat? {
         switch position {
-        case .full: return 20
+        case .full: return 15
         case .half: return 200
         case .tip: return 0 //130 // Visible + ToolView
         }

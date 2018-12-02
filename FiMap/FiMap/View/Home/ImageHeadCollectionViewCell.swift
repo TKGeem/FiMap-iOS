@@ -13,8 +13,7 @@ class ImageHeadCollectionViewCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = Constants.Color.SOFT_WHITE
-        //        self.logoImageView.backgroundColor = UIColor.red
+        self.backgroundColor = Constants.Color.NORMAL_WHITE
         self.logoImageView.contentMode = .scaleAspectFit
         self.logoImageView.image = R.image.fimap_icon()
         self.contentView.addSubview(self.logoImageView)
