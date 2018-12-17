@@ -8,10 +8,8 @@
 
 import UIKit
 
-
 class SearchViewController: UIViewController {
     // MARK: - Propaties
-    public var delegate: HomeViewControllerDelegate!
     public let tableView = UITableView()
     public let titleLabel = UILabel()
     public var dataSource = SearchDataItem()
@@ -26,8 +24,16 @@ class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        initSetting()
         self.dataSource.getSearchCategory()
         self.tableView.reloadData()
+    }
+
+    private func initSetting() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(searchViewDidEnterNotification(notification:)),
+                                               name: Constants.Notification.SEARCH_ENTER,
+                                               object: nil)
     }
 
     // MARK: - Layout Setting
@@ -73,6 +79,14 @@ class SearchViewController: UIViewController {
 
         self.tableView.register(TitleTableViewCell.self, forCellReuseIdentifier: TitleTableViewCell.className)
         self.tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.className)
+    }
+
+    // MARK: - Function
+    @objc private func searchViewDidEnterNotification(notification: NSNotification) {
+        if let word: String = notification.userInfo?["word"] as? String {
+            self.dataSource.title = [word, word]
+            self.tableView.reloadData()
+        }
     }
 }
 

@@ -12,7 +12,7 @@ import SnapKit
 import ZFRippleButton
 
 protocol HomeViewControllerDelegate {
-
+    func mapViewMovePoint(point: WiFiPoint)
 }
 
 class HomeViewController: UIViewController {
@@ -83,11 +83,6 @@ class HomeViewController: UIViewController {
             self.locationManager.startUpdatingLocation()
             self.locationManager.startUpdatingHeading()
         }
-
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(openSettingView),
-                                               name: Constants.Notification.SETTING_OPEN,
-                                               object: nil)
     }
 
     // MARK: - Layout Setting
@@ -129,7 +124,7 @@ class HomeViewController: UIViewController {
             make.top.equalToSuperview().offset(-20)
         }
 
-        
+
         // SideMenu
         self.bottomMenuBarView.addSubview(self.sideMenuButton)
         self.sideMenuButton.trackTouchLocation = true
@@ -203,9 +198,9 @@ class HomeViewController: UIViewController {
             make.height.equalTo(self.parent!.view.safeAreaInsets.top + 60)
             print(self.parent!.view.safeAreaInsets.top)
         }
-        
+
         self.hideKeyboardWhenTappedAround()
-        
+
         self.searchBarView.addSubview(self.searchTxf)
         self.searchTxf.layer.cornerRadius = 5
         self.searchTxf.backgroundColor = Constants.Color.WHITE_GRAY
@@ -214,19 +209,49 @@ class HomeViewController: UIViewController {
             make.left.equalTo(10)
             make.right.equalTo(-10)
             make.bottom.equalTo(-10)
-            make.height.equalTo(40)
+            make.height.equalTo(38)
             make.centerX.equalToSuperview()
         }
-//
-//        let effectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-//        self.searchBarView.addSubview(effectView)
-//        effectView.snp.makeConstraints { (make) in
-//            make.edges.equalToSuperview()
-//        }
-    
+
+        self.searchTxf.maxNumberOfResults = 10
+        self.searchTxf.maxResultsListHeight = 100
+        self.searchTxf.userStoppedTypingHandler = {
+            self.searchTxf.filterStrings(self.getSearchDataSource(word: self.searchTxf.text))
+        }
+
+        self.searchTxf.itemSelectionHandler = { filteredResults, itemPosition in
+            // Just in case you need the item position
+            let item = filteredResults[itemPosition]
+            self.searchTxf.text = item.title
+            self.setSearchData(word: item.title)
+        }
     }
 
     // MARK: - Function
+    private func setSearchData(word: String?) {
+        if let criteria = word {
+            if criteria.count >= 1 {
+                self.searchTxf.showLoadingIndicator()
+//                NotificationCenter.default.post(name: Constants.Notification.SEARCH_ENTER, object: nil)
+                NotificationCenter.default.post(name: Constants.Notification.SEARCH_ENTER, object: nil, userInfo: ["word": criteria])
+                self.searchTxf.stopLoadingIndicator()
+            }
+        }
+    }
+
+    private func getSearchDataSource(word: String?) -> [String] {
+        if let criteria = word {
+            if criteria.count >= 1 {
+                // Show the loading indicator
+                self.searchTxf.showLoadingIndicator()
+                // Search
+                //                    self.mySearchTextField.filterItems(results)
+                self.searchTxf.stopLoadingIndicator()
+            }
+        }
+        return ["testaaa", "test1vaa", "test2dss", "test3eww", "test4eww", "test5vvd",]
+    }
+
     private func updateMapSetting() {
         self.mapView.setUserTrackingMode(.followWithHeading, animated: true)
         self.mapView.mapType = .standard
@@ -241,15 +266,15 @@ class HomeViewController: UIViewController {
     private func checkMapAccess() {
         switch CLLocationManager.authorizationStatus() {
         case .notDetermined:
-            self.locationManager.requestAlwaysAuthorization()
+            self.locationManager.requestWhenInUseAuthorization()
         case .restricted:
-            self.locationManager.requestAlwaysAuthorization()
+            self.locationManager.requestWhenInUseAuthorization()
         case .denied:
-            self.locationManager.requestAlwaysAuthorization()
+            self.locationManager.requestWhenInUseAuthorization()
         case .authorizedWhenInUse:
-            self.locationManager.requestAlwaysAuthorization()
+            self.locationManager.requestWhenInUseAuthorization()
         case .authorizedAlways:
-            self.locationManager.requestAlwaysAuthorization()
+            self.locationManager.requestWhenInUseAuthorization()
         }
     }
 
@@ -258,12 +283,15 @@ class HomeViewController: UIViewController {
         let keyFrame = (vc.surfaceView.frame.origin.y - vc.originYOfSurface(for: .full)) / (100 - vc.originYOfSurface(for: .full))
         let animationDuration = 0.3
         if vc.originYOfSurface(for: .half) > vc.surfaceView.frame.origin.y && keyFrame > 0.0 && keyFrame < 1.0 {
+            //Non Full
             UIView.animate(withDuration: animationDuration) {
                 self.floatingBar.surfaceView.grabberHandle.alpha = keyFrame
                 self.floatingBar.surfaceView.cornerRadius = (keyFrame) * 20
                 self.searchBarView.alpha = 1 - keyFrame
             }
+
         } else if keyFrame > 0.0 && keyFrame < 1.0 {
+            //Full
             UIView.animate(withDuration: animationDuration) {
                 self.floatingBar.surfaceView.grabberHandle.alpha = 1.0
                 self.floatingBar.surfaceView.cornerRadius = (keyFrame) * 20
@@ -271,13 +299,16 @@ class HomeViewController: UIViewController {
             }
         } else {
             if keyFrame <= 0.0 {
+                // Non Full
                 UIView.animate(withDuration: animationDuration, animations: {
                     self.floatingBar.surfaceView.grabberHandle.alpha = 0.0
                     self.searchBarView.alpha = 1.0
                 }) { (comp) in
                     self.floatingBar.surfaceView.cornerRadius = 0
+                    self.searchTxf.becomeFirstResponder()
                 }
             } else {
+                // Full
                 UIView.animate(withDuration: animationDuration, animations: {
                     self.floatingBar.surfaceView.grabberHandle.alpha = 1.0
                     self.searchBarView.alpha = 0.0
@@ -291,6 +322,7 @@ class HomeViewController: UIViewController {
                         self.searchButton.alpha = 1.0
                     })
                 }
+                self.searchTxf.text = ""
             }
         }
     }
@@ -411,5 +443,11 @@ extension HomeViewController: MKMapViewDelegate {
         print("move user")
         print(mode.rawValue)
         print(animated)
+    }
+}
+
+extension HomeViewController: HomeViewControllerDelegate {
+    func mapViewMovePoint(point: WiFiPoint) {
+
     }
 }
