@@ -8,20 +8,7 @@
 import UIKit
 
 open class SearchTextField: UITextField {
-    //入力したテキストの余白
-    override open func textRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.insetBy(dx: 10.0, dy: 0.0)
-    }
-    
-    //編集中のテキストの余白
-    override open func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.insetBy(dx: 10.0, dy: 0.0)
-    }
-    
-    //プレースホルダーの余白
-    override open func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.insetBy(dx: 10.0, dy: 0.0)
-    }
+
     
     
     ////////////////////////////////////////////////////////////////////////

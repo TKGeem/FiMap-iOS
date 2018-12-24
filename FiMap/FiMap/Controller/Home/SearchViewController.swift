@@ -12,7 +12,7 @@ class SearchViewController: UIViewController {
     // MARK: - Propaties
     public let tableView = UITableView()
     public let titleLabel = UILabel()
-    public var dataSource = SearchDataItem()
+    public var dataSource = SearchDataSource()
 
     // MARK: - Override Function
     override func loadView() {
@@ -27,6 +27,10 @@ class SearchViewController: UIViewController {
         initSetting()
         self.dataSource.getSearchCategory()
         self.tableView.reloadData()
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Constants.Notification.SEARCH_ENTER, object: nil)
     }
 
     private func initSetting() {
@@ -84,8 +88,14 @@ class SearchViewController: UIViewController {
     // MARK: - Function
     @objc private func searchViewDidEnterNotification(notification: NSNotification) {
         if let word: String = notification.userInfo?["word"] as? String {
-            self.dataSource.title = [word, word]
-            self.tableView.reloadData()
+            if word.isEmpty {
+                self.dataSource.getSearchCategory()
+                self.tableView.reloadData()
+            } else {
+                // MARK: - TODO
+                self.dataSource.searchTitle = [word]
+                self.tableView.reloadData()
+            }
         }
     }
 }
@@ -96,12 +106,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.dataSource.title.count
+        return self.dataSource.searchTitle.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.className, for: indexPath)
-        (cell as? SearchTableViewCell)?.setCell(title: dataSource.title[indexPath.item])
+        (cell as? SearchTableViewCell)?.setCell(title: dataSource.searchTitle[indexPath.item])
         return cell
     }
 
@@ -110,6 +120,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        NotificationCenter.default.post(name: Constants.Notification.SEARCH_SELECT, object: nil, userInfo: ["point": self.dataSource.searchTitle[indexPath.item]])
         self.tableView.deselectRow(at: indexPath, animated: true)
     }
 }

@@ -11,17 +11,13 @@ import MapKit
 import SnapKit
 import ZFRippleButton
 
-protocol HomeViewControllerDelegate {
-    func mapViewMovePoint(point: WiFiPoint)
-}
-
 class HomeViewController: UIViewController {
     // MARK: - Property
     private let mapView = MKMapView()
     private let bottomMenuBarView = UIView()
     private let searchBarView = UIView()
 
-    private let searchTxf = SearchTextField()
+    private let searchTxf = CustomTextField()
     private let searchButton = ZFRippleButton()
     private let sideMenuButton = ZFRippleButton()
     private var mapCompassButton: MKCompassButton!
@@ -62,9 +58,18 @@ class HomeViewController: UIViewController {
         NotificationCenter.default.removeObserver(self,
                                                   name: Constants.Notification.SETTING_OPEN,
                                                   object: nil)
+
+        NotificationCenter.default.removeObserver(self,
+                                                  name: Constants.Notification.SEARCH_SELECT,
+                                                  object: nil)
     }
 
     private func initSetting() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(mapViewMovePointNotification(notification:)),
+                                               name: Constants.Notification.SEARCH_SELECT,
+                                               object: nil)
+
         self.view.clipsToBounds = true
         self.view.backgroundColor = Constants.Color.NORMAL_WHITE
 
@@ -179,7 +184,7 @@ class HomeViewController: UIViewController {
         // FloatingBar
         let vc = SearchViewController()
         self.floatingBar.delegate = self
-//        self.floatingBar.setOverrideTraitCollection(UITraitCollection(verticalSizeClass: .compact), forChild: self)
+        //        self.floatingBar.setOverrideTraitCollection(UITraitCollection(verticalSizeClass: .compact), forChild: self)
         self.floatingBar.surfaceView.addShadow(direction: .bottom)
         self.floatingBar.surfaceView.grabberHandle.backgroundColor = Constants.Color.CLEAR
         self.floatingBar.surfaceView.cornerRadius = 20.0
@@ -205,6 +210,10 @@ class HomeViewController: UIViewController {
         self.searchTxf.layer.cornerRadius = 5
         self.searchTxf.backgroundColor = Constants.Color.WHITE_GRAY
         self.searchTxf.placeholder = R.string.localized.home_Search_Placeholder()
+        self.searchTxf.returnKeyType = .search
+        self.searchTxf.clearButtonMode = .whileEditing
+        self.searchTxf.delegate = self
+        self.searchTxf.addTarget(self, action: #selector(editSearchTxf), for: .editingChanged)
         self.searchTxf.snp.makeConstraints { (make) in
             make.left.equalTo(10)
             make.right.equalTo(-10)
@@ -212,44 +221,20 @@ class HomeViewController: UIViewController {
             make.height.equalTo(38)
             make.centerX.equalToSuperview()
         }
-
-        self.searchTxf.maxNumberOfResults = 10
-        self.searchTxf.maxResultsListHeight = 100
-        self.searchTxf.userStoppedTypingHandler = {
-            self.searchTxf.filterStrings(self.getSearchDataSource(word: self.searchTxf.text))
-        }
-
-        self.searchTxf.itemSelectionHandler = { filteredResults, itemPosition in
-            // Just in case you need the item position
-            let item = filteredResults[itemPosition]
-            self.searchTxf.text = item.title
-            self.setSearchData(word: item.title)
-        }
     }
 
     // MARK: - Function
     private func setSearchData(word: String?) {
         if let criteria = word {
             if criteria.count >= 1 {
-                self.searchTxf.showLoadingIndicator()
-//                NotificationCenter.default.post(name: Constants.Notification.SEARCH_ENTER, object: nil)
-                NotificationCenter.default.post(name: Constants.Notification.SEARCH_ENTER, object: nil, userInfo: ["word": criteria])
-                self.searchTxf.stopLoadingIndicator()
-            }
-        }
-    }
 
-    private func getSearchDataSource(word: String?) -> [String] {
-        if let criteria = word {
-            if criteria.count >= 1 {
-                // Show the loading indicator
-                self.searchTxf.showLoadingIndicator()
-                // Search
-                //                    self.mySearchTextField.filterItems(results)
-                self.searchTxf.stopLoadingIndicator()
+                //                NotificationCenter.default.post(name: Constants.Notification.SEARCH_ENTER, object: nil)
+                NotificationCenter.default.post(name: Constants.Notification.SEARCH_ENTER, object: nil, userInfo: ["word": criteria])
+
             }
+        } else {
+            NotificationCenter.default.post(name: Constants.Notification.SEARCH_ENTER, object: nil, userInfo: ["word": ""])
         }
-        return ["testaaa", "test1vaa", "test2dss", "test3eww", "test4eww", "test5vvd",]
     }
 
     private func updateMapSetting() {
@@ -281,59 +266,75 @@ class HomeViewController: UIViewController {
     private func updatedFloatingBar(_ vc: FloatingPanelController) {
         self.dismissKeyboard()
         let keyFrame = (vc.surfaceView.frame.origin.y - vc.originYOfSurface(for: .full)) / (100 - vc.originYOfSurface(for: .full))
-        let animationDuration = 0.3
         if vc.originYOfSurface(for: .half) > vc.surfaceView.frame.origin.y && keyFrame > 0.0 && keyFrame < 1.0 {
             //Non Full
-            UIView.animate(withDuration: animationDuration) {
-                self.floatingBar.surfaceView.grabberHandle.alpha = keyFrame
-                self.floatingBar.surfaceView.cornerRadius = (keyFrame) * 20
-                self.searchBarView.alpha = 1 - keyFrame
-            }
-
+            changeFloatingBar(handleAlpha: keyFrame, barAlpha: 1 - keyFrame, surfaceRadius: (keyFrame) * 20)
         } else if keyFrame > 0.0 && keyFrame < 1.0 {
             //Full
-            UIView.animate(withDuration: animationDuration) {
-                self.floatingBar.surfaceView.grabberHandle.alpha = 1.0
-                self.floatingBar.surfaceView.cornerRadius = (keyFrame) * 20
-                self.searchBarView.alpha = 1 - keyFrame
-            }
+            changeFloatingBar(handleAlpha: 1.0, barAlpha: 1 - keyFrame, surfaceRadius: (keyFrame) * 20)
         } else {
             if keyFrame <= 0.0 {
                 // Non Full
-                UIView.animate(withDuration: animationDuration, animations: {
-                    self.floatingBar.surfaceView.grabberHandle.alpha = 0.0
-                    self.searchBarView.alpha = 1.0
-                }) { (comp) in
-                    self.floatingBar.surfaceView.cornerRadius = 0
+                changeFloatingBar(handleAlpha: 0.0, barAlpha: 1.0, surfaceRadius: 0.0) {
                     self.searchTxf.becomeFirstResponder()
                 }
             } else {
                 // Full
-                UIView.animate(withDuration: animationDuration, animations: {
-                    self.floatingBar.surfaceView.grabberHandle.alpha = 1.0
-                    self.searchBarView.alpha = 0.0
-                }) { (comp) in
-                    self.floatingBar.surfaceView.cornerRadius = 20
-                }
+                changeFloatingBar(handleAlpha: 1.0, barAlpha: 0.0, surfaceRadius: 20)
             }
             if vc.position == .tip {
-                self.floatingBar.removeFromParent(animated: true) {
-                    UIView.animate(withDuration: 0.5, animations: {
-                        self.searchButton.alpha = 1.0
-                    })
-                }
-                self.searchTxf.text = ""
+                closeFoatingBar()
             }
         }
     }
 
-// MARK: - Action
-    @objc private func tappedScreen(recognizer: UITapGestureRecognizer) {
+    private func openFloatingBar() {
+        self.floatingBar.add(toParent: self, belowView: self.bottomMenuBarView, animated: true)
+        UIView.animate(withDuration: 0.3, animations: {
+            self.floatingBar.surfaceView.grabberHandle.alpha = 1.0
+            self.floatingBar.surfaceView.cornerRadius = 20.0
+            self.searchBarView.alpha = 0.0
+            self.searchButton.alpha = 0.0
+        })
+    }
+
+    private func closeFoatingBar() {
         self.floatingBar.removeFromParent(animated: true) {
-            UIView.animate(withDuration: 0.5, animations: {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.searchBarView.alpha = 0.0
                 self.searchButton.alpha = 1.0
-            })
+            }) { (comp) in
+                self.searchTxf.text = ""
+                self.setSearchData(word: nil)
+            }
         }
+    }
+
+    private func changeFloatingBar(handleAlpha: CGFloat, barAlpha: CGFloat, surfaceRadius: CGFloat, animationDuration: Double = 0.3) {
+        UIView.animate(withDuration: animationDuration) {
+            self.floatingBar.surfaceView.grabberHandle.alpha = handleAlpha
+            self.searchBarView.alpha = barAlpha
+            self.floatingBar.surfaceView.cornerRadius = surfaceRadius
+        }
+    }
+
+    private func changeFloatingBar(handleAlpha: CGFloat, barAlpha: CGFloat, surfaceRadius: CGFloat, animationDuration: Double = 0.3, callback: @escaping () -> ()) {
+        UIView.animate(withDuration: animationDuration, animations: {
+            self.floatingBar.surfaceView.grabberHandle.alpha = handleAlpha
+            self.searchBarView.alpha = barAlpha
+            self.floatingBar.surfaceView.cornerRadius = surfaceRadius
+        }) { (comp) in
+            callback()
+        }
+    }
+
+    // MARK: - Action
+    @objc private func editSearchTxf() {
+        self.setSearchData(word: self.searchTxf.text ?? "")
+    }
+
+    @objc private func tappedScreen(recognizer: UITapGestureRecognizer) {
+        closeFoatingBar()
     }
 
     @objc private func tappedSideMenuButton() {
@@ -341,14 +342,19 @@ class HomeViewController: UIViewController {
     }
 
     @objc private func tappedSearchButton() {
-        self.floatingBar.add(toParent: self, belowView: self.bottomMenuBarView, animated: true)
-        UIView.animate(withDuration: 0.5, animations: {
-            self.searchButton.alpha = 0.0
-        })
+        openFloatingBar()
     }
 
     @objc private func openSettingView() {
         self.pushNewNavigationController(rootViewController: SettingViewController())
+    }
+
+    @objc public func mapViewMovePointNotification(notification: NSNotification) {
+        if let point: String = notification.userInfo?["point"] as? String {
+            print(point)
+        }
+        print("-------------")
+        closeFoatingBar()
     }
 
     /*
@@ -446,8 +452,10 @@ extension HomeViewController: MKMapViewDelegate {
     }
 }
 
-extension HomeViewController: HomeViewControllerDelegate {
-    func mapViewMovePoint(point: WiFiPoint) {
-
+extension HomeViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.setSearchData(word: textField.text ?? "")
+        self.searchTxf.resignFirstResponder()
+        return true
     }
 }

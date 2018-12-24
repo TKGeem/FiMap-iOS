@@ -8,16 +8,15 @@
 
 import Foundation
 
-
-
-class SearchDataItem: NSObject {
+class SearchDataSource: NSObject {
     enum CategoryType {
         case Near
     }
     
-    public var title = [String]()
+    public var searchTitle = [String]()
     
     public func getSearchCategory(){
-        self.title.append("WiFi(T)")
+        self.searchTitle.removeAll()
+        self.searchTitle.append("WiFi(T)")
     }
 }
