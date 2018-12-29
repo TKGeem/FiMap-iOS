@@ -21,6 +21,17 @@ public extension UIView {
         return nil
     }
 
+    public var isHiddenWithAlpha: CGFloat {
+        set {
+            self.alpha = newValue
+            self.isHidden = alpha.isEqual(to: 0.0)
+            self.isUserInteractionEnabled = !alpha.isEqual(to: 0.0)
+        }
+        get {
+            return self.alpha
+        }
+    }
+
     enum ShadowDirection {
         case top
         case bottom

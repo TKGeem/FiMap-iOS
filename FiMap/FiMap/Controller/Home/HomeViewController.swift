@@ -120,13 +120,13 @@ class HomeViewController: UIViewController {
         self.searchButton.layer.cornerRadius = 30
         self.searchButton.setImage(R.image.round_search_black_48pt(), for: .normal)
         self.searchButton.imageEdgeInsets = .init(top: 9, left: 9, bottom: 9, right: 9)
-        self.searchButton.alpha = 1.0
+        self.searchButton.isHiddenWithAlpha = 1.0
         self.searchButton.addTarget(self, action: #selector(tappedSearchButton), for: .touchUpInside)
         self.searchButton.addShadow(direction: .bottom)
         self.searchButton.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
             make.height.width.equalTo(60)
-            make.top.equalToSuperview().offset(-20)
+            make.top.equalToSuperview().offset(-10)
         }
 
 
@@ -172,11 +172,13 @@ class HomeViewController: UIViewController {
         // Compass
         self.mapCompassButton = MKCompassButton(mapView: self.mapView)
         self.bottomMenuBarView.addSubview(self.mapCompassButton)
-        self.mapCompassButton.compassVisibility = .adaptive
+        self.mapCompassButton.compassVisibility = .visible
+        self.mapCompassButton.isUserInteractionEnabled = true
         self.mapCompassButton.snp.makeConstraints { (make) in
             make.height.width.equalTo(20)
-            make.top.equalTo(additionalSafeAreaInsets.top).offset(200)
-            make.left.equalToSuperview().offset(20)
+            make.top.equalTo(mapView).offset(50)
+            make.right.equalTo(-20)
+
         }
     }
 
@@ -197,12 +199,14 @@ class HomeViewController: UIViewController {
         self.view.addSubview(self.searchBarView)
         self.searchBarView.backgroundColor = Constants.Color.LIGHT_GREEN
         self.searchBarView.addShadow(direction: .bottom)
-        self.searchBarView.alpha = 0.0
+        self.searchBarView.isHiddenWithAlpha = 0.0
         self.searchBarView.snp.makeConstraints { (make) in
             make.top.width.centerX.equalToSuperview()
             make.height.equalTo(self.parent!.view.safeAreaInsets.top + 60)
             print(self.parent!.view.safeAreaInsets.top)
         }
+        
+        print(searchBarView)
 
         self.hideKeyboardWhenTappedAround()
 
@@ -226,14 +230,7 @@ class HomeViewController: UIViewController {
     // MARK: - Function
     private func setSearchData(word: String?) {
         if let criteria = word {
-            if criteria.count >= 1 {
-
-                //                NotificationCenter.default.post(name: Constants.Notification.SEARCH_ENTER, object: nil)
-                NotificationCenter.default.post(name: Constants.Notification.SEARCH_ENTER, object: nil, userInfo: ["word": criteria])
-
-            }
-        } else {
-            NotificationCenter.default.post(name: Constants.Notification.SEARCH_ENTER, object: nil, userInfo: ["word": ""])
+            NotificationCenter.default.post(name: Constants.Notification.SEARCH_ENTER, object: nil, userInfo: ["word": criteria])
         }
     }
 
@@ -291,18 +288,18 @@ class HomeViewController: UIViewController {
     private func openFloatingBar() {
         self.floatingBar.add(toParent: self, belowView: self.bottomMenuBarView, animated: true)
         UIView.animate(withDuration: 0.3, animations: {
-            self.floatingBar.surfaceView.grabberHandle.alpha = 1.0
+            self.floatingBar.surfaceView.grabberHandle.isHiddenWithAlpha = 1.0
             self.floatingBar.surfaceView.cornerRadius = 20.0
-            self.searchBarView.alpha = 0.0
-            self.searchButton.alpha = 0.0
+            self.searchBarView.isHiddenWithAlpha = 0.0
+            self.searchButton.isHiddenWithAlpha = 0.0
         })
     }
 
     private func closeFoatingBar() {
         self.floatingBar.removeFromParent(animated: true) {
             UIView.animate(withDuration: 0.3, animations: {
-                self.searchBarView.alpha = 0.0
-                self.searchButton.alpha = 1.0
+                self.searchBarView.isHiddenWithAlpha = 0.0
+                self.searchButton.isHiddenWithAlpha = 1.0
             }) { (comp) in
                 self.searchTxf.text = ""
                 self.setSearchData(word: nil)
@@ -312,16 +309,16 @@ class HomeViewController: UIViewController {
 
     private func changeFloatingBar(handleAlpha: CGFloat, barAlpha: CGFloat, surfaceRadius: CGFloat, animationDuration: Double = 0.3) {
         UIView.animate(withDuration: animationDuration) {
-            self.floatingBar.surfaceView.grabberHandle.alpha = handleAlpha
-            self.searchBarView.alpha = barAlpha
+            self.floatingBar.surfaceView.grabberHandle.isHiddenWithAlpha = handleAlpha
+            self.searchBarView.isHiddenWithAlpha = barAlpha
             self.floatingBar.surfaceView.cornerRadius = surfaceRadius
         }
     }
 
     private func changeFloatingBar(handleAlpha: CGFloat, barAlpha: CGFloat, surfaceRadius: CGFloat, animationDuration: Double = 0.3, callback: @escaping () -> ()) {
         UIView.animate(withDuration: animationDuration, animations: {
-            self.floatingBar.surfaceView.grabberHandle.alpha = handleAlpha
-            self.searchBarView.alpha = barAlpha
+            self.floatingBar.surfaceView.grabberHandle.isHiddenWithAlpha = handleAlpha
+            self.searchBarView.isHiddenWithAlpha = barAlpha
             self.floatingBar.surfaceView.cornerRadius = surfaceRadius
         }) { (comp) in
             callback()
