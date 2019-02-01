@@ -7,12 +7,19 @@
 //
 
 import UIKit
+import Alamofire
 
 class SearchViewController: UIViewController {
+    enum presentMode {
+        case category
+        case result
+    }
+
     // MARK: - Propaties
     public let tableView = UITableView()
     public let titleLabel = UILabel()
     public var dataSource = SearchDataSource()
+    private var presentVC = presentMode.category
 
     // MARK: - Override Function
     override func loadView() {
@@ -25,8 +32,9 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initSetting()
-        self.dataSource.getSearchCategory()
-        self.tableView.reloadData()
+        self.dataSource.getSearchCategory() {
+            self.tableView.reloadData()
+        }
     }
 
     deinit {
@@ -83,17 +91,26 @@ class SearchViewController: UIViewController {
 
         self.tableView.register(TitleTableViewCell.self, forCellReuseIdentifier: TitleTableViewCell.className)
         self.tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.className)
+        self.tableView.register(ResultTableViewCell.self, forCellReuseIdentifier: ResultTableViewCell.className)
     }
 
     // MARK: - Function
     @objc private func searchViewDidEnterNotification(notification: NSNotification) {
         if let word: String = notification.userInfo?["word"] as? String {
-            if word.isEmpty {
-                self.dataSource.getSearchCategory()
-                self.tableView.reloadData()
+            if word == "" {
+                presentVC = .category
+                self.dataSource.getSearchCategory() {
+                    self.tableView.reloadData()
+                }
             } else {
-                // MARK: - TODO
-                self.dataSource.searchTitle = [word]
+                presentVC = .result
+                self.dataSource.searchWifiData(searchWord: word) {
+                    self.tableView.reloadData()
+                }
+            }
+        } else {
+            presentVC = .category
+            self.dataSource.getSearchCategory() {
                 self.tableView.reloadData()
             }
         }
@@ -110,13 +127,25 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.className, for: indexPath)
-        (cell as? SearchTableViewCell)?.setCell(title: dataSource.searchTitle[indexPath.item])
-        return cell
+        switch presentVC {
+        case .category:
+            let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.className, for: indexPath)
+            (cell as? SearchTableViewCell)?.setCell(title: dataSource.searchTitle[indexPath.item])
+            return cell
+        case .result:
+            let cell = tableView.dequeueReusableCell(withIdentifier: ResultTableViewCell.className, for: indexPath)
+            (cell as? ResultTableViewCell)?.setCell(title: dataSource.searchTitle[indexPath.item])
+            return cell
+        }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        switch presentVC {
+        case .category:
+            return 80
+        case .result:
+            return 50
+        }
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

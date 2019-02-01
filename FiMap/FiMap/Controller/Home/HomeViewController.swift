@@ -11,13 +11,20 @@ import MapKit
 import SnapKit
 import ZFRippleButton
 
+enum FloatBarMode {
+    case search
+    case infomation
+}
+
 class HomeViewController: UIViewController {
     // MARK: - Property
     private let mapView = MKMapView()
     private let bottomMenuBarView = UIView()
     private let searchBarView = UIView()
+    private let resultBarView = UIView()
 
     private let searchTxf = CustomTextField()
+    private let resultLabel = UILabel()
     private let searchButton = ZFRippleButton()
     private let sideMenuButton = ZFRippleButton()
     private var mapCompassButton: MKCompassButton!
@@ -26,9 +33,12 @@ class HomeViewController: UIViewController {
 
     private let floatingBar = FloatingPanelController()
     private let searchViewController = SearchViewController()
-    private let infomationViewController = InformationViewController()
+    private let infomationViewController = InfomationViewController()
 
     public let locationManager = CLLocationManager()
+
+    private var floatBarViews = FloatBarMode.search
+
 
     // MARK: - Override
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
@@ -68,6 +78,10 @@ class HomeViewController: UIViewController {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(mapViewMovePointNotification(notification:)),
                                                name: Constants.Notification.SEARCH_SELECT,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(openSettingView),
+                                               name: Constants.Notification.SETTING_OPEN,
                                                object: nil)
 
         self.view.clipsToBounds = true
@@ -184,9 +198,9 @@ class HomeViewController: UIViewController {
 
     private func mapToolLayoutSetting() {
         // FloatingBar
-        let vc = SearchViewController()
+        let vc = self.searchViewController
         self.floatingBar.delegate = self
-        //        self.floatingBar.setOverrideTraitCollection(UITraitCollection(verticalSizeClass: .compact), forChild: self)
+        //self.floatingBar.setOverrideTraitCollection(UITraitCollection(verticalSizeClass: .compact), forChild: self)
         self.floatingBar.surfaceView.addShadow(direction: .bottom)
         self.floatingBar.surfaceView.grabberHandle.backgroundColor = Constants.Color.CLEAR
         self.floatingBar.surfaceView.cornerRadius = 20.0
@@ -203,10 +217,7 @@ class HomeViewController: UIViewController {
         self.searchBarView.snp.makeConstraints { (make) in
             make.top.width.centerX.equalToSuperview()
             make.height.equalTo(self.parent!.view.safeAreaInsets.top + 60)
-            print(self.parent!.view.safeAreaInsets.top)
         }
-        
-        print(searchBarView)
 
         self.hideKeyboardWhenTappedAround()
 
@@ -218,6 +229,7 @@ class HomeViewController: UIViewController {
         self.searchTxf.clearButtonMode = .whileEditing
         self.searchTxf.delegate = self
         self.searchTxf.addTarget(self, action: #selector(editSearchTxf), for: .editingChanged)
+        
         self.searchTxf.snp.makeConstraints { (make) in
             make.left.equalTo(10)
             make.right.equalTo(-10)
@@ -226,12 +238,24 @@ class HomeViewController: UIViewController {
             make.centerX.equalToSuperview()
         }
     }
+    
+    private func resultBarViewLayoutSetting() {
+        self.view.addSubview(self.resultBarView)
+        self.resultBarView.backgroundColor = Constants.Color.LIGHT_GREEN
+        self.resultBarView.addShadow(direction: .bottom)
+        self.resultBarView.isHiddenWithAlpha = 0.0
+        self.resultBarView.snp.makeConstraints { (make) in
+            make.top.width.centerX.equalToSuperview()
+            make.height.equalTo(self.parent!.view.safeAreaInsets.top + 60)
+        }
+        
+        self.resultBarView.addSubview(self.resultLabel)
+        self.resultLabel.backgroundColor = UIColor.clear
+    }
 
     // MARK: - Function
     private func setSearchData(word: String?) {
-        if let criteria = word {
-            NotificationCenter.default.post(name: Constants.Notification.SEARCH_ENTER, object: nil, userInfo: ["word": criteria])
-        }
+        NotificationCenter.default.post(name: Constants.Notification.SEARCH_ENTER, object: nil, userInfo: ["word": word ?? ""])
     }
 
     private func updateMapSetting() {
@@ -261,68 +285,98 @@ class HomeViewController: UIViewController {
     }
 
     private func updatedFloatingBar(_ vc: FloatingPanelController) {
-        self.dismissKeyboard()
         let keyFrame = (vc.surfaceView.frame.origin.y - vc.originYOfSurface(for: .full)) / (100 - vc.originYOfSurface(for: .full))
         if vc.originYOfSurface(for: .half) > vc.surfaceView.frame.origin.y && keyFrame > 0.0 && keyFrame < 1.0 {
-            //Non Full
+            // Down when Full
+            self.dismissKeyboard()
             changeFloatingBar(handleAlpha: keyFrame, barAlpha: 1 - keyFrame, surfaceRadius: (keyFrame) * 20)
         } else if keyFrame > 0.0 && keyFrame < 1.0 {
-            //Full
+            // No call
             changeFloatingBar(handleAlpha: 1.0, barAlpha: 1 - keyFrame, surfaceRadius: (keyFrame) * 20)
         } else {
+            // Half to Full
             if keyFrame <= 0.0 {
-                // Non Full
-                changeFloatingBar(handleAlpha: 0.0, barAlpha: 1.0, surfaceRadius: 0.0) {
+                //When Full
+                if self.floatBarViews == .search {
                     self.searchTxf.becomeFirstResponder()
                 }
+                changeFloatingBar(handleAlpha: 0.0, barAlpha: 1.0, surfaceRadius: 0.0)
             } else {
-                // Full
                 changeFloatingBar(handleAlpha: 1.0, barAlpha: 0.0, surfaceRadius: 20)
             }
+
             if vc.position == .tip {
-                closeFoatingBar()
+                closeFoatingBar {
+
+                }
             }
         }
     }
 
-    private func openFloatingBar() {
+    private func openFloatingBar(_ callback: @escaping () -> ()) {
+        switch self.floatBarViews {
+        case .infomation:
+            self.floatingBar.show(self.infomationViewController, sender: nil)
+            self.floatingBar.track(scrollView: self.infomationViewController.tableView)
+        case .search:
+            self.floatingBar.show(self.searchViewController, sender: nil)
+            self.floatingBar.track(scrollView: self.searchViewController.tableView)
+        }
+
         self.floatingBar.add(toParent: self, belowView: self.bottomMenuBarView, animated: true)
         UIView.animate(withDuration: 0.3, animations: {
             self.floatingBar.surfaceView.grabberHandle.isHiddenWithAlpha = 1.0
             self.floatingBar.surfaceView.cornerRadius = 20.0
             self.searchBarView.isHiddenWithAlpha = 0.0
             self.searchButton.isHiddenWithAlpha = 0.0
+            callback()
         })
     }
 
-    private func closeFoatingBar() {
+    private func closeFoatingBar(_ callback: @escaping () -> ()) {
         self.floatingBar.removeFromParent(animated: true) {
             UIView.animate(withDuration: 0.3, animations: {
                 self.searchBarView.isHiddenWithAlpha = 0.0
                 self.searchButton.isHiddenWithAlpha = 1.0
             }) { (comp) in
                 self.searchTxf.text = ""
-                self.setSearchData(word: nil)
+                self.setSearchData(word: "")
+                self.floatBarViews = .search
+                callback()
             }
         }
     }
 
-    private func changeFloatingBar(handleAlpha: CGFloat, barAlpha: CGFloat, surfaceRadius: CGFloat, animationDuration: Double = 0.3) {
+    private func changeFloatingBar(handleAlpha: CGFloat, barAlpha: CGFloat, surfaceRadius: CGFloat, animationDuration: Double = 0.2) {
         UIView.animate(withDuration: animationDuration) {
             self.floatingBar.surfaceView.grabberHandle.isHiddenWithAlpha = handleAlpha
-            self.searchBarView.isHiddenWithAlpha = barAlpha
             self.floatingBar.surfaceView.cornerRadius = surfaceRadius
+            switch self.floatBarViews {
+            case .search:
+                self.searchBarView.isHiddenWithAlpha = barAlpha
+            case .infomation:
+                break
+            }
         }
     }
 
     private func changeFloatingBar(handleAlpha: CGFloat, barAlpha: CGFloat, surfaceRadius: CGFloat, animationDuration: Double = 0.3, callback: @escaping () -> ()) {
         UIView.animate(withDuration: animationDuration, animations: {
             self.floatingBar.surfaceView.grabberHandle.isHiddenWithAlpha = handleAlpha
-            self.searchBarView.isHiddenWithAlpha = barAlpha
             self.floatingBar.surfaceView.cornerRadius = surfaceRadius
+            switch self.floatBarViews {
+            case .search:
+                self.searchBarView.isHiddenWithAlpha = barAlpha
+            case .infomation:
+                break
+            }
         }) { (comp) in
             callback()
         }
+    }
+
+    private func changeFloatBarViewController(mode: FloatBarMode) {
+
     }
 
     // MARK: - Action
@@ -331,7 +385,7 @@ class HomeViewController: UIViewController {
     }
 
     @objc private func tappedScreen(recognizer: UITapGestureRecognizer) {
-        closeFoatingBar()
+        closeFoatingBar({})
     }
 
     @objc private func tappedSideMenuButton() {
@@ -339,7 +393,7 @@ class HomeViewController: UIViewController {
     }
 
     @objc private func tappedSearchButton() {
-        openFloatingBar()
+        openFloatingBar({})
     }
 
     @objc private func openSettingView() {
@@ -351,7 +405,14 @@ class HomeViewController: UIViewController {
             print(point)
         }
         print("-------------")
-        closeFoatingBar()
+        closeFoatingBar {
+            self.floatBarViews = .infomation
+            self.openFloatingBar({})
+        }
+
+        openFloatingBar {
+        }
+
     }
 
     /*
@@ -410,42 +471,42 @@ extension HomeViewController: FloatingPanelControllerDelegate {
 // MARK: CLLocationManagerDelegate
 extension HomeViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print(locations)
+//        print(locations)
     }
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        print(status)
+//        print(status)
     }
 }
 
 //MARK: MKMapViewDelegate
 extension HomeViewController: MKMapViewDelegate {
     func mapViewWillStartLoadingMap(_ mapView: MKMapView) {
-        print("load map")
-        print(mapView)
+//        print("load map")
+//        print(mapView)
     }
 
     func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
-        print("load map complited")
-        print(mapView)
+//        print("load map complited")
+//        print(mapView)
 
     }
 
     func mapViewWillStartRenderingMap(_ mapView: MKMapView) {
-        print("render map")
-        print(mapView)
+//        print("render map")
+//        print(mapView)
     }
 
     func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
-        print("move map")
-        print(mapView)
+//        print("move map")
+//        print(mapView)
     }
 
 
     func mapView(_ mapView: MKMapView, didChange mode: MKUserTrackingMode, animated: Bool) {
-        print("move user")
-        print(mode.rawValue)
-        print(animated)
+//        print("move user")
+//        print(mode.rawValue)
+//        print(animated)
     }
 }
 

@@ -9,7 +9,7 @@
 import UIKit
 
 class SearchTableViewCell: UITableViewCell {
-    private let SearchTitleLabel = UILabel()
+    private let searchTitleLabel = UILabel()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,12 +19,15 @@ class SearchTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = Constants.Color.CLEAR
-        self.SearchTitleLabel.textColor = Constants.Color.WHITE_GRAY
-        self.SearchTitleLabel.font = UIFont.boldSystemFont(ofSize: 25)
-        self.SearchTitleLabel.textAlignment = .center
-        self.contentView.addSubview(self.SearchTitleLabel)
-        self.SearchTitleLabel.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+        self.searchTitleLabel.textColor = Constants.Color.WHITE_GRAY
+        self.searchTitleLabel.font = UIFont.boldSystemFont(ofSize: 30)
+        self.searchTitleLabel.textAlignment = .center
+        self.searchTitleLabel.adjustsFontSizeToFitWidth = true
+        self.searchTitleLabel.adjustsFontForContentSizeCategory = true
+        self.contentView.addSubview(self.searchTitleLabel)
+        self.searchTitleLabel.snp.makeConstraints { (make) in
+            make.height.centerX.centerY.equalToSuperview()
+            make.width.equalToSuperview().offset(-15)
         }
         
         let cellSelectedBgView = UIView()
@@ -42,6 +45,6 @@ class SearchTableViewCell: UITableViewCell {
     }
     
     public func setCell(title: String) {
-        self.SearchTitleLabel.text = title
+        self.searchTitleLabel.text = title
     }
 }

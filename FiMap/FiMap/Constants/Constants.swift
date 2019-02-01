@@ -14,6 +14,13 @@ struct Constants {
         static let NCMB_APPLICATION_KEY = ""
         static let NCMB_CLIENT_KEY = ""
     }
+    
+    struct Url {
+        static let API_ENDPOINT = "http://35.233.246.171"
+        struct Wifi {
+            static let GET_POINTS = "/api/wifi/getPoints"
+        }
+    }
 
     struct Color {
         //        static let FIMAP_THEME = UIColor(red255: 135, green255: 192, blue255: 176)

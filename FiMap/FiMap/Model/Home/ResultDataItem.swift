@@ -9,6 +9,6 @@
 import Foundation
 
 class ResultDataItem: NSObject {
-    public var data = [WiFiPoint]()
+    public var data = [WifiData]()
 
 }

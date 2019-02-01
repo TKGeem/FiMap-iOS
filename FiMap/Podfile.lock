@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.8.0)
   - MaterialKit (0.4)
   - R.swift (4.0.0):
     - R.swift.Library (~> 4.0.0)
@@ -11,6 +12,7 @@ PODS:
   - ZFRippleButton (0.6)
 
 DEPENDENCIES:
+  - Alamofire
   - MaterialKit (from `MaterialKit-master-fix`)
   - R.swift (~> 4.0.0)
   - SkyFloatingLabelTextField (~> 3.0)
@@ -22,6 +24,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
     - R.swift
     - R.swift.Library
     - SkyFloatingLabelTextField
@@ -36,6 +39,7 @@ EXTERNAL SOURCES:
     :path: MaterialKit-master-fix
 
 SPEC CHECKSUMS:
+  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   MaterialKit: 064d53c2c77dbce3e3c5e5bf5f4728e5c90d4cfb
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
@@ -46,6 +50,6 @@ SPEC CHECKSUMS:
   SwiftyUserDefaults: cebe0ff9472f52699772a514b6f7155861d8069b
   ZFRippleButton: 62ea35e209757704dea697d66489fe69c13d7b77
 
-PODFILE CHECKSUM: 1ef4f747d1f253c2237d17dc57c3772647378ed8
+PODFILE CHECKSUM: 5ce160bf60a823fb905daf97c9e4b41ef031ed93
 
 COCOAPODS: 1.5.3

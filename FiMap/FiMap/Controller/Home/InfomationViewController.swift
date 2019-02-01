@@ -1,30 +1,28 @@
 //
-//  InformationViewController.swift
+//  InfomationViewController.swift
 //  FiMap
 //
-//  Created by AmamiYou on 2018/10/21.
-//  Copyright © 2018 ammYou. All rights reserved.
+//  Created by El You on 2019/01/10.
+//  Copyright © 2019 ammYou. All rights reserved.
 //
 
 import UIKit
 
-class InformationViewController: UIViewController {
-    public let scrollView = UIScrollView()
+class InfomationViewController: UIViewController {
+    public let tableView = UITableView()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.addSubview(scrollView)
-        scrollView.snp.makeConstraints { (make) in
+        self.view.addSubview(self.tableView)
+        self.tableView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
-        scrollView.backgroundColor = UIColor.blue
+        self.tableView.backgroundColor = UIColor.blue
         self.view.backgroundColor = UIColor.gray
 
-        // Do any additional setup after loading the view.
-    }
 
-
-    /*
+        /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -34,4 +32,5 @@ class InformationViewController: UIViewController {
     }
     */
 
+    }
 }
