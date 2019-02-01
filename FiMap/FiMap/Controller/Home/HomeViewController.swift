@@ -51,6 +51,7 @@ class HomeViewController: UIViewController {
         menuBarLayoutSetting()
         mapToolLayoutSetting()
         searchBarViewLayoutSetting()
+        resultBarViewLayoutSetting()
     }
 
     override func viewDidLoad() {
@@ -251,11 +252,18 @@ class HomeViewController: UIViewController {
         
         self.resultBarView.addSubview(self.resultLabel)
         self.resultLabel.backgroundColor = UIColor.clear
+        self.resultLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(10)
+            make.right.equalTo(-10)
+            make.bottom.equalTo(-10)
+            make.height.equalTo(38)
+            make.centerX.equalToSuperview()
+        }
     }
 
     // MARK: - Function
     private func setSearchData(word: String?) {
-        NotificationCenter.default.post(name: Constants.Notification.SEARCH_ENTER, object: nil, userInfo: ["word": word ?? ""])
+        NotificationCenter.default.post(name: Constants.Notification.SEARCH_ENTER, object: nil, userInfo: [Constants.NotificationInfo.WORD: word ?? ""])
     }
 
     private func updateMapSetting() {
@@ -328,6 +336,7 @@ class HomeViewController: UIViewController {
             self.floatingBar.surfaceView.grabberHandle.isHiddenWithAlpha = 1.0
             self.floatingBar.surfaceView.cornerRadius = 20.0
             self.searchBarView.isHiddenWithAlpha = 0.0
+            self.resultBarView.isHiddenWithAlpha = 0.0
             self.searchButton.isHiddenWithAlpha = 0.0
             callback()
         })
@@ -337,6 +346,7 @@ class HomeViewController: UIViewController {
         self.floatingBar.removeFromParent(animated: true) {
             UIView.animate(withDuration: 0.3, animations: {
                 self.searchBarView.isHiddenWithAlpha = 0.0
+                self.resultBarView.isHiddenWithAlpha = 0.0
                 self.searchButton.isHiddenWithAlpha = 1.0
             }) { (comp) in
                 self.searchTxf.text = ""
@@ -355,7 +365,7 @@ class HomeViewController: UIViewController {
             case .search:
                 self.searchBarView.isHiddenWithAlpha = barAlpha
             case .infomation:
-                break
+                self.resultBarView.isHiddenWithAlpha = barAlpha
             }
         }
     }
@@ -368,7 +378,7 @@ class HomeViewController: UIViewController {
             case .search:
                 self.searchBarView.isHiddenWithAlpha = barAlpha
             case .infomation:
-                break
+                self.resultBarView.isHiddenWithAlpha = barAlpha
             }
         }) { (comp) in
             callback()
@@ -401,8 +411,13 @@ class HomeViewController: UIViewController {
     }
 
     @objc public func mapViewMovePointNotification(notification: NSNotification) {
-        if let point: String = notification.userInfo?["point"] as? String {
+        if let point: WifiData = notification.userInfo?[Constants.NotificationInfo.DATA] as? WifiData {
             print(point)
+            // 緯度・軽度を設定
+            let location:CLLocationCoordinate2D
+                = CLLocationCoordinate2DMake(point.yGeoPoint ?? 0.0, point.xGeoPoint ?? 0.0)
+            
+            mapView.setCenter(location,animated:true)
         }
         print("-------------")
         closeFoatingBar {

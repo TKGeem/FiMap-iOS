@@ -11,14 +11,13 @@ import UIKit
 class InfomationViewController: UIViewController {
     public let tableView = UITableView()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(self.tableView)
         self.tableView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
-        self.tableView.backgroundColor = UIColor.blue
+        self.tableView.backgroundColor = UIColor.white
         self.view.backgroundColor = UIColor.gray
 
 

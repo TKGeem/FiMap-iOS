@@ -62,4 +62,9 @@ struct Constants {
         static let SEARCH_ENTER = NSNotification.Name("SEARCH_ENTER")
         static let SEARCH_SELECT = NSNotification.Name("SEARCH_SELECT")
     }
+    
+    struct NotificationInfo {
+        static let DATA = "DATA"
+        static let WORD = "WORD"
+    }
 }

@@ -96,7 +96,7 @@ class SearchViewController: UIViewController {
 
     // MARK: - Function
     @objc private func searchViewDidEnterNotification(notification: NSNotification) {
-        if let word: String = notification.userInfo?["word"] as? String {
+        if let word: String = notification.userInfo?[Constants.NotificationInfo.WORD] as? String {
             if word == "" {
                 presentVC = .category
                 self.dataSource.getSearchCategory() {
@@ -149,7 +149,13 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        NotificationCenter.default.post(name: Constants.Notification.SEARCH_SELECT, object: nil, userInfo: ["point": self.dataSource.searchTitle[indexPath.item]])
+        switch presentVC {
+        case .category:
+            break
+        case .result:
+            NotificationCenter.default.post(name: Constants.Notification.SEARCH_SELECT, object: nil, userInfo: [Constants.NotificationInfo.DATA: self.dataSource.searchData[indexPath.item]])
+            
+        }
         self.tableView.deselectRow(at: indexPath, animated: true)
     }
 }
