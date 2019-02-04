@@ -19,7 +19,7 @@ class SearchDataSource: NSObject {
 
     public func getSearchCategory(_ callback: @escaping () -> ()) {
         self.searchTitle.removeAll()
-        self.searchTitle.append("WiFi(T)")
+        self.searchTitle.append("付近のWiFi")
         callback()
     }
 

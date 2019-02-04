@@ -44,7 +44,7 @@ class ResultTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    public func setCell(title: String) {
-        self.resultTitleLabel.text = title
+    public func setCell(data: WifiData) {
+        self.resultTitleLabel.text = data.name ?? ""
     }
 }

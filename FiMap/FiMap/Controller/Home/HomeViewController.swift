@@ -73,6 +73,9 @@ class HomeViewController: UIViewController {
         NotificationCenter.default.removeObserver(self,
                                                   name: Constants.Notification.SEARCH_SELECT,
                                                   object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: Constants.Notification.DISSMISS_KEYBOARD,
+                                                  object: nil)
     }
 
     private func initSetting() {
@@ -83,6 +86,10 @@ class HomeViewController: UIViewController {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(openSettingView),
                                                name: Constants.Notification.SETTING_OPEN,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.dismissKeyboard),
+                                               name: Constants.Notification.DISSMISS_KEYBOARD,
                                                object: nil)
 
         self.view.clipsToBounds = true
@@ -230,7 +237,7 @@ class HomeViewController: UIViewController {
         self.searchTxf.clearButtonMode = .whileEditing
         self.searchTxf.delegate = self
         self.searchTxf.addTarget(self, action: #selector(editSearchTxf), for: .editingChanged)
-        
+
         self.searchTxf.snp.makeConstraints { (make) in
             make.left.equalTo(10)
             make.right.equalTo(-10)
@@ -239,7 +246,7 @@ class HomeViewController: UIViewController {
             make.centerX.equalToSuperview()
         }
     }
-    
+
     private func resultBarViewLayoutSetting() {
         self.view.addSubview(self.resultBarView)
         self.resultBarView.backgroundColor = Constants.Color.LIGHT_GREEN
@@ -249,7 +256,7 @@ class HomeViewController: UIViewController {
             make.top.width.centerX.equalToSuperview()
             make.height.equalTo(self.parent!.view.safeAreaInsets.top + 60)
         }
-        
+
         self.resultBarView.addSubview(self.resultLabel)
         self.resultLabel.backgroundColor = UIColor.clear
         self.resultLabel.snp.makeConstraints { (make) in
@@ -386,7 +393,6 @@ class HomeViewController: UIViewController {
     }
 
     private func changeFloatBarViewController(mode: FloatBarMode) {
-
     }
 
     // MARK: - Action
@@ -395,7 +401,7 @@ class HomeViewController: UIViewController {
     }
 
     @objc private func tappedScreen(recognizer: UITapGestureRecognizer) {
-        closeFoatingBar({})
+        closeFoatingBar({ })
     }
 
     @objc private func tappedSideMenuButton() {
@@ -403,7 +409,7 @@ class HomeViewController: UIViewController {
     }
 
     @objc private func tappedSearchButton() {
-        openFloatingBar({})
+        openFloatingBar({ })
     }
 
     @objc private func openSettingView() {
@@ -414,20 +420,27 @@ class HomeViewController: UIViewController {
         if let point: WifiData = notification.userInfo?[Constants.NotificationInfo.DATA] as? WifiData {
             print(point)
             // 緯度・軽度を設定
-            let location:CLLocationCoordinate2D
+            let location: CLLocationCoordinate2D
                 = CLLocationCoordinate2DMake(point.yGeoPoint ?? 0.0, point.xGeoPoint ?? 0.0)
-            
-            mapView.setCenter(location,animated:true)
+            self.mapView.setCenter(location, animated: true)
+
+            // Add annotation
+            let annotation = MKPointAnnotation()
+            annotation.title = point.name
+            annotation.subtitle = "SSID: \(point.ssid ?? "")"
+            annotation.coordinate = location
+            // Display the annotation
+            self.mapView.showAnnotations([annotation], animated: true)
+            self.mapView.selectAnnotation(annotation, animated: true)
+
         }
+
         print("-------------")
+
         closeFoatingBar {
             self.floatBarViews = .infomation
-            self.openFloatingBar({})
+            self.openFloatingBar({ })
         }
-
-        openFloatingBar {
-        }
-
     }
 
     /*
@@ -522,6 +535,42 @@ extension HomeViewController: MKMapViewDelegate {
 //        print("move user")
 //        print(mode.rawValue)
 //        print(animated)
+    }
+
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let identifier = self.mapView.className
+
+        if annotation.isKind(of: MKUserLocation.self) {
+            return nil
+        }
+
+        // Reuse the annotation if possible
+        var annotationView: MKMarkerAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
+
+        if annotationView == nil {
+            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+        }
+
+        annotationView?.glyphImage = R.image.baseline_wifi_white_48pt()
+        annotationView?.markerTintColor = Constants.Color.LIGHT_GREEN
+        annotationView?.animatesWhenAdded = true
+        annotationView?.canShowCallout = true
+
+        return annotationView
+    }
+
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        print(view.annotation?.coordinate)
+    }
+
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        // どのピンがタップされたかを取得
+        let title = view.annotation?.title
+
+        if let point = title { // "optional(横浜)"となるので、アンラップする http://qiita.com/maiki055/items/b24378a3707bd35a31a8
+            let place = "hello " + point!
+            print(place)
+        }
     }
 }
 

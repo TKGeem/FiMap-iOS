@@ -20,10 +20,14 @@ class TitleTableViewCell: UITableViewCell {
         self.contentView.addSubview(self.titleLabel)
         self.titleLabel.textColor = Constants.Color.WHITE_GRAY
         self.titleLabel.textAlignment = .center
-        self.titleLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        self.titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
         self.titleLabel.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
+        
+        let cellSelectedBgView = UIView()
+        cellSelectedBgView.backgroundColor = Constants.Color.SHADOW_GREEN
+        self.selectedBackgroundView = cellSelectedBgView
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -42,7 +46,7 @@ class TitleTableViewCell: UITableViewCell {
     }
 
     public func setCell(title: String) {
-        self.titleLabel.text = title
+        self.titleLabel.text = "\(title) の検索結果"
     }
 
 }

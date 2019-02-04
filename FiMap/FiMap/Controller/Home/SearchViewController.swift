@@ -18,8 +18,10 @@ class SearchViewController: UIViewController {
     // MARK: - Propaties
     public let tableView = UITableView()
     public let titleLabel = UILabel()
+    public var titleWord = String()
     public var dataSource = SearchDataSource()
     private var presentVC = presentMode.category
+
 
     // MARK: - Override Function
     override func loadView() {
@@ -84,7 +86,8 @@ class SearchViewController: UIViewController {
         self.tableView.separatorStyle = .singleLine
         self.tableView.snp.makeConstraints { (make) in
             make.top.equalTo(self.titleLabel.snp.bottom)
-            make.width.bottom.centerX.equalToSuperview()
+            make.width.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(100)
         }
         self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0);
         self.tableView.tableFooterView = UIView(frame: .zero)
@@ -97,20 +100,25 @@ class SearchViewController: UIViewController {
     // MARK: - Function
     @objc private func searchViewDidEnterNotification(notification: NSNotification) {
         if let word: String = notification.userInfo?[Constants.NotificationInfo.WORD] as? String {
+            self.titleWord = word
             if word == "" {
-                presentVC = .category
                 self.dataSource.getSearchCategory() {
-                    self.tableView.reloadData()
+                    self.presentVC = .category
+                    if self.titleWord == "" {
+                        self.tableView.reloadData()
+                    }
                 }
             } else {
-                presentVC = .result
                 self.dataSource.searchWifiData(searchWord: word) {
-                    self.tableView.reloadData()
+                    self.presentVC = .result
+                    if self.titleWord != "" {
+                        self.tableView.reloadData()
+                    }
                 }
             }
         } else {
-            presentVC = .category
             self.dataSource.getSearchCategory() {
+                self.presentVC = .category
                 self.tableView.reloadData()
             }
         }
@@ -118,12 +126,21 @@ class SearchViewController: UIViewController {
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        NotificationCenter.default.post(name: Constants.Notification.DISSMISS_KEYBOARD, object: nil)
+    }
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.dataSource.searchTitle.count
+        switch presentVC {
+        case .category:
+            return self.dataSource.searchTitle.count
+        case .result:
+            return self.dataSource.searchData.count + 1
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -133,9 +150,15 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             (cell as? SearchTableViewCell)?.setCell(title: dataSource.searchTitle[indexPath.item])
             return cell
         case .result:
-            let cell = tableView.dequeueReusableCell(withIdentifier: ResultTableViewCell.className, for: indexPath)
-            (cell as? ResultTableViewCell)?.setCell(title: dataSource.searchTitle[indexPath.item])
-            return cell
+            if (indexPath.item == 0) {
+                let cell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCell.className, for: indexPath)
+                (cell as? TitleTableViewCell)?.setCell(title: self.titleWord)
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: ResultTableViewCell.className, for: indexPath)
+                (cell as? ResultTableViewCell)?.setCell(data: dataSource.searchData[indexPath.item - 1])
+                return cell
+            }
         }
     }
 
@@ -153,8 +176,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         case .category:
             break
         case .result:
-            NotificationCenter.default.post(name: Constants.Notification.SEARCH_SELECT, object: nil, userInfo: [Constants.NotificationInfo.DATA: self.dataSource.searchData[indexPath.item]])
-            
+            if (indexPath.item == 0) {
+                print(self.titleWord)
+            } else {
+                NotificationCenter.default.post(name: Constants.Notification.SEARCH_SELECT, object: nil, userInfo: [Constants.NotificationInfo.DATA: self.dataSource.searchData[indexPath.item - 1]])
+            }
         }
         self.tableView.deselectRow(at: indexPath, animated: true)
     }
