@@ -18,7 +18,7 @@ enum FloatBarMode {
 
 class HomeViewController: UIViewController {
     // MARK: - Property
-    private let mapView = MKMapView()
+    public let mapView = MKMapView()
     private let bottomMenuBarView = UIView()
     private let searchBarView = UIView()
     private let resultBarView = UIView()
@@ -41,6 +41,8 @@ class HomeViewController: UIViewController {
     public var dataSource = SearchDataSource()
 
     private var floatBarVC = FloatBarMode.search
+
+    private var isPreview = false
 
 
     // MARK: - Override
@@ -114,7 +116,7 @@ class HomeViewController: UIViewController {
             self.locationManager.startUpdatingHeading()
         }
 
-        updateMapViewAnnotaion()
+        updateMapViewAnnotaion({ })
     }
 
     // MARK: - Layout Setting
@@ -274,67 +276,91 @@ class HomeViewController: UIViewController {
     }
 
     // MARK: - Function
-    private func addAnnotationsFromDatas(datas: [WifiData], afterRemove: Bool = false, withSelect: Bool = false) {
+    private func addAnnotationsFromDatas(datas: [WifiData], afterRemove: Bool = false) {
+        let maxAnnotation = 500
+        if self.isPreview {
+            return
+        }
+
+        if self.mapView.annotations.count >= maxAnnotation || afterRemove {
+            self.mapView.removeAnnotations(self.mapView.annotations)
+        }
 
         var annotations = [MKPointAnnotation]()
+        DispatchQueue.global().sync {
+
+        }
         for data in datas {
             let annotation = MKPointAnnotation()
-            annotation.title = data.name
-            annotation.subtitle = "SSID: \(data.ssid ?? "")"
-            annotation.coordinate = CLLocationCoordinate2DMake(data.yGeoPoint ?? 0.0, data.xGeoPoint ?? 0.0)
-            annotations.append(annotation)
-            self.mapView.addAnnotation(annotation)
-        }
-        if afterRemove {
-//            self.mapView.removeAnnotations(self.mapView.annotations)
-        }
-        if annotations.count != 0 {
-            print("added \(annotations.count) count")
-            print(self.mapView.annotations.count)
-//            self.mapView.addAnnotations(annotations)
-        }
-        if withSelect {
-//            self.mapView.selectAnnotation(annotation, animated: true)
-        }
-    }
-
-    private func showAnnotationsFromDatas(datas: [WifiData] = [WifiData]()) {
-        if datas.count != 0 {
-            var annotations = [MKPointAnnotation]()
-            let annotation = MKPointAnnotation()
-            for data in datas {
-                annotation.title = data.name
-                annotation.subtitle = "SSID: \(data.ssid ?? "")"
-                annotation.coordinate = CLLocationCoordinate2DMake(data.yGeoPoint ?? 0.0, data.xGeoPoint ?? 0.0)
+            if let title = data.name,
+                let subTitle = data.ssid,
+                let latitude = data.yGeoPoint,
+                let longitude = data.xGeoPoint {
+                annotation.title = title
+                annotation.subtitle = "SSID: \(subTitle)"
+                annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
                 annotations.append(annotation)
             }
-            if annotations.count != 0 {
-                self.mapView.showAnnotations(annotations, animated: true)
+            if annotations.count >= maxAnnotation {
+                break
             }
-        } else {
-            print(self.mapView.annotations.count)
-            self.mapView.showAnnotations(self.mapView.annotations, animated: false)
+        }
+        if annotations.count != 0 {
+            self.mapView.addAnnotations(annotations)
         }
     }
 
     private func selectAnnotationFromData(data: WifiData) {
         let annotation = MKPointAnnotation()
-        annotation.coordinate =  CLLocationCoordinate2DMake(data.yGeoPoint ?? 0.0, data.xGeoPoint ?? 0.0)
-        annotation.title = data.name
-        annotation.subtitle = "SSID: \(data.ssid ?? "")"
-        let filteredAnnotation = self.mapView.annotations.first { (conAnnotation) -> Bool in
-            conAnnotation.title == annotation.title &&
-            conAnnotation.subtitle == annotation.subtitle
-        }
-        
-        if let annotation = filteredAnnotation {
-            self.mapView.setCenter(annotation.coordinate, animated: true)
+        if let title = data.name,
+            let subTitle = data.ssid,
+            let latitude = data.yGeoPoint,
+            let longitude = data.xGeoPoint {
+            annotation.title = title
+            annotation.subtitle = "SSID: \(subTitle)"
+            annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+            let filteredAnnotation = self.mapView.annotations.first { (conAnnotation) -> Bool in
+                conAnnotation.title == annotation.title &&
+                    conAnnotation.subtitle == annotation.subtitle
+            }
+
+            self.isPreview = true
+            if let fAnnotation = filteredAnnotation {
+                if filteredAnnotation?.title != "" {
+                    self.mapView.selectAnnotation(fAnnotation, animated: true)
+                    self.mapView.showAnnotations([fAnnotation], animated: true)
+                    self.isPreview = false
+                    return
+                }
+            }
+            self.mapView.addAnnotation(annotation)
             self.mapView.selectAnnotation(annotation, animated: true)
-        }else{
-            self.mapView.setCenter(annotation.coordinate, animated: true)
-            addAnnotationsFromDatas(datas: [data], afterRemove: false, withSelect: true)
+            self.mapView.showAnnotations([annotation], animated: true)
+            self.isPreview = false
         }
-        
+    }
+
+
+    private func updateMapViewAnnotaion(location: CLLocationCoordinate2D? = nil, _ callback: @escaping () -> ()) {
+        let mRect = mapView.visibleMapRect
+        let centerMapPoint = MKMapPoint(x: mRect.midX, y: mRect.midY)
+        let bottomMapPoint = MKMapPoint(x: mRect.midX, y: mRect.minY)
+        var currentDist = centerMapPoint.distance(to: bottomMapPoint) * 1.1 //マップロードを込み
+        if currentDist >= 100000.0 {
+            currentDist = 100000.0
+        }
+
+        if let location = location {
+            self.dataSource.searchWifiData(location: location, distance: 2000) {
+                self.addAnnotationsFromDatas(datas: self.dataSource.searchData, afterRemove: true)
+            }
+            callback()
+            return
+        }
+        self.dataSource.searchWifiData(location: centerMapPoint.coordinate, distance: currentDist) {
+            self.addAnnotationsFromDatas(datas: self.dataSource.searchData, afterRemove: true)
+            callback()
+        }
     }
 
     private func setSearchData(word: String?) {
@@ -456,22 +482,10 @@ class HomeViewController: UIViewController {
         }
     }
 
-    private func updateMapViewAnnotaion() {
-        let mRect = mapView.visibleMapRect
-        let centerMapPoint = MKMapPoint(x: mRect.midX, y: mRect.midY)
-        let bottomMapPoint = MKMapPoint(x: mRect.midX, y: mRect.minY)
-        let currentDist = centerMapPoint.distance(to: bottomMapPoint)
-
-        self.dataSource.getWifiData() {
-            self.addAnnotationsFromDatas(datas: self.dataSource.searchData, afterRemove: true)
-//            self.showAnnotationsFromDatas()
-        }
-    }
-
     private func changeFloatBarViewController(mode: FloatBarMode) {
     }
 
-    // MARK: - Action
+// MARK: - Action
     @objc private func editSearchTxf() {
         self.setSearchData(word: self.searchTxf.text ?? "")
     }
@@ -494,12 +508,8 @@ class HomeViewController: UIViewController {
 
     @objc public func mapViewMovePointNotification(notification: NSNotification) {
         if let point: WifiData = notification.userInfo?[Constants.NotificationInfo.DATA] as? WifiData {
-            print(point)
             selectAnnotationFromData(data: point)
         }
-
-        print("-------------")
-
         closeFoatingBar {
             self.floatBarVC = .infomation
             self.openFloatingBar({ })
@@ -586,25 +596,31 @@ extension HomeViewController: MKMapViewDelegate {
     func mapViewWillStartRenderingMap(_ mapView: MKMapView) {
 //        print("render map")
 //        print(mapView)
+        updateMapViewAnnotaion({ })
+    }
+
+    func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
     }
 
     func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
 //        print("move map")
 //        print(mapView)
+//        updateMapViewAnnotaion({ })
     }
 
     func mapView(_ mapView: MKMapView, didChange mode: MKUserTrackingMode, animated: Bool) {
 //        print("move user")
 //        print(mode.rawValue)
 //        print(animated)
+//        updateMapViewAnnotaion({ })
     }
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let identifier = "wifi"
+        let identifier = "point"
 
-//        if annotation.isKind(of: MKUserLocation.self) {
-//            return nil
-//        }
+        if annotation.isKind(of: MKUserLocation.self) {
+            return nil
+        }
 
         // Reuse the annotation if possible
         var annotationView: MKMarkerAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
@@ -615,28 +631,34 @@ extension HomeViewController: MKMapViewDelegate {
 
         annotationView?.glyphImage = R.image.baseline_wifi_white_48pt()
         annotationView?.markerTintColor = Constants.Color.LIGHT_GREEN
-        annotationView?.animatesWhenAdded = true
-        annotationView?.canShowCallout = true
+        annotationView?.animatesWhenAdded = false
+//        annotationView?.canShowCallout = true
         annotationView?.clusteringIdentifier = "wifi"
 
         return annotationView
     }
 
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        print(view.annotation?.coordinate)
-    }
-
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        // どのピンがタップされたかを取得
-        let title = view.annotation?.title
-
-        if let point = title { // "optional(横浜)"となるので、アンラップする http://qiita.com/maiki055/items/b24378a3707bd35a31a8
-            let place = "hello " + point!
-            print(place)
+        if let location = view.annotation?.coordinate {
+            self.dataSource.searchWifiData(location: location, distance: 1.0) {
+                for i in self.dataSource.searchData {
+                    print(i.name)
+                    print(i.address)
+                    print(i.ssid)
+                }
+            }
         }
     }
 
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+
+    }
+
+    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+    }
+
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+
     }
 }
 

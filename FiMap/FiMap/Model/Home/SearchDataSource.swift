@@ -18,6 +18,7 @@ class SearchDataSource: NSObject {
 
     public var searchTitle = [String]()
     public var searchData = [WifiData]()
+    private var isPorccess = false
 
     public func getSearchCategory(_ callback: @escaping () -> ()) {
         self.searchTitle.removeAll()
@@ -26,6 +27,11 @@ class SearchDataSource: NSObject {
     }
 
     public func searchWifiData(word: String, _ callback: @escaping () -> ()) {
+        if self.isPorccess {
+            return
+        }
+        self.isPorccess = true
+
         let url = "\(Constants.Url.API_ENDPOINT)\(Constants.Url.Wifi.GET_POINTS)"
         let param = ["name": word]
         var title: [String] = [String]()
@@ -34,7 +40,6 @@ class SearchDataSource: NSObject {
         Alamofire.request(url,
                           method: .get,
                           parameters: param).responseWifi { response in
-            print(response.request)
             if let wifi = response.result.value {
                 if let wifiDatas = wifi.datas {
                     data = wifiDatas
@@ -47,18 +52,21 @@ class SearchDataSource: NSObject {
                 }
             }
             callback()
+            self.isPorccess = false
         }
-
     }
 
     public func getWifiData(_ callback: @escaping () -> ()) {
+        if self.isPorccess {
+            return
+        }
+        self.isPorccess = true
         SVProgressHUD.show(withStatus: "データを取得中")
         let url = "\(Constants.Url.API_ENDPOINT)\(Constants.Url.Wifi.GET_POINTS)"
         var title: [String] = [String]()
         var data: [WifiData] = [WifiData]()
         Alamofire.request(url,
                           method: .get).responseWifi { response in
-            print(response.request)
             SVProgressHUD.dismiss()
             if response.response?.statusCode == 200 {
                 SVProgressHUD.showSuccess(withStatus: "完了)")
@@ -72,16 +80,20 @@ class SearchDataSource: NSObject {
                         self.searchData = data
                     }
                 }
-                callback()
             } else {
                 SVProgressHUD.showError(withStatus: "失敗 \(response.response?.statusCode ?? 000)")
             }
-
+            self.isPorccess = false
         }
 
     }
 
     public func searchWifiData(location: CLLocationCoordinate2D, distance: Double, _ callback: @escaping () -> ()) {
+        if self.isPorccess {
+            return
+        }
+
+        self.isPorccess = true
         let url = "\(Constants.Url.API_ENDPOINT)\(Constants.Url.Wifi.GET_POINTS)"
         let param = ["latitude": location.latitude, "longitude": location.longitude, "distance": distance]
         var title: [String] = [String]()
@@ -90,7 +102,6 @@ class SearchDataSource: NSObject {
         Alamofire.request(url,
                           method: .get,
                           parameters: param).responseWifi { response in
-            print(response.request)
             if let wifi = response.result.value {
                 if let wifiDatas = wifi.datas {
                     data = wifiDatas
@@ -102,6 +113,7 @@ class SearchDataSource: NSObject {
                 }
             }
             callback()
+            self.isPorccess = false
         }
 
     }
