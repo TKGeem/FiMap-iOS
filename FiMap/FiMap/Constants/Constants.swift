@@ -16,7 +16,7 @@ struct Constants {
     }
     
     struct Url {
-        static let API_ENDPOINT = "http://35.233.246.171"
+        static let API_ENDPOINT = "http://35.227.170.93"
         struct Wifi {
             static let GET_POINTS = "/api/wifi/getPoints"
         }

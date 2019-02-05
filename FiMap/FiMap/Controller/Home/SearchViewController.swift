@@ -109,7 +109,7 @@ class SearchViewController: UIViewController {
                     }
                 }
             } else {
-                self.dataSource.searchWifiData(searchWord: word) {
+                self.dataSource.searchWifiData(word: word) {
                     self.presentVC = .result
                     if self.titleWord != "" {
                         self.tableView.reloadData()

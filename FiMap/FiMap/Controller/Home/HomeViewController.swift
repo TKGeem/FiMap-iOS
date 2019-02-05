@@ -23,6 +23,7 @@ class HomeViewController: UIViewController {
     private let searchBarView = UIView()
     private let resultBarView = UIView()
 
+
     private let searchTxf = CustomTextField()
     private let resultLabel = UILabel()
     private let searchButton = ZFRippleButton()
@@ -37,7 +38,9 @@ class HomeViewController: UIViewController {
 
     public let locationManager = CLLocationManager()
 
-    private var floatBarViews = FloatBarMode.search
+    public var dataSource = SearchDataSource()
+
+    private var floatBarVC = FloatBarMode.search
 
 
     // MARK: - Override
@@ -110,6 +113,8 @@ class HomeViewController: UIViewController {
             self.locationManager.startUpdatingLocation()
             self.locationManager.startUpdatingHeading()
         }
+
+        updateMapViewAnnotaion()
     }
 
     // MARK: - Layout Setting
@@ -269,6 +274,69 @@ class HomeViewController: UIViewController {
     }
 
     // MARK: - Function
+    private func addAnnotationsFromDatas(datas: [WifiData], afterRemove: Bool = false, withSelect: Bool = false) {
+
+        var annotations = [MKPointAnnotation]()
+        for data in datas {
+            let annotation = MKPointAnnotation()
+            annotation.title = data.name
+            annotation.subtitle = "SSID: \(data.ssid ?? "")"
+            annotation.coordinate = CLLocationCoordinate2DMake(data.yGeoPoint ?? 0.0, data.xGeoPoint ?? 0.0)
+            annotations.append(annotation)
+            self.mapView.addAnnotation(annotation)
+        }
+        if afterRemove {
+//            self.mapView.removeAnnotations(self.mapView.annotations)
+        }
+        if annotations.count != 0 {
+            print("added \(annotations.count) count")
+            print(self.mapView.annotations.count)
+//            self.mapView.addAnnotations(annotations)
+        }
+        if withSelect {
+//            self.mapView.selectAnnotation(annotation, animated: true)
+        }
+    }
+
+    private func showAnnotationsFromDatas(datas: [WifiData] = [WifiData]()) {
+        if datas.count != 0 {
+            var annotations = [MKPointAnnotation]()
+            let annotation = MKPointAnnotation()
+            for data in datas {
+                annotation.title = data.name
+                annotation.subtitle = "SSID: \(data.ssid ?? "")"
+                annotation.coordinate = CLLocationCoordinate2DMake(data.yGeoPoint ?? 0.0, data.xGeoPoint ?? 0.0)
+                annotations.append(annotation)
+            }
+            if annotations.count != 0 {
+                self.mapView.showAnnotations(annotations, animated: true)
+            }
+        } else {
+            print(self.mapView.annotations.count)
+            self.mapView.showAnnotations(self.mapView.annotations, animated: false)
+        }
+    }
+
+    private func selectAnnotationFromData(data: WifiData) {
+        let annotation = MKPointAnnotation()
+        annotation.coordinate =  CLLocationCoordinate2DMake(data.yGeoPoint ?? 0.0, data.xGeoPoint ?? 0.0)
+        annotation.title = data.name
+        annotation.subtitle = "SSID: \(data.ssid ?? "")"
+        let filteredAnnotation = self.mapView.annotations.first { (conAnnotation) -> Bool in
+            conAnnotation.title == annotation.title &&
+            conAnnotation.subtitle == annotation.subtitle
+        }
+        
+        if let annotation = filteredAnnotation {
+            self.mapView.setCenter(annotation.coordinate, animated: true)
+            self.mapView.selectAnnotation(annotation, animated: true)
+        }else{
+            self.mapView.setCenter(annotation.coordinate, animated: true)
+            addAnnotationsFromDatas(datas: [data], afterRemove: false, withSelect: true)
+        }
+        
+    }
+
     private func setSearchData(word: String?) {
         NotificationCenter.default.post(name: Constants.Notification.SEARCH_ENTER, object: nil, userInfo: [Constants.NotificationInfo.WORD: word ?? ""])
     }
@@ -288,14 +356,10 @@ class HomeViewController: UIViewController {
         switch CLLocationManager.authorizationStatus() {
         case .notDetermined:
             self.locationManager.requestWhenInUseAuthorization()
-        case .restricted:
-            self.locationManager.requestWhenInUseAuthorization()
-        case .denied:
-            self.locationManager.requestWhenInUseAuthorization()
-        case .authorizedWhenInUse:
-            self.locationManager.requestWhenInUseAuthorization()
-        case .authorizedAlways:
-            self.locationManager.requestWhenInUseAuthorization()
+        case .restricted, .denied:
+            break
+        case .authorizedAlways, .authorizedWhenInUse:
+            break
         }
     }
 
@@ -312,7 +376,7 @@ class HomeViewController: UIViewController {
             // Half to Full
             if keyFrame <= 0.0 {
                 //When Full
-                if self.floatBarViews == .search {
+                if self.floatBarVC == .search {
                     self.searchTxf.becomeFirstResponder()
                 }
                 changeFloatingBar(handleAlpha: 0.0, barAlpha: 1.0, surfaceRadius: 0.0)
@@ -329,7 +393,7 @@ class HomeViewController: UIViewController {
     }
 
     private func openFloatingBar(_ callback: @escaping () -> ()) {
-        switch self.floatBarViews {
+        switch self.floatBarVC {
         case .infomation:
             self.floatingBar.show(self.infomationViewController, sender: nil)
             self.floatingBar.track(scrollView: self.infomationViewController.tableView)
@@ -358,7 +422,7 @@ class HomeViewController: UIViewController {
             }) { (comp) in
                 self.searchTxf.text = ""
                 self.setSearchData(word: "")
-                self.floatBarViews = .search
+                self.floatBarVC = .search
                 callback()
             }
         }
@@ -368,7 +432,7 @@ class HomeViewController: UIViewController {
         UIView.animate(withDuration: animationDuration) {
             self.floatingBar.surfaceView.grabberHandle.isHiddenWithAlpha = handleAlpha
             self.floatingBar.surfaceView.cornerRadius = surfaceRadius
-            switch self.floatBarViews {
+            switch self.floatBarVC {
             case .search:
                 self.searchBarView.isHiddenWithAlpha = barAlpha
             case .infomation:
@@ -381,7 +445,7 @@ class HomeViewController: UIViewController {
         UIView.animate(withDuration: animationDuration, animations: {
             self.floatingBar.surfaceView.grabberHandle.isHiddenWithAlpha = handleAlpha
             self.floatingBar.surfaceView.cornerRadius = surfaceRadius
-            switch self.floatBarViews {
+            switch self.floatBarVC {
             case .search:
                 self.searchBarView.isHiddenWithAlpha = barAlpha
             case .infomation:
@@ -389,6 +453,18 @@ class HomeViewController: UIViewController {
             }
         }) { (comp) in
             callback()
+        }
+    }
+
+    private func updateMapViewAnnotaion() {
+        let mRect = mapView.visibleMapRect
+        let centerMapPoint = MKMapPoint(x: mRect.midX, y: mRect.midY)
+        let bottomMapPoint = MKMapPoint(x: mRect.midX, y: mRect.minY)
+        let currentDist = centerMapPoint.distance(to: bottomMapPoint)
+
+        self.dataSource.getWifiData() {
+            self.addAnnotationsFromDatas(datas: self.dataSource.searchData, afterRemove: true)
+//            self.showAnnotationsFromDatas()
         }
     }
 
@@ -419,26 +495,13 @@ class HomeViewController: UIViewController {
     @objc public func mapViewMovePointNotification(notification: NSNotification) {
         if let point: WifiData = notification.userInfo?[Constants.NotificationInfo.DATA] as? WifiData {
             print(point)
-            // 緯度・軽度を設定
-            let location: CLLocationCoordinate2D
-                = CLLocationCoordinate2DMake(point.yGeoPoint ?? 0.0, point.xGeoPoint ?? 0.0)
-            self.mapView.setCenter(location, animated: true)
-
-            // Add annotation
-            let annotation = MKPointAnnotation()
-            annotation.title = point.name
-            annotation.subtitle = "SSID: \(point.ssid ?? "")"
-            annotation.coordinate = location
-            // Display the annotation
-            self.mapView.showAnnotations([annotation], animated: true)
-            self.mapView.selectAnnotation(annotation, animated: true)
-
+            selectAnnotationFromData(data: point)
         }
 
         print("-------------")
 
         closeFoatingBar {
-            self.floatBarViews = .infomation
+            self.floatBarVC = .infomation
             self.openFloatingBar({ })
         }
     }
@@ -530,7 +593,6 @@ extension HomeViewController: MKMapViewDelegate {
 //        print(mapView)
     }
 
-
     func mapView(_ mapView: MKMapView, didChange mode: MKUserTrackingMode, animated: Bool) {
 //        print("move user")
 //        print(mode.rawValue)
@@ -538,11 +600,11 @@ extension HomeViewController: MKMapViewDelegate {
     }
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let identifier = self.mapView.className
+        let identifier = "wifi"
 
-        if annotation.isKind(of: MKUserLocation.self) {
-            return nil
-        }
+//        if annotation.isKind(of: MKUserLocation.self) {
+//            return nil
+//        }
 
         // Reuse the annotation if possible
         var annotationView: MKMarkerAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
@@ -555,6 +617,7 @@ extension HomeViewController: MKMapViewDelegate {
         annotationView?.markerTintColor = Constants.Color.LIGHT_GREEN
         annotationView?.animatesWhenAdded = true
         annotationView?.canShowCallout = true
+        annotationView?.clusteringIdentifier = "wifi"
 
         return annotationView
     }
@@ -571,6 +634,9 @@ extension HomeViewController: MKMapViewDelegate {
             let place = "hello " + point!
             print(place)
         }
+    }
+
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
     }
 }
 

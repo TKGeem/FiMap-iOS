@@ -12,7 +12,7 @@ PODS:
   - ZFRippleButton (0.6)
 
 DEPENDENCIES:
-  - Alamofire
+  - Alamofire (~> 4.8.0)
   - MaterialKit (from `MaterialKit-master-fix`)
   - R.swift (~> 4.0.0)
   - SkyFloatingLabelTextField (~> 3.0)
@@ -50,6 +50,6 @@ SPEC CHECKSUMS:
   SwiftyUserDefaults: cebe0ff9472f52699772a514b6f7155861d8069b
   ZFRippleButton: 62ea35e209757704dea697d66489fe69c13d7b77
 
-PODFILE CHECKSUM: 5ce160bf60a823fb905daf97c9e4b41ef031ed93
+PODFILE CHECKSUM: 1a51a188b13181b1fc7fc0e6019bdc4887b1938d
 
 COCOAPODS: 1.5.3

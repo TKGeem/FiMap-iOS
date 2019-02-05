@@ -1,14 +1,14 @@
+////
+////  ResultDataItem.swift
+////  FiMap
+////
+////  Created by El You on 2018/12/02.
+////  Copyright © 2018 ammYou. All rights reserved.
+////
 //
-//  ResultDataItem.swift
-//  FiMap
+//import Foundation
 //
-//  Created by El You on 2018/12/02.
-//  Copyright © 2018 ammYou. All rights reserved.
+//class ResultDataItem: NSObject {
+//    public var data = [WifiData]()
 //
-
-import Foundation
-
-class ResultDataItem: NSObject {
-    public var data = [WifiData]()
-
-}
+//}

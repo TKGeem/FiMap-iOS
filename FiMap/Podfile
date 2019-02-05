@@ -15,9 +15,9 @@ def install_pods
     pod 'ZFRippleButton'
     pod 'SwiftyUserDefaults'                 , '4.0.0-alpha.1'
     pod 'MaterialKit'                        , :path =>'MaterialKit-master-fix'
-    pod 'Alamofire'                          , '~> 4.8.0
+    pod 'Alamofire'                          , '~> 4.8.0'
     #pod 'DisplaySwitcher'
-    # Pods for FiMap
+    #Pods for FiMap
 end
 
 target 'FiMap' do
