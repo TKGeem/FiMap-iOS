@@ -13,7 +13,7 @@ import ZFRippleButton
 
 enum FloatBarMode {
     case search
-    case infomation
+    case information
 }
 
 class HomeViewController: UIViewController {
@@ -34,7 +34,7 @@ class HomeViewController: UIViewController {
 
     private let floatingBar = FloatingPanelController()
     private let searchViewController = SearchViewController()
-    private let infomationViewController = InfomationViewController()
+    private let informationViewController = InformationViewController()
 
     public let locationManager = CLLocationManager()
 
@@ -420,9 +420,10 @@ class HomeViewController: UIViewController {
 
     private func openFloatingBar(_ callback: @escaping () -> ()) {
         switch self.floatBarVC {
-        case .infomation:
-            self.floatingBar.show(self.infomationViewController, sender: nil)
-            self.floatingBar.track(scrollView: self.infomationViewController.tableView)
+        case .information:
+            self.informationViewController.dataSource = self.dataSource
+            self.floatingBar.show(self.informationViewController, sender: nil)
+            self.floatingBar.track(scrollView: self.informationViewController.tableView)
         case .search:
             self.floatingBar.show(self.searchViewController, sender: nil)
             self.floatingBar.track(scrollView: self.searchViewController.tableView)
@@ -461,7 +462,7 @@ class HomeViewController: UIViewController {
             switch self.floatBarVC {
             case .search:
                 self.searchBarView.isHiddenWithAlpha = barAlpha
-            case .infomation:
+            case .information:
                 self.resultBarView.isHiddenWithAlpha = barAlpha
             }
         }
@@ -474,7 +475,7 @@ class HomeViewController: UIViewController {
             switch self.floatBarVC {
             case .search:
                 self.searchBarView.isHiddenWithAlpha = barAlpha
-            case .infomation:
+            case .information:
                 self.resultBarView.isHiddenWithAlpha = barAlpha
             }
         }) { (comp) in
@@ -511,7 +512,7 @@ class HomeViewController: UIViewController {
             selectAnnotationFromData(data: point)
         }
         closeFoatingBar {
-            self.floatBarVC = .infomation
+            self.floatBarVC = .information
             self.openFloatingBar({ })
         }
     }
@@ -645,7 +646,10 @@ extension HomeViewController: MKMapViewDelegate {
                     print(i.name)
                     print(i.address)
                     print(i.ssid)
+                    
                 }
+                self.floatBarVC = .information
+                self.openFloatingBar({ })
             }
         }
     }
