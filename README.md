@@ -2,7 +2,7 @@
 ![](FiMapLogo.png)
 
 # FiMap-iOS
-> TKEeem's iOS map application. search some facility informations.
+> TKGeem's iOS map application. search some facility informations.
 
 ## Installation & Setup
 
