@@ -19,6 +19,10 @@ and bulid in Xcode.
 
 Search the surrounding facilities information from the map and find the name by word search.
 
+## Screen shot
+![](76342EB9-8439-43FF-826A-81CDAF2468A3.png)
+![](0ABF5924-D205-46C1-8BA3-706DED30CF68.png)
+
 ## Current specification
 * WiFi spot only support
 * Search from word
