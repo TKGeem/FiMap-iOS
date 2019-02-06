@@ -21,19 +21,46 @@ public extension UIView {
         return nil
     }
 
-    enum Direction {
+    public var isHiddenWithAlpha: CGFloat {
+        set {
+            self.alpha = newValue
+            self.isHidden = alpha.isEqual(to: 0.0)
+            self.isUserInteractionEnabled = !alpha.isEqual(to: 0.0)
+        }
+        get {
+            return self.alpha
+        }
+    }
+
+    enum ShadowDirection {
         case top
         case bottom
     }
-    public func addShadow(direction: Direction) {
+
+    //https://stackoverflow.com/questions/39624675/add-shadow-on-uiview-using-swift-3
+
+    /// Soft Shadow
+    func addShadow(direction: ShadowDirection,
+                   radius: CGFloat = 2.5,
+                   color: UIColor = UIColor.gray,
+                   opacity: Float = 0.5) {
+
         switch direction {
         case .top:
             self.layer.shadowOffset = CGSize(width: 0.0, height: -1)
         case .bottom:
             self.layer.shadowOffset = CGSize(width: 0.0, height: 1)
         }
-        self.layer.shadowRadius = 1.5
-        self.layer.shadowColor = Constants.Color.SHADOW.cgColor
-        self.layer.shadowOpacity = 0.5
+
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = color.cgColor
+        self.layer.shadowOpacity = opacity
+        self.layer.shadowRadius = radius
+
+//        layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        let scale = true
+        layer.shouldRasterize = true
+        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+
     }
 }

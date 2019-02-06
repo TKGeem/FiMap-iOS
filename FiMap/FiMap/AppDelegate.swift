@@ -9,7 +9,6 @@
 import UIKit
 import SlideMenuControllerSwift
 import SnapKit
-import NCMB
 //import Hero
 
 @UIApplicationMain
@@ -72,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func ncmbInitializeSetting() {
-        NCMB.setApplicationKey(Constants.Key.NCMB_APPLICATION_KEY, clientKey: Constants.Key.NCMB_CLIENT_KEY)
+//        NCMB.setApplicationKey(Constants.Key.NCMB_APPLICATION_KEY, clientKey: Constants.Key.NCMB_CLIENT_KEY)
     }
 
     private func globalInitialize() {

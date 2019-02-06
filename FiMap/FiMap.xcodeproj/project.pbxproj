@@ -50,12 +50,23 @@
 		75821A5521514C6E00C2A841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75821A5421514C6E00C2A841 /* Assets.xcassets */; };
 		75821A5821514C6E00C2A841 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75821A5621514C6E00C2A841 /* LaunchScreen.storyboard */; };
 		75821A612151583600C2A841 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75821A602151583600C2A841 /* R.generated.swift */; };
-		75BF5489218702A40002567A /* CategoryDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BF5488218702A40002567A /* CategoryDataItem.swift */; };
 		75E6E0DE215757A400F95B47 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = 75E6E0E0215757A400F95B47 /* Localized.strings */; };
 		75E6E0E2215767E400F95B47 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E6E0E1215767E400F95B47 /* Constants.swift */; };
 		75ECCAC8217C4E290028BCDA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ECCAC7217C4E290028BCDA /* SearchViewController.swift */; };
-		75ECCACA217C4E570028BCDA /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ECCAC9217C4E570028BCDA /* InformationViewController.swift */; };
 		75ECCAF2217CF1460028BCDA /* FloatingBarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ECCAF1217CF1460028BCDA /* FloatingBarLayout.swift */; };
+		8936067121E739D700BD7F2D /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8936067021E739D700BD7F2D /* InformationViewController.swift */; };
+		89786FF7220A87AD00535EB5 /* InformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89786FF6220A87AD00535EB5 /* InformationTableViewCell.swift */; };
+		898B60A121B3B11E005AD52C /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B60A021B3B11E005AD52C /* SearchTableViewCell.swift */; };
+		898B60A321B3B12A005AD52C /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B60A221B3B12A005AD52C /* ResultTableViewCell.swift */; };
+		898B60CA21B3DDEB005AD52C /* SearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B60C921B3DDEB005AD52C /* SearchDataSource.swift */; };
+		898B60CC21B3DDFF005AD52C /* ResultDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B60CB21B3DDFF005AD52C /* ResultDataItem.swift */; };
+		898B60CF21B3EFC1005AD52C /* WiFiPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B60CE21B3EFC1005AD52C /* WiFiPoint.swift */; };
+		898B60D121B40FC2005AD52C /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B60D021B40FC2005AD52C /* TitleTableViewCell.swift */; };
+		898B60D421B437F9005AD52C /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B60D321B437F9005AD52C /* SearchTextField.swift */; };
+		898B60DB21B43C51005AD52C /* UIButtonEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B60D821B43C51005AD52C /* UIButtonEx.swift */; };
+		898B60DC21B43C51005AD52C /* SkyFloatingEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B60D921B43C51005AD52C /* SkyFloatingEx.swift */; };
+		898B60DD21B43C51005AD52C /* UITextFieldEx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898B60DA21B43C51005AD52C /* UITextFieldEx.swift */; };
+		89B189F221D0ADBA0055828C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B189F121D0ADBA0055828C /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,13 +118,24 @@
 		75821A5721514C6E00C2A841 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		75821A5921514C6E00C2A841 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75821A602151583600C2A841 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
-		75BF5488218702A40002567A /* CategoryDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDataItem.swift; sourceTree = "<group>"; };
 		75E6E0DF215757A400F95B47 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localized.strings; sourceTree = "<group>"; };
 		75E6E0E1215767E400F95B47 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		75ECCAC7217C4E290028BCDA /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		75ECCAC9217C4E570028BCDA /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
 		75ECCAF1217CF1460028BCDA /* FloatingBarLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingBarLayout.swift; sourceTree = "<group>"; };
 		775594A450200F877F2AC7A8 /* Pods-FiMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FiMap/Pods-FiMap.debug.xcconfig"; sourceTree = "<group>"; };
+		8936067021E739D700BD7F2D /* InformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
+		89786FF6220A87AD00535EB5 /* InformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationTableViewCell.swift; sourceTree = "<group>"; };
+		898B60A021B3B11E005AD52C /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		898B60A221B3B12A005AD52C /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
+		898B60C921B3DDEB005AD52C /* SearchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataSource.swift; sourceTree = "<group>"; };
+		898B60CB21B3DDFF005AD52C /* ResultDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDataItem.swift; sourceTree = "<group>"; };
+		898B60CE21B3EFC1005AD52C /* WiFiPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiPoint.swift; sourceTree = "<group>"; };
+		898B60D021B40FC2005AD52C /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
+		898B60D321B437F9005AD52C /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
+		898B60D821B43C51005AD52C /* UIButtonEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIButtonEx.swift; path = FiMap/Extension/UIButtonEx.swift; sourceTree = SOURCE_ROOT; };
+		898B60D921B43C51005AD52C /* SkyFloatingEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SkyFloatingEx.swift; path = FiMap/Extension/SkyFloatingEx.swift; sourceTree = SOURCE_ROOT; };
+		898B60DA21B43C51005AD52C /* UITextFieldEx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITextFieldEx.swift; path = FiMap/Extension/UITextFieldEx.swift; sourceTree = SOURCE_ROOT; };
+		89B189F121D0ADBA0055828C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		B62F905BB103D0050196B37C /* Pods-FiMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FiMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-FiMap/Pods-FiMap.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,8 +154,9 @@
 		7504E80A216B382F00A43587 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				753497562180535F00D358FC /* FloatingPanel */,
+				898B60D221B437D7005AD52C /* SearchTextField */,
 				753497352180251100D358FC /* FoldingCell */,
+				753497562180535F00D358FC /* FloatingPanel */,
 				7534972F218023E400D358FC /* RSKCollectionViewRetractableFirstItemLayout */,
 				750F2C2B217F7119007597F4 /* CKWaveCollection */,
 				7504E80B216B382F00A43587 /* UserDefaultsKey.swift */,
@@ -144,6 +167,9 @@
 		750F2C16217F7029007597F4 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				898B60D921B43C51005AD52C /* SkyFloatingEx.swift */,
+				898B60D821B43C51005AD52C /* UIButtonEx.swift */,
+				898B60DA21B43C51005AD52C /* UITextFieldEx.swift */,
 				750F2C17217F7029007597F4 /* UIApplicationEx.swift */,
 				750F2C18217F7029007597F4 /* ArrayEx.swift */,
 				750F2C19217F7029007597F4 /* UIViewEx.swift */,
@@ -203,6 +229,11 @@
 				7534973E2180268800D358FC /* ResultCollectionViewCell.swift */,
 				7534976C2180659000D358FC /* ImageHeadCollectionViewCell.swift */,
 				7534976E21806F6A00D358FC /* TextHeadCollectionViewCell.swift */,
+				898B60D021B40FC2005AD52C /* TitleTableViewCell.swift */,
+				898B60A021B3B11E005AD52C /* SearchTableViewCell.swift */,
+				898B60A221B3B12A005AD52C /* ResultTableViewCell.swift */,
+				89B189F121D0ADBA0055828C /* CustomTextField.swift */,
+				89786FF6220A87AD00535EB5 /* InformationTableViewCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -254,6 +285,7 @@
 		75730904215682D300295FB5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				898B60CD21B3EF8F005AD52C /* DataModel */,
 				75BF5487218702480002567A /* Home */,
 				7555A635216117EE00C626CC /* SideMenu */,
 				75ECCAF1217CF1460028BCDA /* FloatingBarLayout.swift */,
@@ -273,9 +305,9 @@
 		757309092156832100295FB5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				8936067021E739D700BD7F2D /* InformationViewController.swift */,
 				7573090B2156835300295FB5 /* HomeViewController.swift */,
 				75ECCAC7217C4E290028BCDA /* SearchViewController.swift */,
-				75ECCAC9217C4E570028BCDA /* InformationViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -337,7 +369,8 @@
 		75BF5487218702480002567A /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				75BF5488218702A40002567A /* CategoryDataItem.swift */,
+				898B60C921B3DDEB005AD52C /* SearchDataSource.swift */,
+				898B60CB21B3DDFF005AD52C /* ResultDataItem.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -348,6 +381,22 @@
 				7504E810216CDD6800A43587 /* SettingViewController.swift */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		898B60CD21B3EF8F005AD52C /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				898B60CE21B3EFC1005AD52C /* WiFiPoint.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		898B60D221B437D7005AD52C /* SearchTextField */ = {
+			isa = PBXGroup;
+			children = (
+				898B60D321B437F9005AD52C /* SearchTextField.swift */,
+			);
+			path = SearchTextField;
 			sourceTree = "<group>";
 		};
 		98BFDE1109EF1C092FF2484B /* Pods */ = {
@@ -478,28 +527,26 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-FiMap/Pods-FiMap-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Alamofire-SwiftyJSON/Alamofire_SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/NCMB/NCMB.framework",
+				"${BUILT_PRODUCTS_DIR}/MaterialKit/MaterialKit.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
+				"${BUILT_PRODUCTS_DIR}/ZFRippleButton/ZFRippleButton.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire_SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NCMB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyUserDefaults.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZFRippleButton.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -513,6 +560,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				898B60D121B40FC2005AD52C /* TitleTableViewCell.swift in Sources */,
 				7504E80C216B383000A43587 /* UserDefaultsKey.swift in Sources */,
 				750F2C26217F7029007597F4 /* UIViewControllerEx.swift in Sources */,
 				753497652180535F00D358FC /* FloatingPanel.swift in Sources */,
@@ -520,26 +568,34 @@
 				75ECCAC8217C4E290028BCDA /* SearchViewController.swift in Sources */,
 				7573090C2156835300295FB5 /* HomeViewController.swift in Sources */,
 				7555A6322161009900C626CC /* LogoTableViewCell.swift in Sources */,
+				898B60CC21B3DDFF005AD52C /* ResultDataItem.swift in Sources */,
 				750F2C22217F7029007597F4 /* ArrayEx.swift in Sources */,
 				7555A6372161181E00C626CC /* MenuDataItem.swift in Sources */,
+				898B60D421B437F9005AD52C /* SearchTextField.swift in Sources */,
 				75821A5021514C6C00C2A841 /* ViewController.swift in Sources */,
 				7534976F21806F6A00D358FC /* TextHeadCollectionViewCell.swift in Sources */,
 				75821A4E21514C6C00C2A841 /* AppDelegate.swift in Sources */,
 				750F2C23217F7029007597F4 /* UIViewEx.swift in Sources */,
 				753497672180535F00D358FC /* GrabberHandleView.swift in Sources */,
 				750F2C2A217F7029007597F4 /* UIBarButtonEx.swift in Sources */,
+				898B60DD21B43C51005AD52C /* UITextFieldEx.swift in Sources */,
 				75ECCAF2217CF1460028BCDA /* FloatingBarLayout.swift in Sources */,
 				7534976B2180535F00D358FC /* UIExtensions.swift in Sources */,
 				750F2C32217F711A007597F4 /* UIApplicationExtension.swift in Sources */,
 				750F2C34217F711A007597F4 /* UICollectionViewExtension.swift in Sources */,
 				7555A63421610C4E00C626CC /* MenuTableViewCell.swift in Sources */,
 				750F2C25217F7029007597F4 /* CALayerEx.swift in Sources */,
+				898B60CF21B3EFC1005AD52C /* WiFiPoint.swift in Sources */,
+				89786FF7220A87AD00535EB5 /* InformationTableViewCell.swift in Sources */,
+				898B60A321B3B12A005AD52C /* ResultTableViewCell.swift in Sources */,
 				753497392180251100D358FC /* FoldingCell.swift in Sources */,
 				75821A612151583600C2A841 /* R.generated.swift in Sources */,
 				753497622180535F00D358FC /* FloatingPanelController.swift in Sources */,
 				753497682180535F00D358FC /* FloatingPanelLayout.swift in Sources */,
 				750F2C24217F7029007597F4 /* UIColorEx.swift in Sources */,
 				7534973F2180268800D358FC /* ResultCollectionViewCell.swift in Sources */,
+				898B60A121B3B11E005AD52C /* SearchTableViewCell.swift in Sources */,
+				89B189F221D0ADBA0055828C /* CustomTextField.swift in Sources */,
 				7534976A2180535F00D358FC /* FloatingPanelBackdropView.swift in Sources */,
 				750F2C35217F711A007597F4 /* UICollectionViewControllerExtension.swift in Sources */,
 				750F2C21217F7029007597F4 /* UIApplicationEx.swift in Sources */,
@@ -547,15 +603,17 @@
 				753497662180535F00D358FC /* FloatingPanelBehavior.swift in Sources */,
 				7534973D2180263E00D358FC /* SearchCollectionViewCell.swift in Sources */,
 				750F2C28217F7029007597F4 /* UICollectionViewEx.swift in Sources */,
-				75BF5489218702A40002567A /* CategoryDataItem.swift in Sources */,
 				7504E811216CDD6800A43587 /* SettingViewController.swift in Sources */,
-				75ECCACA217C4E570028BCDA /* InformationViewController.swift in Sources */,
+				8936067121E739D700BD7F2D /* InformationViewController.swift in Sources */,
 				7534976D2180659000D358FC /* ImageHeadCollectionViewCell.swift in Sources */,
+				898B60DC21B43C51005AD52C /* SkyFloatingEx.swift in Sources */,
 				750F2C33217F711A007597F4 /* UIViewControllerExtension.swift in Sources */,
 				75349733218023E400D358FC /* RSKCollectionViewRetractableFirstItemLayout.swift in Sources */,
 				753497642180535F00D358FC /* Logger.swift in Sources */,
+				898B60DB21B43C51005AD52C /* UIButtonEx.swift in Sources */,
 				750F2C27217F7029007597F4 /* UIFontEx.swift in Sources */,
 				75E6E0E2215767E400F95B47 /* Constants.swift in Sources */,
+				898B60CA21B3DDEB005AD52C /* SearchDataSource.swift in Sources */,
 				750F2C29217F7029007597F4 /* ClassEx.swift in Sources */,
 				750F2C36217F711A007597F4 /* CKWaveCollectionViewAnimator.swift in Sources */,
 			);
@@ -705,14 +763,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6F8VU942G4;
+				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				INFOPLIST_FILE = FiMap/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ammYou.FiMap.test;
+				PRODUCT_BUNDLE_IDENTIFIER = ammYou.FiMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -725,14 +783,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6F8VU942G4;
+				DEVELOPMENT_TEAM = 4XKKKM86RN;
 				INFOPLIST_FILE = FiMap/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ammYou.FiMap.test;
+				PRODUCT_BUNDLE_IDENTIFIER = ammYou.FiMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

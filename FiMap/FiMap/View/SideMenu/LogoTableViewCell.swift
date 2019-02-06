@@ -8,18 +8,26 @@
 
 import UIKit
 import SnapKit
+import ZFRippleButton
 
 class LogoTableViewCell: UITableViewCell {
     private let logoImageView = UIImageView()
-    private let settingButton = UIButton()
+    private let settingButton = ZFRippleButton()
 
     override init(style: CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
-        self.backgroundColor = Constants.Color.LIGHT_GARY
+        self.backgroundColor = Constants.Color.NORMAL_WHITE
 
+        self.settingButton.trackTouchLocation = true
+        self.settingButton.rippleOverBounds = true
+        self.settingButton.rippleColor = Constants.Color.SHADOW.withAlphaComponent(0.2)
+        self.settingButton.rippleBackgroundColor = Constants.Color.CLEAR
+        self.settingButton.backgroundColor = Constants.Color.CLEAR
+        self.settingButton.tintColor = Constants.Color.IMAGE_COLOR
+        self.settingButton.adjustsImageWhenHighlighted = false
         self.settingButton.contentMode = .scaleAspectFit
-        self.settingButton.setImage(R.image.setting_icon(), for: .normal)
+        self.settingButton.setImage(R.image.round_settings_black_48pt(), for: .normal)
         self.settingButton.addTarget(self, action: #selector(tapedSettingButton), for: .touchUpInside)
         self.contentView.addSubview(self.settingButton)
         self.settingButton.snp.makeConstraints { (make) in
@@ -28,7 +36,6 @@ class LogoTableViewCell: UITableViewCell {
             make.width.height.equalTo(25)
         }
 
-//        self.logoImageView.backgroundColor = UIColor.red
         self.logoImageView.contentMode = .scaleAspectFit
         self.logoImageView.image = R.image.fimap_icon()
         self.contentView.addSubview(self.logoImageView)
@@ -51,7 +58,6 @@ class LogoTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
 

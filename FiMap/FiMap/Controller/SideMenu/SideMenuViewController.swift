@@ -34,8 +34,8 @@ class SideMenuViewController: UITableViewController {
             MenuDataItem(image: nil, text: nil)
         ]
         let menuRows = [
-            MenuDataItem(image: R.image.layer_icon(), text: R.string.localized.side_Layer()),
-            MenuDataItem(image: R.image.categorize_icon(), text: R.string.localized.side_Category())
+            MenuDataItem(image: R.image.round_layers_black_48pt(), text: R.string.localized.side_Layer())
+//            MenuDataItem(image: R.image.categorize_icon(), text: R.string.localized.side_Category())
         ]
         self.menuDatasource.append(logoRows)
         self.menuDatasource.append(menuRows)
@@ -46,7 +46,7 @@ class SideMenuViewController: UITableViewController {
 
     // MARK: - Layout Setting
     private func tableViewLayoutSetting() {
-        self.view.backgroundColor = Constants.Color.LIGHT_GARY
+        self.view.backgroundColor = Constants.Color.NORMAL_WHITE
         self.tableView.separatorStyle = .singleLine
         self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0);
         self.tableView.tableFooterView = UIView(frame: .zero)

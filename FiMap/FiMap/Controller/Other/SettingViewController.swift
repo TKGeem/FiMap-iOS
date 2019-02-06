@@ -17,7 +17,7 @@ class SettingViewController: UIViewController {
     }
 
     private func initSetting() {
-        self.view.backgroundColor = Constants.Color.LIGHT_GARY
+        self.view.backgroundColor = Constants.Color.NORMAL_WHITE
         self.setLeftBackBarButtonItem(action: #selector(tapedBackButton))
         self.setNavigationBarTitleString(title: R.string.localized.setting())
     }

@@ -7,229 +7,181 @@
 //
 
 import UIKit
-
+import Alamofire
 
 class SearchViewController: UIViewController {
-    // MARK: - Private Properties
-    public var collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: RSKCollectionViewRetractableFirstItemLayout())
+    enum presentMode {
+        case category
+        case result
+    }
 
-    fileprivate var dataSource = [
-        CategoryDataItem(name: "Wi-Fi", color: Constants.Color.LIGHT_GARY),
-        CategoryDataItem(name: "トイレ", color: Constants.Color.LIGHT_GARY),
-        CategoryDataItem(name: "公園", color: Constants.Color.LIGHT_GARY),
-        CategoryDataItem(name: "ホテル", color: Constants.Color.LIGHT_GARY),
-        CategoryDataItem(name: "銀行", color: Constants.Color.LIGHT_GARY),
-        CategoryDataItem(name: "バス停", color: Constants.Color.LIGHT_GARY),
-    ]
+    // MARK: - Propaties
+    public let tableView = UITableView()
+    public let titleLabel = UILabel()
+    public var titleWord = String()
+    public var dataSource = SearchDataSource()
+    private var presentVC = presentMode.category
 
-    fileprivate var readyForPresentation = false
 
-    fileprivate var cellSizeWidth = 100
-    fileprivate var cellSileHeight = 100
-
-    // MARK: - Object Lifecycle
+    // MARK: - Override Function
+    override func loadView() {
+        super.loadView()
+        viewLayoutSetting()
+        titleViewLayoutSetting()
+        tableViewLayoutSetting()
+    }
 
     override func viewDidLoad() {
-
         super.viewDidLoad()
-//        self.filteredNames = self.names
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
-//        self.collectionView.isPrefetchingEnabled = true
-        self.collectionView.backgroundColor = Constants.Color.LIGHT_GARY
-
-        self.view.addSubview(self.collectionView)
-        self.collectionView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
-        }
-
-        self.collectionView.register(TextHeadCollectionViewCell.self, forCellWithReuseIdentifier: TextHeadCollectionViewCell.className)
-        self.collectionView.register(ResultCollectionViewCell.self, forCellWithReuseIdentifier: ResultCollectionViewCell.className)
-
-        if let collectionViewLayout = self.collectionView.collectionViewLayout as? RSKCollectionViewRetractableFirstItemLayout {
-
-            collectionViewLayout.firstItemRetractableAreaInset = UIEdgeInsets(top: 10.0, left: 0.0, bottom: 10.0, right: 0.0)
+        initSetting()
+        self.dataSource.getSearchCategory() {
+            self.tableView.reloadData()
         }
     }
 
-    // MARK: - Layout
-    override func viewDidLayoutSubviews() {
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Constants.Notification.SEARCH_ENTER, object: nil)
+    }
 
-        super.viewDidLayoutSubviews()
+    private func initSetting() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(searchViewDidEnterNotification(notification:)),
+                                               name: Constants.Notification.SEARCH_ENTER,
+                                               object: nil)
+    }
 
-//        guard self.readyForPresentation == false else {
-//
-//            return
-//        }
-//
-//        self.readyForPresentation = true
-//
-//        let searchItemIndexPath = IndexPath(item: 0, section: 0)
-//        self.collectionView.contentOffset = CGPoint(x: 0.0, y: self.collectionView(self.collectionView, layout: self.collectionView.collectionViewLayout, sizeForItemAt: searchItemIndexPath).height)
+    // MARK: - Layout Setting
+    private func viewLayoutSetting() {
+        let topColor = Constants.Color.LIGHT_GREEN
+        let middleColor = Constants.Color.IMAGE_COLOR
+        let bottomColor = Constants.Color.SHADOW_GREEN
+        let gradientColors: [CGColor] = [topColor.cgColor, middleColor.cgColor, bottomColor.cgColor]
+        let gradientLayer: CAGradientLayer = CAGradientLayer()
+        gradientLayer.colors = gradientColors
+        gradientLayer.frame = self.view.bounds
+        self.view.layer.insertSublayer(gradientLayer, at: 0)
+    }
+
+    private func titleViewLayoutSetting() {
+        self.view.addSubview(titleLabel)
+        self.titleLabel.text = R.string.localized.home_Search_Category()
+        self.titleLabel.textColor = Constants.Color.WHITE_GRAY
+        self.titleLabel.textAlignment = .center
+        self.titleLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        self.titleLabel.backgroundColor = Constants.Color.CLEAR
+        self.titleLabel.snp.makeConstraints { (make) in
+            make.top.width.centerX.equalToSuperview()
+            make.height.equalTo(45)
+        }
+    }
+
+    private func tableViewLayoutSetting() {
+        self.view.addSubview(tableView)
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.view.backgroundColor = Constants.Color.CLEAR
+        self.tableView.backgroundColor = Constants.Color.CLEAR
+        self.tableView.sectionIndexBackgroundColor = Constants.Color.CLEAR
+        self.tableView.separatorColor = Constants.Color.DARK_GREEN
+        self.tableView.separatorStyle = .singleLine
+        self.tableView.snp.makeConstraints { (make) in
+            make.top.equalTo(self.titleLabel.snp.bottom)
+            make.width.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(100)
+        }
+        self.tableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0);
+        self.tableView.tableFooterView = UIView(frame: .zero)
+
+        self.tableView.register(TitleTableViewCell.self, forCellReuseIdentifier: TitleTableViewCell.className)
+        self.tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.className)
+        self.tableView.register(ResultTableViewCell.self, forCellReuseIdentifier: ResultTableViewCell.className)
+    }
+
+    // MARK: - Function
+    @objc private func searchViewDidEnterNotification(notification: NSNotification) {
+        if let word: String = notification.userInfo?[Constants.NotificationInfo.WORD] as? String {
+            self.titleWord = word
+            if word == "" {
+                self.dataSource.getSearchCategory() {
+                    self.presentVC = .category
+                    if self.titleWord == "" {
+                        self.tableView.reloadData()
+                    }
+                }
+            } else {
+                self.dataSource.searchWifiData(word: word) {
+                    self.presentVC = .result
+                    if self.titleWord != "" {
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        } else {
+            self.dataSource.getSearchCategory() {
+                self.presentVC = .category
+                self.tableView.reloadData()
+            }
+        }
     }
 }
 
-
-// MARK: - Extension
-extension SearchViewController: UIScrollViewDelegate {
+extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-
-        guard scrollView === self.collectionView else {
-
-            return
-        }
-
-        let indexPath = IndexPath(item: 0, section: 0)
-        guard let cell = self.collectionView.cellForItem(at: indexPath) as? TextHeadCollectionViewCell else {
-            return
-        }
-    }
-}
-
-extension SearchViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        NotificationCenter.default.post(name: Constants.Notification.DISSMISS_KEYBOARD, object: nil)
     }
 
-}
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
 
-extension SearchViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch presentVC {
+        case .category:
+            return self.dataSource.searchTitle.count
+        case .result:
+            return self.dataSource.searchData.count + 1
+        }
+    }
 
-        switch indexPath.section {
-
-        case 0:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TextHeadCollectionViewCell.className, for: indexPath) as! TextHeadCollectionViewCell
-            cell.setCell(text: R.string.localized.home_reccomend())
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch presentVC {
+        case .category:
+            let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.className, for: indexPath)
+            (cell as? SearchTableViewCell)?.setCell(title: dataSource.searchTitle[indexPath.item])
             return cell
-
-        case 1:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ResultCollectionViewCell.className, for: indexPath) as! ResultCollectionViewCell
-
-            cell.colorView.backgroundColor = Constants.Color.FIMAP_THEME//self.colors[name]
-            cell.label.text = self.dataSource[indexPath.item].name
-
-            cell.colorView.layer.cornerRadius = 10.0
-//            cell.addShadow(direction: .bottom)
-            return cell
-
-        default:
-            assert(false)
+        case .result:
+            if (indexPath.item == 0) {
+                let cell = tableView.dequeueReusableCell(withIdentifier: TitleTableViewCell.className, for: indexPath)
+                (cell as? TitleTableViewCell)?.setCell(title: self.titleWord)
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: ResultTableViewCell.className, for: indexPath)
+                (cell as? ResultTableViewCell)?.setCell(data: dataSource.searchData[indexPath.item - 1])
+                return cell
+            }
         }
     }
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
-        switch section {
-
-        case 0:
-            return 1
-
-        case 1:
-            return self.dataSource.count
-
-        default:
-            assert(false)
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch presentVC {
+        case .category:
+            return 80
+        case .result:
+            return 50
         }
     }
 
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-
-        return 2
-    }
-}
-
-extension SearchViewController: UICollectionViewDelegateFlowLayout {
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-
-        switch section {
-
-        case 0:
-            return UIEdgeInsets.zero
-
-        case 1:
-            return UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
-
-        default:
-            assert(false)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch presentVC {
+        case .category:
+            break
+        case .result:
+            if (indexPath.item == 0) {
+                print(self.titleWord)
+            } else {
+                NotificationCenter.default.post(name: Constants.Notification.SEARCH_SELECT, object: nil, userInfo: [Constants.NotificationInfo.DATA: self.dataSource.searchData[indexPath.item - 1]])
+            }
         }
+        self.tableView.deselectRow(at: indexPath, animated: true)
     }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-
-        return 10.0
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-
-        return 10.0
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-        switch indexPath.section {
-
-        case 0:
-            let itemWidth = collectionView.frame.width
-            let itemHeight: CGFloat = 44.0
-
-            return CGSize(width: itemWidth, height: itemHeight)
-
-        case 1:
-            let numberOfItemsInLine: CGFloat = 2
-
-            let inset = self.collectionView(collectionView, layout: collectionViewLayout, insetForSectionAt: indexPath.section)
-            let minimumInteritemSpacing = self.collectionView(collectionView, layout: collectionViewLayout, minimumInteritemSpacingForSectionAt: indexPath.section)
-
-            let itemWidth = (collectionView.frame.width - inset.left - inset.right - minimumInteritemSpacing * (numberOfItemsInLine - 1)) / numberOfItemsInLine
-            let itemHeight = itemWidth * 0.7
-
-            return CGSize(width: itemWidth, height: itemHeight)
-
-        default:
-            assert(false)
-        }
-    }
-}
-
-extension SearchViewController: UISearchBarDelegate {
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//
-//        let oldFilteredNames = self.filteredNames!
-//
-//        if searchText.isEmpty {
-//
-//            self.filteredNames = self.names
-//        }
-//        else {
-//
-//            self.filteredNames = self.names.filter({ (name) -> Bool in
-//
-//                return name.hasPrefix(searchText)
-//            })
-//        }
-//
-//        self.collectionView.performBatchUpdates({
-//
-//            for (oldIndex, oldName) in oldFilteredNames.enumerated() {
-//
-//                if self.filteredNames.contains(oldName) == false {
-//
-//                    let indexPath = IndexPath(item: oldIndex, section: 1)
-//                    self.collectionView.deleteItems(at: [indexPath])
-//                }
-//            }
-//
-//            for (index, name) in self.filteredNames.enumerated() {
-//
-//                if oldFilteredNames.contains(name) == false {
-//
-//                    let indexPath = IndexPath(item: index, section: 1)
-//                    self.collectionView.insertItems(at: [indexPath])
-//                }
-//            }
-//
-//        }, completion: nil)
-//    }
 }

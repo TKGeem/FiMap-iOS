@@ -12,6 +12,9 @@
 // Home
 "Home_Search" = "検索";
 "Home_reccomend" = "おすすめ";
+"Home_Search_Category" = "カテゴリから検索";
+"Home_Search_Placeholder" = "文字を入力して検索";
+"Home_Information_Title" = "検索結果";
 
 // Setting
 "Setting" = "設定";
