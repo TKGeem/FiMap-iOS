@@ -1,0 +1,55 @@
+PODS:
+  - Alamofire (4.8.0)
+  - MaterialKit (0.4)
+  - R.swift (4.0.0):
+    - R.swift.Library (~> 4.0.0)
+  - R.swift.Library (4.0.0)
+  - SkyFloatingLabelTextField (3.6.0)
+  - SlideMenuControllerSwift (4.0.0)
+  - SnapKit (4.0.1)
+  - SVProgressHUD (2.2.5)
+  - SwiftyUserDefaults (4.0.0-alpha.1)
+  - ZFRippleButton (0.6)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.8.0)
+  - MaterialKit (from `MaterialKit-master-fix`)
+  - R.swift (~> 4.0.0)
+  - SkyFloatingLabelTextField (~> 3.0)
+  - SlideMenuControllerSwift (~> 4.0.0)
+  - SnapKit (~> 4.0.1)
+  - SVProgressHUD (~> 2.2.5)
+  - SwiftyUserDefaults (= 4.0.0-alpha.1)
+  - ZFRippleButton
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - R.swift
+    - R.swift.Library
+    - SkyFloatingLabelTextField
+    - SlideMenuControllerSwift
+    - SnapKit
+    - SVProgressHUD
+    - SwiftyUserDefaults
+    - ZFRippleButton
+
+EXTERNAL SOURCES:
+  MaterialKit:
+    :path: MaterialKit-master-fix
+
+SPEC CHECKSUMS:
+  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
+  MaterialKit: 064d53c2c77dbce3e3c5e5bf5f4728e5c90d4cfb
+  R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
+  R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
+  SkyFloatingLabelTextField: 38164979b79512f9ff9288ad8acfc4bbf5d843e3
+  SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftyUserDefaults: cebe0ff9472f52699772a514b6f7155861d8069b
+  ZFRippleButton: 62ea35e209757704dea697d66489fe69c13d7b77
+
+PODFILE CHECKSUM: 1a51a188b13181b1fc7fc0e6019bdc4887b1938d
+
+COCOAPODS: 1.5.3

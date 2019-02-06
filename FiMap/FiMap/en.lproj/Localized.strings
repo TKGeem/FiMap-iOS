@@ -1,0 +1,25 @@
+/* 
+  Localized.strings
+  FiMap
+
+  Created by AmamiYou on 2018/09/23.
+  Copyright © 2018 ammYou. All rights reserved.
+*/
+
+// Global
+"App_Title" = "FiMap";
+
+// Home
+"Home_Search" = "検索";
+"Home_reccomend" = "おすすめ";
+"Home_Search_Category" = "カテゴリから検索";
+"Home_Search_Placeholder" = "文字を入力して検索";
+"Home_Information_Title" = "検索結果";
+
+// Setting
+"Setting" = "設定";
+
+// Side
+"Side_Layer" = "レイヤー";
+"Side_Category" = "カテゴリー";
+

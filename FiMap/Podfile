@@ -1,0 +1,55 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '10.0'
+source 'https://github.com/CocoaPods/Specs.git'
+
+def install_pods
+    # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+    use_frameworks!
+    #pod 'Alamofire-SwiftyJSON'               , '~> 3.0.0'#Not use
+    pod 'R.swift'                            , '~> 4.0.0'
+    #pod 'Kingfisher'                         , '~> 4.8.1'#Not use
+    pod 'SlideMenuControllerSwift'           , '~> 4.0.0'
+    pod 'SnapKit'                            , '~> 4.0.1'
+    pod 'SVProgressHUD'                      , '~> 2.2.5'
+    pod 'SkyFloatingLabelTextField'          , '~> 3.0'
+    pod 'ZFRippleButton'
+    pod 'SwiftyUserDefaults'                 , '4.0.0-alpha.1'
+    pod 'MaterialKit'                        , :path =>'MaterialKit-master-fix'
+    pod 'Alamofire'                          , '~> 4.8.0'
+    #pod 'DisplaySwitcher'
+    #Pods for FiMap
+end
+
+target 'FiMap' do
+    install_pods
+end
+
+
+swift3_names = [
+'TLFloatLabelTextField',
+'ZFRippleButton'
+]
+
+swift4_names = [
+'Alamofire-SwiftyJSON',
+'R.swift',
+'Kingfisher',
+'SlideMenuControllerSwift',
+'SnapKit',
+'Hero',
+'MaterialKit'
+]
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            if swift4_names.include? target.name
+                config.build_settings['SWIFT_VERSION'] = "4.0"
+                elsif swift3_names.include? target.name
+                config.build_settings['SWIFT_VERSION'] = "3.0"
+                else
+                config.build_settings['SWIFT_VERSION'] = "4.2"
+            end
+        end
+    end
+end
