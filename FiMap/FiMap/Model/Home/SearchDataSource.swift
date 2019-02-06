@@ -40,18 +40,21 @@ class SearchDataSource: NSObject {
         Alamofire.request(url,
                           method: .get,
                           parameters: param).responseWifi { response in
-            if let wifi = response.result.value {
-                if let wifiDatas = wifi.datas {
-                    data = wifiDatas
-                    for data in wifiDatas {
-                        title.append(data.name ?? "")
+            if response.response?.statusCode == 200 {
+                if let wifi = response.result.value {
+                    if let wifiDatas = wifi.datas {
+                        data = wifiDatas
+                        for data in wifiDatas {
+                            title.append(data.name ?? "")
+                        }
+                        self.searchTitle = title
+                        self.searchData = data
                     }
-                    self.searchTitle = title
-                    self.searchData = data
-
                 }
+                callback()
+            } else {
+                SVProgressHUD.showError(withStatus: "失敗 \(response.response?.statusCode ?? 000)")
             }
-            callback()
             self.isPorccess = false
         }
     }
@@ -80,16 +83,17 @@ class SearchDataSource: NSObject {
                         self.searchData = data
                     }
                 }
+                callback()
             } else {
+                callback()
                 SVProgressHUD.showError(withStatus: "失敗 \(response.response?.statusCode ?? 000)")
             }
             self.isPorccess = false
         }
-
     }
 
-    public func searchWifiData(location: CLLocationCoordinate2D, distance: Double, _ callback: @escaping () -> ()) {
-        if self.isPorccess {
+    public func searchWifiData(location: CLLocationCoordinate2D, distance: Double, force: Bool = false,_ callback: @escaping () -> ()) {
+        if self.isPorccess && !force {
             return
         }
 
@@ -102,17 +106,22 @@ class SearchDataSource: NSObject {
         Alamofire.request(url,
                           method: .get,
                           parameters: param).responseWifi { response in
-            if let wifi = response.result.value {
-                if let wifiDatas = wifi.datas {
-                    data = wifiDatas
-                    for data in wifiDatas {
-                        title.append(data.name ?? "")
+            if response.response?.statusCode == 200 {
+                if let wifi = response.result.value {
+                    if let wifiDatas = wifi.datas {
+                        data = wifiDatas
+                        for data in wifiDatas {
+                            title.append(data.name ?? "")
+                        }
+                        self.searchTitle = title
+                        self.searchData = data
                     }
-                    self.searchTitle = title
-                    self.searchData = data
                 }
+                callback()
+            } else {
+                callback()
+                SVProgressHUD.showError(withStatus: "失敗 \(response.response?.statusCode ?? 000)")
             }
-            callback()
             self.isPorccess = false
         }
 

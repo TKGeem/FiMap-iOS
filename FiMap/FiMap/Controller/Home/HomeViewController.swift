@@ -42,7 +42,7 @@ class HomeViewController: UIViewController {
 
     private var floatBarVC = FloatBarMode.search
 
-    private var isPreview = false
+    private var isCoolTime = false
 
 
     // MARK: - Override
@@ -126,6 +126,7 @@ class HomeViewController: UIViewController {
             make.edges.equalToSuperview()
         }
         self.mapView.delegate = self
+        self.mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: self.className)
     }
 
     private func menuBarLayoutSetting() {
@@ -266,6 +267,11 @@ class HomeViewController: UIViewController {
 
         self.resultBarView.addSubview(self.resultLabel)
         self.resultLabel.backgroundColor = UIColor.clear
+        self.resultLabel.textAlignment = .center
+        self.resultLabel.adjustsFontForContentSizeCategory = true
+        self.resultLabel.adjustsFontSizeToFitWidth = true
+        self.resultLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        self.resultLabel.textColor = Constants.Color.WHITE_GRAY
         self.resultLabel.snp.makeConstraints { (make) in
             make.left.equalTo(10)
             make.right.equalTo(-10)
@@ -278,36 +284,36 @@ class HomeViewController: UIViewController {
     // MARK: - Function
     private func addAnnotationsFromDatas(datas: [WifiData], afterRemove: Bool = false) {
         let maxAnnotation = 500
-        if self.isPreview {
-            return
-        }
 
         if self.mapView.annotations.count >= maxAnnotation || afterRemove {
             self.mapView.removeAnnotations(self.mapView.annotations)
         }
 
         var annotations = [MKPointAnnotation]()
-        DispatchQueue.global().sync {
-
-        }
         for data in datas {
             let annotation = MKPointAnnotation()
-            if let title = data.name,
-                let subTitle = data.ssid,
-                let latitude = data.yGeoPoint,
-                let longitude = data.xGeoPoint {
-                annotation.title = title
-                annotation.subtitle = "SSID: \(subTitle)"
-                annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
+            if let dTitle = data.name,
+                let dSubTitle = data.ssid,
+                let dLatitude = data.yGeoPoint,
+                let dLongitude = data.xGeoPoint {
+                if dTitle == "" || dSubTitle == "" {
+                    continue
+                }
+
+                annotation.title = dTitle
+                annotation.subtitle = "SSID: \(dSubTitle)"
+                annotation.coordinate = CLLocationCoordinate2DMake(dLatitude, dLongitude)
                 annotations.append(annotation)
+                self.mapView.addAnnotation(annotation)
             }
+
             if annotations.count >= maxAnnotation {
                 break
             }
         }
-        if annotations.count != 0 {
-            self.mapView.addAnnotations(annotations)
-        }
+//        if annotations.count != 0 {
+//            self.mapView.addAnnotations(annotations)
+//        }
     }
 
     private func selectAnnotationFromData(data: WifiData) {
@@ -324,43 +330,50 @@ class HomeViewController: UIViewController {
                     conAnnotation.subtitle == annotation.subtitle
             }
 
-            self.isPreview = true
             if let fAnnotation = filteredAnnotation {
                 if filteredAnnotation?.title != "" {
                     self.mapView.selectAnnotation(fAnnotation, animated: true)
                     self.mapView.showAnnotations([fAnnotation], animated: true)
-                    self.isPreview = false
                     return
                 }
             }
             self.mapView.addAnnotation(annotation)
             self.mapView.selectAnnotation(annotation, animated: true)
             self.mapView.showAnnotations([annotation], animated: true)
-            self.isPreview = false
         }
     }
 
 
     private func updateMapViewAnnotaion(location: CLLocationCoordinate2D? = nil, _ callback: @escaping () -> ()) {
+        if self.isCoolTime {
+            return
+        }
+        self.isCoolTime = true
+        DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
+            self.isCoolTime = false
+        }
         let mRect = mapView.visibleMapRect
         let centerMapPoint = MKMapPoint(x: mRect.midX, y: mRect.midY)
         let bottomMapPoint = MKMapPoint(x: mRect.midX, y: mRect.minY)
-        var currentDist = centerMapPoint.distance(to: bottomMapPoint) * 1.1 //マップロードを込み
-        if currentDist >= 100000.0 {
-            currentDist = 100000.0
+        let currentDist = centerMapPoint.distance(to: bottomMapPoint) //マップロードを込み
+        if currentDist >= 40000.0 {
+            self.addAnnotationsFromDatas(datas: [], afterRemove: true)
+            callback()
+            return
         }
 
         if let location = location {
             self.dataSource.searchWifiData(location: location, distance: 2000) {
                 self.addAnnotationsFromDatas(datas: self.dataSource.searchData, afterRemove: true)
+                callback()
             }
-            callback()
             return
         }
         self.dataSource.searchWifiData(location: centerMapPoint.coordinate, distance: currentDist) {
             self.addAnnotationsFromDatas(datas: self.dataSource.searchData, afterRemove: true)
             callback()
         }
+
     }
 
     private func setSearchData(word: String?) {
@@ -450,6 +463,7 @@ class HomeViewController: UIViewController {
                 self.searchTxf.text = ""
                 self.setSearchData(word: "")
                 self.floatBarVC = .search
+                self.isCoolTime = false
                 callback()
             }
         }
@@ -583,32 +597,10 @@ extension HomeViewController: CLLocationManagerDelegate {
 
 //MARK: MKMapViewDelegate
 extension HomeViewController: MKMapViewDelegate {
-    func mapViewWillStartLoadingMap(_ mapView: MKMapView) {
-//        print("load map")
-//        print(mapView)
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        updateMapViewAnnotaion({})
     }
-
-    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
-//        print("load map complited")
-//        print(mapView)
-
-    }
-
-    func mapViewWillStartRenderingMap(_ mapView: MKMapView) {
-//        print("render map")
-//        print(mapView)
-        updateMapViewAnnotaion({ })
-    }
-
-    func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
-    }
-
-    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
-//        print("move map")
-//        print(mapView)
-//        updateMapViewAnnotaion({ })
-    }
-
+    
     func mapView(_ mapView: MKMapView, didChange mode: MKUserTrackingMode, animated: Bool) {
 //        print("move user")
 //        print(mode.rawValue)
@@ -617,19 +609,16 @@ extension HomeViewController: MKMapViewDelegate {
     }
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let identifier = "point"
-
+        self.isCoolTime = false
         if annotation.isKind(of: MKUserLocation.self) {
             return nil
         }
 
         // Reuse the annotation if possible
-        var annotationView: MKMarkerAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
-
+        var annotationView: MKMarkerAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: className) as? MKMarkerAnnotationView
         if annotationView == nil {
-            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: self.className)
         }
-
         annotationView?.glyphImage = R.image.baseline_wifi_white_48pt()
         annotationView?.markerTintColor = Constants.Color.LIGHT_GREEN
         annotationView?.animatesWhenAdded = false
@@ -640,29 +629,34 @@ extension HomeViewController: MKMapViewDelegate {
     }
 
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        if let location = view.annotation?.coordinate {
-            self.dataSource.searchWifiData(location: location, distance: 1.0) {
-                for i in self.dataSource.searchData {
-                    print(i.name)
-                    print(i.address)
-                    print(i.ssid)
-                    
-                }
+        
+        if let clusterAnnotation = view.annotation as? MKClusterAnnotation {
+            var clusteredAnnotation = [MKAnnotation]()
+            for annotation in clusterAnnotation.memberAnnotations {
+                clusteredAnnotation.append(annotation)
+            }
+            self.mapView.showAnnotations(clusteredAnnotation, animated: true)
+            return
+        }
+
+        if let location = view.annotation?.coordinate, let annotation = view.annotation {
+            self.dataSource.searchWifiData(location: location, distance: 1.0, force: true) {
+                self.isCoolTime = true
                 self.floatBarVC = .information
                 self.openFloatingBar({ })
+                self.mapView.showAnnotations([annotation], animated: true)
+                NotificationCenter.default.post(name: Constants.Notification.SELECT_ENTER, object: nil)
+                if self.dataSource.searchData.count == 1 {
+                    self.resultLabel.text = "\(self.dataSource.searchData.first?.name ?? "") の情報"
+                }else {
+                    self.resultLabel.text = "\(self.dataSource.searchData.count) 件の情報"
+                }
             }
         }
     }
-
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-
-    }
-
-    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-    }
-
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        self.isCoolTime = false
     }
 }
 
