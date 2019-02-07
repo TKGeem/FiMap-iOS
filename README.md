@@ -20,7 +20,7 @@ and bulid in Xcode.
 Search the surrounding facilities information from the map and find the name by word search.
 
 ## Screen shot
-<img src="image/76342EB9-8439-43FF-826A-81CDAF2468A3.png" width="200"> <img src="image0ABF5924-D205-46C1-8BA3-706DED30CF68.png" width="200">
+<img src="image/76342EB9-8439-43FF-826A-81CDAF2468A3.png" width="200"> <img src="image/0ABF5924-D205-46C1-8BA3-706DED30CF68.png" width="200">
 
 ## Current specification
 * WiFi spot only support
