@@ -6,6 +6,8 @@
 
 ## Installation & Setup
 
+※Required macOS
+
 In terminal:
 
 ```bash
